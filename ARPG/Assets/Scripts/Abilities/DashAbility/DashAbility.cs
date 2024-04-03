@@ -18,7 +18,10 @@ public class DashAbility : Ability, IAbilityBehaviour
         DashAbilityContainer dashAbilityContainer = (DashAbilityContainer)abilityContainer;
 
         InstancePlayer.instance.GetComponentInChildren<AnimationHandler>().TeleportBurst(dashAbilityContainer.movSpeed, dashAbilityContainer.timeSpeedBurst);
-        InstancePlayer.instance.GetComponent<CharacterStats>().GetHeal(dashAbilityContainer.healAmount);
+
+        CharacterStats CharacterStats =InstancePlayer.instance.GetComponent<CharacterStats>();
+        CharacterStats.GetHeal(dashAbilityContainer.healAmount);
+
 
     }
     

@@ -42,8 +42,8 @@ public class CharacterStats : MonoBehaviour, IDamagable
 
     public void GetHeal(int heal)
     {
-        
-        health += maxHealth*(heal/100);
+      
+        Health += (int)(MaxHealth * ((float)heal / 100f)); 
         if (health >= maxHealth) health = maxHealth;
         playerUI.UpdateUI();
     }
