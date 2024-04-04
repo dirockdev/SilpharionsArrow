@@ -3,6 +3,8 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using System.Collections;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class ZombieEnemy : MonoBehaviour, IDamagable,IInteractObject
 {
@@ -32,6 +34,7 @@ public class ZombieEnemy : MonoBehaviour, IDamagable,IInteractObject
 
     Rigidbody[] ragdollBodies;
 
+    private bool isPoisoned;
     private void Awake()
     {
         anim=GetComponentInChildren<Animator>();
@@ -117,7 +120,8 @@ public class ZombieEnemy : MonoBehaviour, IDamagable,IInteractObject
 
     public void GetDamage(int damage, bool crit)
     {
-        DamageAnim();
+        ShaderDmgAnim(isPoisoned ? Color.green : Color.grey);
+
         ShowDamagePopUp(damage,crit);
        
         health -= DamageValue(damage, crit);
@@ -164,14 +168,15 @@ public class ZombieEnemy : MonoBehaviour, IDamagable,IInteractObject
     {
         
         GameObject dmgTxt = ObjectPoolManager.SpawnObject(prefabDmgUI, transform.position, Quaternion.identity);
-        dmgTxt.GetComponent<DmgPopUp>().Inicialize(DamageValue(damage,crit),crit);
+        dmgTxt.GetComponent<DmgPopUp>().Inicialize(DamageValue(damage,crit),crit, isPoisoned ? Color.green : Color.white);
         
     }
 
     private bool Dead() => health <= 0;
 
-    private void DamageAnim()
+    private void ShaderDmgAnim(Color color)
     {
+        _meshRendererMat.SetColor("_TextureColor",color);
         _meshRendererMat.DOComplete();
         _meshRendererMat.SetFloat("_ValorColor", 1);
         _meshRendererMat.DOFloat(0, "_ValorColor", 0.5f);
@@ -191,4 +196,33 @@ public class ZombieEnemy : MonoBehaviour, IDamagable,IInteractObject
     {
         health += heal;
     }
+
+    public void GetStateDamage(int damage)
+    {
+        if (!isPoisoned)
+        {
+            isPoisoned = true;
+            StartCoroutine(PoisonCoroutine(damage));
+        }
+        else
+        {
+            StopAllCoroutines();
+            isPoisoned = true;
+            StartCoroutine(PoisonCoroutine(damage));
+        }
+    }
+    
+    IEnumerator PoisonCoroutine(int damage)
+    {
+        float timer = 0f;
+        while (timer < 2f && !Dead())
+        {
+            // Aplicar daño de veneno por segundo
+            GetDamage(damage, false);
+            timer += 0.5f;
+            yield return new WaitForSeconds(0.5f); // Espera al siguiente frame
+        }
+        isPoisoned = false;
+    }
+
 }

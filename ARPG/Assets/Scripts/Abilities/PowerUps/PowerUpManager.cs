@@ -36,7 +36,7 @@ public class PowerUpManager : MonoBehaviour
     }
     public void UpgradeSlow(int idAbility)
     {
-        UpgradeAbility(idAbility, new SlowPowerUp(powerUpStats.slow));
+        UpgradeAbility(idAbility, new StatePowerUp(powerUpStats.slow));
 
     }
     public void UpgradeDamage(int idAbility)
@@ -47,6 +47,22 @@ public class PowerUpManager : MonoBehaviour
     public void UpgradeSpeed(int idAbility)
     {
         UpgradeAbility(idAbility, new SpeedPowerUp(powerUpStats.speed));
+
+    }
+
+    public void UpgradePoisonState(int idAbility)
+    {
+        UpgradeAbility(idAbility, new StatePowerUp(powerUpStats.poisonChance));
+
+    } 
+    public void UpgradePoisonStateDmg(int idAbility)
+    {
+        UpgradeAbility(idAbility, new StateDmgPowerUp(powerUpStats.stateDmgDiv));
+
+    }
+    public void UpgradeWidth(int idAbility)
+    {
+        UpgradeAbility(idAbility, new WidthPowerUp(powerUpStats.widthProj));
 
     }
     #endregion

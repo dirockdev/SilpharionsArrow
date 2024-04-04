@@ -14,6 +14,11 @@ public class PowerUpStats : ScriptableObject
     public int damage;
     public int speed;
     public float slow;
+
+    public float poisonChance;
+    public int stateDmgDiv;
+
+    public float widthProj;
     [Header("Dash")]
     public int movSpeed;
     public int timeSpeed;

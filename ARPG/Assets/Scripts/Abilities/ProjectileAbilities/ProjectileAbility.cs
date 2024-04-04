@@ -14,7 +14,9 @@ public class ProjectileAbility :Ability, IAbilityBehaviour
     public int speed;
     public int critProb;
     public float angleProj;
-    public float slow;
+    public float state;
+    public int stateDmg;
+    public float widthProj;
     public void ExecuteAbility(Transform initialPos, Vector3 mousePos,AbilityContainer abilityContainer)
     {
         ProjectileAbilityContainer projectileAbilityContainer = (ProjectileAbilityContainer)abilityContainer;
@@ -39,16 +41,18 @@ public class ProjectileAbility :Ability, IAbilityBehaviour
 
             // Instanciar el proyectil en la dirección calculada
             GameObject projectile = ObjectPoolManager.SpawnObject(prefabProjectile, new Vector3(initialPos.position.x, 2, initialPos.position.z), Quaternion.identity);
-            // Configurar el daño, velocidad, etc., según sea necesario
+            
+            
 
             IProjectile projectileComponent = projectile.GetComponent<IProjectile>();
+            projectileComponent.SetWidthProj(projectileAbilityContainer.widthProj);
             projectileComponent.SetDamage(projectileAbilityContainer.currentDamage);
             projectileComponent.SetVelocity(projectileAbilityContainer.speed);
             projectileComponent.SetCanPenetrate(canPenetrate);
             projectileComponent.SetCrit(projectileAbilityContainer.probCrit);
-            projectileComponent.SetSlow(projectileAbilityContainer.slowFactor);
-            projectile.GetComponent<ProjectController1>().SetDirection(rotation*horizontalDirection);
-
+            projectileComponent.SetState(projectileAbilityContainer.state);
+            projectileComponent.SetDirection(rotation*horizontalDirection);
+            projectileComponent.SetStateDmg(projectileAbilityContainer.currentDamage / projectileAbilityContainer.stateDmg);
             
         }
     }

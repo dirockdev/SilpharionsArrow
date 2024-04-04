@@ -18,6 +18,9 @@ MonoBehaviour:
   damage: 5
   speed: 15
   slow: 0.5
+  poisonChance: 0.15
+  stateDmgDiv: 2
+  widthProj: 1
   movSpeed: 3
   timeSpeed: 1
   healthAmount: 7

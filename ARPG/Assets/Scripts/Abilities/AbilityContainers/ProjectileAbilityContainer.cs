@@ -8,7 +8,9 @@ public class ProjectileAbilityContainer : AbilityContainer
     public int numProjectiles;
     public float angleProj;
     public int speed;
-    public float slowFactor;
+    public float state;
+    public int stateDmg;
+    public float widthProj;
 
     public ProjectileAbilityContainer(Ability ability) : base(ability)
     {
@@ -18,8 +20,9 @@ public class ProjectileAbilityContainer : AbilityContainer
         numProjectiles = projectileAbility.numberOfProjectiles;
         speed = projectileAbility.speed;
         angleProj = projectileAbility.angleProj;
-        slowFactor = projectileAbility.slow;
-
+        state = projectileAbility.state;
+        stateDmg = projectileAbility.stateDmg;
+        widthProj = projectileAbility.widthProj;
     }
 
 }

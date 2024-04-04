@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Zombie
   m_EditorClassIdentifier: 
   speed: 5
-  health: 100
+  health: 300
   damage: 100
   attackspeed: 1
   radiusDetection: 3

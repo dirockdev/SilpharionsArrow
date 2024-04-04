@@ -47,4 +47,9 @@ public class CharacterStats : MonoBehaviour, IDamagable
         if (health >= maxHealth) health = maxHealth;
         playerUI.UpdateUI();
     }
+
+    public void GetStateDamage(int damage)
+    {
+        throw new System.NotImplementedException();
+    }
 }

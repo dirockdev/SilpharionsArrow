@@ -22,4 +22,6 @@ MonoBehaviour:
   speed: 60
   critProb: 20
   angleProj: 40
-  slow: 0
+  state: 0
+  stateDmg: 1
+  widthProj: 1

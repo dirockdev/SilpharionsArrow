@@ -6,30 +6,37 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class ProjectController1 : MonoBehaviour, IProjectile
+public class ProjectController2 : MonoBehaviour, IProjectile
 {
 
     bool canPenetrate;
-    int velocity,damage,probCrit;
-    float slow;
+    int velocity,damage,probCrit,poisonDmg;
+    float state;
     Rigidbody body;
     MeshRenderer meshRenderer;
     BoxCollider boxCollider;
     ParticleSystem part;
+    private float widthProj;
+    ParticleSystem.ShapeModule shapeModule;
     private void Awake()
     {
         body = GetComponent<Rigidbody>();
         meshRenderer = GetComponent<MeshRenderer>();
         boxCollider = GetComponent<BoxCollider>();
         part = GetComponentInChildren<ParticleSystem>();
+        shapeModule= part.GetComponentInChildren<ParticleSystem>().shape;
     }
     private void OnEnable()
     {
         part.Play();
         meshRenderer.enabled = true;
         boxCollider.enabled = true;
+        // Configurar el daño, velocidad, etc., según sea necesario
         StartCoroutine(ReturnToPool());
     }
+    
+   
+
     public void SetDirection(Vector3 direction)
     {
         // Establece la rotación del proyectil hacia la dirección especificada.
@@ -47,11 +54,10 @@ public class ProjectController1 : MonoBehaviour, IProjectile
         {
             bool crit=Random.value<((float)probCrit/100);
             itemHit.GetDamage(damage,crit);
-            if(itemHit is ZombieEnemy && slow!=0)
-            {
-                ZombieEnemy enemy = (ZombieEnemy)itemHit;
-                enemy.SlowDown(slow);
-            }
+
+            bool isPoisonState = Random.value < state;
+            if (isPoisonState)itemHit.GetStateDamage(poisonDmg);
+
             if (!canPenetrate)
             {
                 EndProjectile();
@@ -92,9 +98,9 @@ public class ProjectController1 : MonoBehaviour, IProjectile
     {
         velocity = getVelocity;
     }
-    void IProjectile.SetState(float getSlow)
+    void IProjectile.SetState(float getState)
     {
-        slow = getSlow;
+        state = getState;
     }
     public void SetCanPenetrate(bool getCanPenetrate)
     {
@@ -108,11 +114,13 @@ public class ProjectController1 : MonoBehaviour, IProjectile
 
     public void SetStateDmg(int stateDmg)
     {
-        
+        this.poisonDmg = stateDmg;
     }
 
     public void SetWidthProj(float width)
     {
-        
+        widthProj = width;
+        boxCollider.size = new Vector3(widthProj == 1 ? 1 : widthProj * 10, 1, 1);
+        shapeModule.radius = 0.4f * widthProj;
     }
 }

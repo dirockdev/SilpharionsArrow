@@ -12,7 +12,7 @@ public class DmgPopUp : MonoBehaviour
     {
         StartCoroutine(ReturnToPool());
     }
-    public void Inicialize(int dmgText, bool crit)
+    public void Inicialize(int dmgText, bool crit, Color color)
     {
         text.SetText(dmgText.ToString());
         
@@ -20,7 +20,7 @@ public class DmgPopUp : MonoBehaviour
         text.DOFade(0, 1f);
         text.rectTransform.DOAnchorPos3D(new Vector3(Random.Range(-15, 15), 10, 0), 1f);
         if (crit) text.color = Color.yellow;
-        else text.color = Color.white;
+        else text.color = color;
 
     }
     IEnumerator ReturnToPool()

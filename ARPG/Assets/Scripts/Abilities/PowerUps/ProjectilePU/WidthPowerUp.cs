@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlowPowerUp : IPowerUp
+public class WidthPowerUp : IPowerUp
 {
-    private float slowFactor;
-    public SlowPowerUp(float slowFactor)
+    private float widthProj;
+    public WidthPowerUp(float widthProj)
     {
-        this.slowFactor = slowFactor;
+        this.widthProj = widthProj;
     }
 
     public void Apply(AbilityContainer abilityContainer)
@@ -16,7 +16,7 @@ public class SlowPowerUp : IPowerUp
         {
 
             ProjectileAbilityContainer projectileAbilityContainer = (ProjectileAbilityContainer)abilityContainer;
-            projectileAbilityContainer.slowFactor += slowFactor;
+            projectileAbilityContainer.widthProj += widthProj;
         }
     }
 }
