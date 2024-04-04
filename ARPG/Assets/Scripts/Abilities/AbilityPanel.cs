@@ -9,7 +9,16 @@ public class AbilityPanel : MonoBehaviour
     [SerializeField] List<AbilitySlotButton> slotButtons;
     [SerializeField]
     private AbilityHandler abilityHandler;
+    [SerializeField]private GameObject abilitySkillTrees;
     //public UnityEvent<int> onAbilityActivate;
+    private void Start()
+    {
+        if (abilitySkillTrees.activeSelf) { abilitySkillTrees.SetActive(false); };
+        if (!abilitySkillTrees.activeSelf) { 
+            abilitySkillTrees.SetActive(true); 
+            abilitySkillTrees.SetActive(false);
+        }
+    }
     public void ActivateAbility1(InputAction.CallbackContext context)
     {
         HoldAbilities(context,1);

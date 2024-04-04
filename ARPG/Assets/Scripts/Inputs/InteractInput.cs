@@ -37,7 +37,7 @@ public class InteractInput : MonoBehaviour
                     Outline previousOutline = previousHoveredObject.outLine();
                     if (previousOutline != null)
                     {
-                        previousOutline.enabled = false;
+                        previousOutline.OutlineWidth = 0;
                     }
                 }
 
@@ -52,7 +52,7 @@ public class InteractInput : MonoBehaviour
                     Outline currentOutline = interactableObject.outLine();
                     if (currentOutline != null)
                     {
-                        currentOutline.enabled = true;
+                        currentOutline.OutlineWidth = 1.5f;
                     }
                 }
                 else
@@ -68,7 +68,7 @@ public class InteractInput : MonoBehaviour
             if (previousHoveredObject != null)
             {
                 HideInteractUI();
-                previousHoveredObject.outLine().enabled = false;
+                previousHoveredObject.outLine().OutlineWidth=0;
                 previousHoveredObject = null;
                 
             }

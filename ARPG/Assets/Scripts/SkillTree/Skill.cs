@@ -32,9 +32,9 @@ public class Skill : MonoBehaviour
     private void Awake()
     {
         skillImage = GetComponent<Image>();
-        SkillButton = GetComponent<Button>();
+        skillButton = GetComponent<Button>();
         skillTree = GetComponentInParent<SkillTree>();
-        SkillButton.enabled = false;
+        skillButton.enabled = false;
         
     }
     public void Initialize()
@@ -47,17 +47,17 @@ public class Skill : MonoBehaviour
     {
         if (id == 0 && SkillTree.skillPoints >= 1 && level<maxLevel)
         {
-            SkillButton.enabled =true ;
+            skillButton.enabled =true ;
 
         }
         else if(SkillTree.skillPoints < 1 && id == 0)
         {
-            SkillButton.enabled =false ;
+            skillButton.enabled =false ;
         }
         titleText.SetText($"{Level}/{MaxLevel}\n{SkillName}");
         descriptionText.SetText(SkillDescription);
         // Determina si la habilidad está desbloqueada para mejorar
-        bool isUnlockedForUpgrade = SkillTree.skillPoints >= 1 && SkillButton.isActiveAndEnabled;
+        bool isUnlockedForUpgrade = SkillTree.skillPoints >= 1 && skillButton.enabled==true;
 
         // Determina si la habilidad está desbloqueada para mejorar las habilidades conectadas
         bool areConnectedSkillsUnlocked = Level >= RequiredPointsForConnectedSkills;
@@ -68,7 +68,7 @@ public class Skill : MonoBehaviour
 
         foreach (var connectedSkill in connectedSkills)
         {
-            connectedSkill.SkillButton.enabled = areConnectedSkillsUnlocked && SkillTree.skillPoints >= 1 && !(connectedSkill.Level >= connectedSkill.MaxLevel);
+            connectedSkill.skillButton.enabled = areConnectedSkillsUnlocked && SkillTree.skillPoints >= 1 && !(connectedSkill.Level >= connectedSkill.MaxLevel);
             connectedSkill.UpdateUI();
         }
 
