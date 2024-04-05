@@ -11,6 +11,7 @@ public class ProjectileAbilityContainer : AbilityContainer
     public float state;
     public int stateDmg;
     public float widthProj;
+    public float timeAlive;
 
     public ProjectileAbilityContainer(Ability ability) : base(ability)
     {
@@ -23,6 +24,7 @@ public class ProjectileAbilityContainer : AbilityContainer
         state = projectileAbility.state;
         stateDmg = projectileAbility.stateDmg;
         widthProj = projectileAbility.widthProj;
+        timeAlive = projectileAbility.timeAlive;
     }
 
 }

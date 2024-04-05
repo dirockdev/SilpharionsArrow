@@ -9,7 +9,7 @@ using UnityEngine.Events;
 
 public class AbilityHandler : MonoBehaviour
 {
-    [SerializeField] Ability startingAbility,ability1, dashAbility;
+    [SerializeField] Ability startingAbility,ability1, dashAbility,shotgunAbility;
 
     List<AbilityContainer> abilities;
     public UnityEvent<AbilityContainer,int> onAbilityChange;
@@ -33,6 +33,7 @@ public class AbilityHandler : MonoBehaviour
         AddAbility(startingAbility);
         AddAbility(ability1);
         AddAbility(dashAbility);
+        AddAbility(shotgunAbility);
     }
 
     private void AddAbility(Ability abilityToAdd)

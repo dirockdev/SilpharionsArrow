@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07e00611530353c4b886964e3873d3d4, type: 3}
-  m_Name: PenetrationShot
+  m_Name: ShotGun
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: f010635d07c69a34c851afb1f0bf0813, type: 3}
-  cooldown: 2
-  numberOfProjectiles: 1
+  icon: {fileID: 21300000, guid: a5f22cb8c40d5d447b28f1c225198f69, type: 3}
+  cooldown: 1
+  numberOfProjectiles: 5
   canPenetrate: 1
-  prefabProjectile: {fileID: 807472419327532609, guid: 48266ad7a703b794d80a2dff30418a91,
+  prefabProjectile: {fileID: 807472419327532609, guid: 86c05495e293ff447b255c2086824032,
     type: 3}
-  damage: 60
-  speed: 150
+  damage: 100
+  speed: 10
   critProb: 20
   angleProj: 10
   state: 0
   stateDmg: 10
   widthProj: 1
-  timeAlive: 3
+  timeAlive: 0.5

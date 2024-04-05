@@ -16,6 +16,8 @@ public class ProjectController1 : MonoBehaviour, IProjectile
     MeshRenderer meshRenderer;
     BoxCollider boxCollider;
     ParticleSystem part;
+    private float timeAlive;
+
     private void Awake()
     {
         body = GetComponent<Rigidbody>();
@@ -28,7 +30,7 @@ public class ProjectController1 : MonoBehaviour, IProjectile
         part.Play();
         meshRenderer.enabled = true;
         boxCollider.enabled = true;
-        StartCoroutine(ReturnToPool());
+        
     }
     public void SetDirection(Vector3 direction)
     {
@@ -67,7 +69,7 @@ public class ProjectController1 : MonoBehaviour, IProjectile
     IEnumerator ReturnToPool()
     {
         float elapsedTime = 0f;
-        while (elapsedTime < 3f)
+        while (elapsedTime < timeAlive)
         {
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -114,5 +116,11 @@ public class ProjectController1 : MonoBehaviour, IProjectile
     public void SetWidthProj(float width)
     {
         
+    }
+
+    public void SetTimeAlive(float time)
+    {
+        timeAlive = time;
+        StartCoroutine(ReturnToPool());
     }
 }

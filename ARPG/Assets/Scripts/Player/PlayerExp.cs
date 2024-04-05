@@ -21,9 +21,10 @@ public class PlayerExp : MonoBehaviour
     int requiredExp;
     private static int level;
 
-    
+    private PlayerAnimate playerAnimate;
     private void Start()
     {
+        playerAnimate = GetComponent<PlayerAnimate>();  
         RestartStats();
         expBar.maxValue = requiredExp;
         expBar.minValue = 0;
@@ -54,10 +55,17 @@ public class PlayerExp : MonoBehaviour
         SkillTree.skillPoints++;
         currentExp = Mathf.RoundToInt(currentExp - requiredExp);
         requiredExp = CalculateRequiredExp();
-        expBar.value = currentExp;
-        expBar.maxValue = requiredExp;
+        playerAnimate.LevelUpPart();
+        UpdateSliderUI();
         UISkillController.UpdatePoints();
     }
+
+    private void UpdateSliderUI()
+    {
+        expBar.value = currentExp;
+        expBar.maxValue = requiredExp;
+    }
+
     private int CalculateRequiredExp()
     {
         return Mathf.FloorToInt(level + additionMultiplier * Mathf.Pow(powerMultiplier, level / divisionMultiplier));

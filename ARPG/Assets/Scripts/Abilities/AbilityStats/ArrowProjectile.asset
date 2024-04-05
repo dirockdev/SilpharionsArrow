@@ -16,7 +16,7 @@ MonoBehaviour:
   cooldown: 1
   numberOfProjectiles: 1
   canPenetrate: 0
-  prefabProjectile: {fileID: 807472419327532609, guid: 188b1b7fe0b487a498477576345a2055,
+  prefabProjectile: {fileID: 807472419327532609, guid: bed7a30b75b6fc741bf78e29152faaeb,
     type: 3}
   damage: 30
   speed: 60
@@ -25,3 +25,4 @@ MonoBehaviour:
   state: 0
   stateDmg: 1
   widthProj: 1
+  timeAlive: 3

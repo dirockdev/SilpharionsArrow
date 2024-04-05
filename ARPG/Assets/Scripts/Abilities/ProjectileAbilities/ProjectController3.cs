@@ -6,23 +6,22 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class ProjectController2 : MonoBehaviour, IProjectile
+public class ProjectController3 : MonoBehaviour, IProjectile
 {
 
     bool canPenetrate;
     int velocity,damage,probCrit,poisonDmg;
     float state;
     Rigidbody body;
-    MeshRenderer meshRenderer;
     BoxCollider boxCollider;
     ParticleSystem part;
     private float widthProj;
     ParticleSystem.ShapeModule shapeModule;
-    float timeAlive;
+    private float timeAlive;
+
     private void Awake()
     {
         body = GetComponent<Rigidbody>();
-        meshRenderer = GetComponent<MeshRenderer>();
         boxCollider = GetComponent<BoxCollider>();
         part = GetComponentInChildren<ParticleSystem>();
         shapeModule= part.GetComponentInChildren<ParticleSystem>().shape;
@@ -30,9 +29,7 @@ public class ProjectController2 : MonoBehaviour, IProjectile
     private void OnEnable()
     {
         part.Play();
-        meshRenderer.enabled = true;
         boxCollider.enabled = true;
-        // Configurar el daño, velocidad, etc., según sea necesario
         
     }
     
@@ -83,7 +80,6 @@ public class ProjectController2 : MonoBehaviour, IProjectile
     }
     private void EndProjectile()
     {
-        meshRenderer.enabled = false;
         boxCollider.enabled = false;
         part.Stop();
         
@@ -115,7 +111,7 @@ public class ProjectController2 : MonoBehaviour, IProjectile
 
     public void SetStateDmg(int stateDmg)
     {
-        poisonDmg = stateDmg;
+        this.poisonDmg = stateDmg;
     }
 
     public void SetWidthProj(float width)

@@ -17,6 +17,7 @@ public class ProjectileAbility :Ability, IAbilityBehaviour
     public float state;
     public int stateDmg;
     public float widthProj;
+    public float timeAlive;
     public void ExecuteAbility(Transform initialPos, Vector3 mousePos,AbilityContainer abilityContainer)
     {
         ProjectileAbilityContainer projectileAbilityContainer = (ProjectileAbilityContainer)abilityContainer;
@@ -53,6 +54,7 @@ public class ProjectileAbility :Ability, IAbilityBehaviour
             projectileComponent.SetState(projectileAbilityContainer.state);
             projectileComponent.SetDirection(rotation*horizontalDirection);
             projectileComponent.SetStateDmg(projectileAbilityContainer.currentDamage / projectileAbilityContainer.stateDmg);
+            projectileComponent.SetTimeAlive(projectileAbilityContainer.timeAlive);
             
         }
     }

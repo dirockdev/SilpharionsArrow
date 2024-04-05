@@ -10,5 +10,6 @@ public interface IProjectile
     void SetStateDmg(int stateDmg);
     void SetWidthProj(float width);
     void SetDirection(Vector3 direction);
+    void SetTimeAlive(float time);
 }
 
