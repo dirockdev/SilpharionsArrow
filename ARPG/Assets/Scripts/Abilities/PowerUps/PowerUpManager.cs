@@ -1,14 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PowerUpManager : MonoBehaviour
 {
     private AbilityHandler abilityHandler;
     [SerializeField]
     PowerUpStats powerUpStats;
+    
+
+
+
     private void Start()
     {
+      
         abilityHandler = GetComponent<AbilityHandler>();
     }
     public void UpgradeCooldown(int idAbility)
@@ -19,6 +25,7 @@ public class PowerUpManager : MonoBehaviour
     }
 
     #region ProjectilePowerUps
+   
     public void UpgradeProjectiles(int idAbility)
     {
         UpgradeAbility(idAbility, new ProjectilePowerUp(powerUpStats.projectiles));
@@ -115,7 +122,21 @@ public class PowerUpManager : MonoBehaviour
 
     }
     #endregion
+    #region AreaPowerUps
+    public void UpdateTickDamage(int idAbility)
+    {
+        UpgradeAbility(idAbility, new TickDamagePowerUp(powerUpStats.damageTick));
+    }
+    public void UpdateArea(int idAbility)
+    {
+        UpgradeAbility(idAbility, new AreaPowerUp(powerUpStats.areaSize));
+    }
+    public void UpdateTimeDuration(int idAbility)
+    {
+        UpgradeAbility(idAbility, new AreaTimeDuration(powerUpStats.timeDuration));
+    }
 
+    #endregion
 
     #region DashPowerUps
 

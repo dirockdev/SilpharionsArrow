@@ -14,6 +14,9 @@ public class CharacterStats : MonoBehaviour, IDamagable
     int health,maxHealth;
     [SerializeField]
     private ParticleSystem healPart;
+    [SerializeField]
+    private GameObject prefabHealUI;
+
     public int Health { get => health; set => health = value; }
     public PlayerStats PlayerStats { get => playerStats; set => playerStats = value; }
     public int MaxHealth { get => maxHealth; set => maxHealth = value; }
@@ -43,13 +46,15 @@ public class CharacterStats : MonoBehaviour, IDamagable
     public void GetFlatHeal(int heal)
     {
         Health += heal;
+        ShowDamagePopUp(heal);
         healPart.Play();
         CheckHeals();   
     }
     public void GetHeal(int heal)
     {
-
-        Health += (int)(MaxHealth * ((float)heal / 100f));
+        int healAmount= (int)(MaxHealth * ((float)heal / 100f));
+        ShowDamagePopUp(healAmount);
+        Health += healAmount;
         healPart.Play();
         CheckHeals();
     }
@@ -59,7 +64,12 @@ public class CharacterStats : MonoBehaviour, IDamagable
         if (health >= maxHealth) health = maxHealth;
         playerUI.UpdateUI();
     }
+    public void ShowDamagePopUp(int number)
+    {
+        GameObject dmgTxt = ObjectPoolManager.SpawnObject(prefabHealUI, transform.position, Quaternion.identity);
+        dmgTxt.GetComponent<DmgPopUp>().InicializeHeal(number);
 
+    }
     public void GetStateDamage(int damage)
     {
         throw new System.NotImplementedException();

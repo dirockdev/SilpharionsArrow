@@ -32,3 +32,6 @@ MonoBehaviour:
   speedShotGun: 2
   speedPartShotGun: 1
   damageShotGun: 12
+  damageTick: 5
+  areaSize: 1
+  timeDuration: 0.5

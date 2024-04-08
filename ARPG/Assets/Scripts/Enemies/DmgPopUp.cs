@@ -12,15 +12,25 @@ public class DmgPopUp : MonoBehaviour
     {
         StartCoroutine(ReturnToPool());
     }
-    public void Inicialize(int dmgText, bool crit, Color color)
+    public void InicializeDamage(int dmgText, bool crit, Color color)
     {
         text.SetText(dmgText.ToString());
-        
+        text.fontSize = 8;
         text.alpha = 1f;
         text.DOFade(0, 1f);
         text.rectTransform.DOAnchorPos3D(new Vector3(Random.Range(-15, 15), 10, 0), 1f);
         if (crit) text.color = Color.yellow;
         else text.color = color;
+
+    }
+    public void InicializeHeal(int heal)
+    {
+        text.SetText(heal.ToString());
+        text.fontSize = 6;
+        text.alpha = 1f;
+        text.DOFade(0, 1f);
+        text.rectTransform.DOAnchorPos3D(new Vector3(Random.Range(-15, 15), 10, 0), 1f);
+        text.color = Color.green;
 
     }
     IEnumerator ReturnToPool()

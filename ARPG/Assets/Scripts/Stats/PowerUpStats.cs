@@ -33,4 +33,8 @@ public class PowerUpStats : ScriptableObject
     public int speedShotGun;
     public int speedPartShotGun;
     public int damageShotGun;
+    [Header("Area")]
+    public int damageTick;
+    public int areaSize;
+    public float timeDuration;
 }

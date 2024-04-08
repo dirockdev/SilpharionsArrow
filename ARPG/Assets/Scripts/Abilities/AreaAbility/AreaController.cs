@@ -9,9 +9,9 @@ public class AreaController : MonoBehaviour, IArea
 
     Rigidbody body;
     SphereCollider sphereCollider;
-    ParticleSystem part;
+    ParticleSystem[] parts;
 
-    ParticleSystem.MainModule mainModule;
+    List<ParticleSystem.ShapeModule> shapeModule= new List<ParticleSystem.ShapeModule>();
     private float timeAlive;
 
     private float timer;
@@ -20,15 +20,13 @@ public class AreaController : MonoBehaviour, IArea
     {
         body = GetComponent<Rigidbody>();
         sphereCollider = GetComponent<SphereCollider>();
-        part = GetComponentInChildren<ParticleSystem>();
-        
+        parts = GetComponentsInChildren<ParticleSystem>();
+        for (int i = 0; i < parts.Length; i++)
+        {
+            shapeModule.Add(parts[i].shape);
+        }
     }
-    private void OnEnable()
-    {
-        part.Play();
-        sphereCollider.enabled = true;
-
-    }
+    
 
     private void OnTriggerStay(Collider other)
     {
@@ -64,6 +62,16 @@ public class AreaController : MonoBehaviour, IArea
     public void SetArea(int area)
     {
         this.area = area;
+        sphereCollider.radius = area;
+        for (int i = 0; i < shapeModule.Count; i++)
+        {
+            // Crear un nuevo ShapeModule con el radio actualizado
+            ParticleSystem.ShapeModule newShapeModule = shapeModule[i];
+            newShapeModule.radius = area;
+            shapeModule[i] = newShapeModule;
+        }
+
+
     }
 
     public void SetDamage(int getDamage)
