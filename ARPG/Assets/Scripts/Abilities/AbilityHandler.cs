@@ -9,7 +9,7 @@ using UnityEngine.Events;
 
 public class AbilityHandler : MonoBehaviour
 {
-    [SerializeField] Ability startingAbility,ability1, dashAbility,shotgunAbility;
+    [SerializeField] Ability startingAbility,ability1, dashAbility,shotgunAbility, arrowRainAbility;
 
     List<AbilityContainer> abilities;
     public UnityEvent<AbilityContainer,int> onAbilityChange;
@@ -17,6 +17,7 @@ public class AbilityHandler : MonoBehaviour
 
 
     Animator anim;
+
     [SerializeField]
     public List<AbilityContainer> Abilities { get => abilities; set => abilities = value; }
 
@@ -34,6 +35,7 @@ public class AbilityHandler : MonoBehaviour
         AddAbility(ability1);
         AddAbility(dashAbility);
         AddAbility(shotgunAbility);
+        AddAbility(arrowRainAbility);
     }
 
     private void AddAbility(Ability abilityToAdd)
@@ -54,6 +56,10 @@ public class AbilityHandler : MonoBehaviour
         else if (ability is DashAbility)
         {
             return new DashAbilityContainer(ability);
+        }
+        else if (ability is AreaAbility)
+        {
+            return new AreaAbilityContainer(ability);
         }
         else
         {
@@ -81,6 +87,10 @@ public class AbilityHandler : MonoBehaviour
         else if (abilityContainer.ability is DashAbility)
         {
             return (DashAbility)abilityContainer.ability;
+        }
+        else if (abilityContainer.ability is AreaAbility)
+        {
+            return (AreaAbility)abilityContainer.ability;
         }
         else
         {

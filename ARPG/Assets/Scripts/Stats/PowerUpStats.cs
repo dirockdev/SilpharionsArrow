@@ -19,8 +19,18 @@ public class PowerUpStats : ScriptableObject
     public int stateDmgDiv;
 
     public float widthProj;
+    public float stunProb;
     [Header("Dash")]
     public int movSpeed;
     public int timeSpeed;
     public int healthAmount;
+
+    [Header("ShotGun")]
+    public int projectilesShotGun;
+    public int critShotGun;
+    public int angleShotGun;
+    public float widthProjShotGun;
+    public int speedShotGun;
+    public int speedPartShotGun;
+    public int damageShotGun;
 }

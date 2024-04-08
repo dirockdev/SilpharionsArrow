@@ -16,6 +16,7 @@ MonoBehaviour:
   cooldown: 1
   numberOfProjectiles: 1
   canPenetrate: 0
+  canHealOnCrits: 0
   prefabProjectile: {fileID: 807472419327532609, guid: bed7a30b75b6fc741bf78e29152faaeb,
     type: 3}
   damage: 30
@@ -26,3 +27,5 @@ MonoBehaviour:
   stateDmg: 1
   widthProj: 1
   timeAlive: 3
+  canReduceCooldown: 0
+  stunProb: 0

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed89823c53eaf66458036d37224a80a2, type: 3}
+  m_Name: RainArrows
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 43d54d494adf7a64db5e997b78d1a3b3, type: 3}
+  cooldown: 3
+  tickDamage: 15
+  area: 0
+  timeAlive: 4
+  prefabArea: {fileID: 202636999979767771, guid: 4e040f28ec077654896e914b7dc5eaeb,
+    type: 3}

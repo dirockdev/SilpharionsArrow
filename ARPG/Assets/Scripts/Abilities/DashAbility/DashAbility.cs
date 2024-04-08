@@ -11,18 +11,24 @@ public class DashAbility : Ability, IAbilityBehaviour
     public int cooldownAbilities;
     public int moveSpeed;
     public int timeSpeedBurst;
-
+    
     public void ExecuteAbility(Transform initialPos, Vector3 mousePos, AbilityContainer abilityContainer)
     {
-        InstancePlayer.instance.GetComponentInChildren<Animator>().SetTrigger("Teleport");
         DashAbilityContainer dashAbilityContainer = (DashAbilityContainer)abilityContainer;
+        dashAbilityContainer.anim.SetTrigger("Teleport");
 
-        InstancePlayer.instance.GetComponentInChildren<AnimationHandler>().TeleportBurst(dashAbilityContainer.movSpeed, dashAbilityContainer.timeSpeedBurst);
+        dashAbilityContainer.animationHandler.TeleportBurst(dashAbilityContainer.movSpeed, dashAbilityContainer.timeSpeedBurst);
 
         CharacterStats CharacterStats =InstancePlayer.instance.GetComponent<CharacterStats>();
-        CharacterStats.GetHeal(dashAbilityContainer.healAmount);
+        if(dashAbilityContainer.healAmount>0)CharacterStats.GetHeal(dashAbilityContainer.healAmount);
 
-
+        if (abilityContainer.canReduceCooldown)
+        {
+            foreach (var item in dashAbilityContainer.abilityHandler.Abilities)
+            {
+                item.currentCooldown -= 1f;
+            } 
+        }
     }
     
 

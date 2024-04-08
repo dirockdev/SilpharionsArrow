@@ -5,16 +5,17 @@ using UnityEngine;
 public class SkillTree : MonoBehaviour
 {
 
-    public static int skillPoints = 10;
+    public static int skillPoints = 20;
     public List<Skill> skillList;
 
     private bool initialized = false;
-
+    CheckTreePoints treePoints;
     public bool Initialized { get => initialized; set => initialized = value; }
 
     private void Start()
     {
         UISkillController.UpdatePoints();
+        treePoints = GetComponent<CheckTreePoints>();
     }
     private void OnEnable()
     {
@@ -27,6 +28,8 @@ public class SkillTree : MonoBehaviour
             skill.UpdateUI();
         }
         UISkillController.UpdatePoints();
+        if (treePoints != null)treePoints.CheckAllPoints();
+
     }
 
     // Método para aumentar el nivel de una habilidad

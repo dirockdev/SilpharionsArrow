@@ -9,6 +9,7 @@ public class ProjectileAbility :Ability, IAbilityBehaviour
     
     public int numberOfProjectiles;
     public bool canPenetrate;
+    public bool canHealOnCrits;
     public GameObject prefabProjectile;
     public int damage;
     public int speed;
@@ -18,6 +19,9 @@ public class ProjectileAbility :Ability, IAbilityBehaviour
     public int stateDmg;
     public float widthProj;
     public float timeAlive;
+    public bool canReduceCooldown;
+    public float stunProb;
+
     public void ExecuteAbility(Transform initialPos, Vector3 mousePos,AbilityContainer abilityContainer)
     {
         ProjectileAbilityContainer projectileAbilityContainer = (ProjectileAbilityContainer)abilityContainer;
@@ -46,16 +50,19 @@ public class ProjectileAbility :Ability, IAbilityBehaviour
             
 
             IProjectile projectileComponent = projectile.GetComponent<IProjectile>();
+            projectileComponent.SetState(projectileAbilityContainer.state);
             projectileComponent.SetWidthProj(projectileAbilityContainer.widthProj);
             projectileComponent.SetDamage(projectileAbilityContainer.currentDamage);
             projectileComponent.SetVelocity(projectileAbilityContainer.speed);
             projectileComponent.SetCanPenetrate(canPenetrate);
             projectileComponent.SetCrit(projectileAbilityContainer.probCrit);
-            projectileComponent.SetState(projectileAbilityContainer.state);
             projectileComponent.SetDirection(rotation*horizontalDirection);
             projectileComponent.SetStateDmg(projectileAbilityContainer.currentDamage / projectileAbilityContainer.stateDmg);
             projectileComponent.SetTimeAlive(projectileAbilityContainer.timeAlive);
-            
+            projectileComponent.SetHealOnCrits(projectileAbilityContainer.canHealOnCrits);
+            projectileComponent.SetReduceCooldown(abilityContainer.canReduceCooldown);
+            projectileComponent.SetStun(projectileAbilityContainer.stunProb);
+
         }
     }
 

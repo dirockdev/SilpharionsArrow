@@ -19,6 +19,8 @@ public class ProjectController2 : MonoBehaviour, IProjectile
     private float widthProj;
     ParticleSystem.ShapeModule shapeModule;
     float timeAlive;
+    private float stunProb;
+
     private void Awake()
     {
         body = GetComponent<Rigidbody>();
@@ -58,6 +60,8 @@ public class ProjectController2 : MonoBehaviour, IProjectile
 
             bool isPoisonState = Random.value < state;
             if (isPoisonState)itemHit.GetStateDamage(poisonDmg);
+            bool isStunned = Random.value < stunProb;
+            if (isStunned)itemHit.GetStunned();
 
             if (!canPenetrate)
             {
@@ -129,5 +133,19 @@ public class ProjectController2 : MonoBehaviour, IProjectile
     {
         timeAlive = time;
         StartCoroutine(ReturnToPool());
+    }
+
+    public void SetHealOnCrits(bool canHeal)
+    {
+    }
+
+    public void SetReduceCooldown(bool canReduceCooldown)
+    {
+       
+    }
+
+    public void SetStun(float stunProb)
+    {
+        this.stunProb = stunProb;
     }
 }

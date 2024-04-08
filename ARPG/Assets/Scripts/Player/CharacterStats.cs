@@ -12,7 +12,8 @@ public class CharacterStats : MonoBehaviour, IDamagable
     private PlayerUI playerUI;
     NavMeshAgent agent;
     int health,maxHealth;
-
+    [SerializeField]
+    private ParticleSystem healPart;
     public int Health { get => health; set => health = value; }
     public PlayerStats PlayerStats { get => playerStats; set => playerStats = value; }
     public int MaxHealth { get => maxHealth; set => maxHealth = value; }
@@ -39,16 +40,37 @@ public class CharacterStats : MonoBehaviour, IDamagable
     }
 
     private bool Dead() => health <= 0 ? true : false;
-
+    public void GetFlatHeal(int heal)
+    {
+        Health += heal;
+        healPart.Play();
+        CheckHeals();   
+    }
     public void GetHeal(int heal)
     {
-      
-        Health += (int)(MaxHealth * ((float)heal / 100f)); 
+
+        Health += (int)(MaxHealth * ((float)heal / 100f));
+        healPart.Play();
+        CheckHeals();
+    }
+
+    private void CheckHeals()
+    {
         if (health >= maxHealth) health = maxHealth;
         playerUI.UpdateUI();
     }
 
     public void GetStateDamage(int damage)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public bool isPoisoned()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void GetStunned()
     {
         throw new System.NotImplementedException();
     }

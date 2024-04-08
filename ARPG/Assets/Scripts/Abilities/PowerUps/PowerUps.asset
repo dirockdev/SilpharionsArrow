@@ -21,6 +21,14 @@ MonoBehaviour:
   poisonChance: 0.15
   stateDmgDiv: 2
   widthProj: 1
+  stunProb: 0.1
   movSpeed: 3
   timeSpeed: 1
   healthAmount: 7
+  projectilesShotGun: 4
+  critShotGun: 7
+  angleShotGun: 62
+  widthProjShotGun: 1
+  speedShotGun: 2
+  speedPartShotGun: 1
+  damageShotGun: 12

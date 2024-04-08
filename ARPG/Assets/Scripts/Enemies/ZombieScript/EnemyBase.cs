@@ -4,9 +4,8 @@ using TMPro;
 using UnityEngine.AI;
 using UnityEngine.UI;
 using System.Collections;
-using static Cinemachine.DocumentationSortingAttribute;
 
-public class ZombieEnemy : MonoBehaviour, IDamagable,IInteractObject
+public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
 {
 
     public EnemiesStats stats;
@@ -18,9 +17,9 @@ public class ZombieEnemy : MonoBehaviour, IDamagable,IInteractObject
     private Animator anim;
     private SkinnedMeshRenderer _meshRenderer;
     private Material _meshRendererMat;
-    [SerializeField]Slider healthBarUI;
-    [SerializeField]RewardItem expPrefab;
-    [SerializeField]GameObject prefabDmgUI;
+    [SerializeField] Slider healthBarUI;
+    [SerializeField] RewardItem expPrefab;
+    [SerializeField] GameObject prefabDmgUI;
 
     Outline outline;
     private float attackSpeed;
@@ -34,28 +33,28 @@ public class ZombieEnemy : MonoBehaviour, IDamagable,IInteractObject
 
     Rigidbody[] ragdollBodies;
 
-    private bool isPoisoned;
+    private bool isPoisoned, isStunned;
     private void Awake()
     {
-        anim=GetComponentInChildren<Animator>();
-        agent= GetComponent<NavMeshAgent>();
-        outline=GetComponentInChildren<Outline>();    
+        anim = GetComponentInChildren<Animator>();
+        agent = GetComponent<NavMeshAgent>();
+        outline = GetComponentInChildren<Outline>();
         _meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
-        ragdollBodies=GetComponentsInChildren<Rigidbody>();
+        ragdollBodies = GetComponentsInChildren<Rigidbody>();
     }
 
     private void Start()
     {
-        
+
         _meshRendererMat = _meshRenderer.material;
         healthBarUI.maxValue = health;
         healthBarUI.value = health;
         target = InstancePlayer.instance.transform;
-        interactInput=FindFirstObjectByType<InteractInput>();
+        interactInput = FindFirstObjectByType<InteractInput>();
         RagdollState(false);
-        
+
     }
-    
+
     private void OnEnable()
     {
         health = stats.health;
@@ -68,7 +67,7 @@ public class ZombieEnemy : MonoBehaviour, IDamagable,IInteractObject
     {
         ProcessCooldownHit();
         ProcessAttack();
- 
+
     }
 
     private void ProcessCooldownHit()
@@ -82,6 +81,14 @@ public class ZombieEnemy : MonoBehaviour, IDamagable,IInteractObject
 
     void ProcessAttack()
     {
+        if (isStunned)
+        {
+            anim.SetBool("Idle", true);
+            agent.SetDestination(transform.position);
+        }
+        else
+        {
+
             float distance = Vector3.Distance(transform.position, target.position);
             if (distance < attackrange)
             {
@@ -92,7 +99,7 @@ public class ZombieEnemy : MonoBehaviour, IDamagable,IInteractObject
                     return; // Sal del método si el enemigo está muerto
                 }
                 attackTimer = attackSpeed;
-                target.GetComponent<IDamagable>().GetDamage(damage,false);
+                target.GetComponent<IDamagable>().GetDamage(damage, false);
                 AnimAttack();
 
                 agent.SetDestination(transform.position);
@@ -107,9 +114,10 @@ public class ZombieEnemy : MonoBehaviour, IDamagable,IInteractObject
                 }
                 anim.SetBool("Idle", true);
                 agent.SetDestination(target.position);
-                
+
             }
-        
+        }
+
     }
 
     private void AnimAttack()
@@ -122,8 +130,8 @@ public class ZombieEnemy : MonoBehaviour, IDamagable,IInteractObject
     {
         ShaderDmgAnim(isPoisoned ? Color.green : Color.grey);
 
-        ShowDamagePopUp(damage,crit);
-       
+        ShowDamagePopUp(damage, crit);
+
         health -= DamageValue(damage, crit);
         interactInput?.UpdateUI(this);
         UpdateHealthBar();
@@ -139,7 +147,7 @@ public class ZombieEnemy : MonoBehaviour, IDamagable,IInteractObject
 
     }
 
-    private int DamageValue(int damage,bool crit)
+    private int DamageValue(int damage, bool crit)
     {
         if (crit) return (int)(damage * 1.5f);
         else return damage;
@@ -148,11 +156,11 @@ public class ZombieEnemy : MonoBehaviour, IDamagable,IInteractObject
     private void RagdollState(bool active)
     {
         GetComponent<BoxCollider>().enabled = !active;
-        anim.enabled=!active;
+        anim.enabled = !active;
         foreach (Rigidbody rb in ragdollBodies)
         {
             rb.isKinematic = !active;
-           
+
         }
     }
     private void UpdateHealthBar()
@@ -166,30 +174,29 @@ public class ZombieEnemy : MonoBehaviour, IDamagable,IInteractObject
     }
     public void ShowDamagePopUp(int damage, bool crit)
     {
-        
         GameObject dmgTxt = ObjectPoolManager.SpawnObject(prefabDmgUI, transform.position, Quaternion.identity);
-        dmgTxt.GetComponent<DmgPopUp>().Inicialize(DamageValue(damage,crit),crit, isPoisoned ? Color.green : Color.white);
-        
+        dmgTxt.GetComponent<DmgPopUp>().Inicialize(DamageValue(damage, crit), crit, isPoisoned ? Color.green : Color.white);
+
     }
 
     private bool Dead() => health <= 0;
 
     private void ShaderDmgAnim(Color color)
     {
-        _meshRendererMat.SetColor("_TextureColor",color);
+        _meshRendererMat.SetColor("_TextureColor", color);
         _meshRendererMat.DOComplete();
         _meshRendererMat.SetFloat("_ValorColor", 1);
         _meshRendererMat.DOFloat(0, "_ValorColor", 0.5f);
     }
 
-    public string ObjectName()=>stats.name;
-    int[] IInteractObject.Health () => new[] { health, stats.health };
+    public string ObjectName() => stats.name;
+    int[] IInteractObject.Health() => new[] { health, stats.health };
 
     public Outline outLine() => outline;
 
     public void SlowDown(float targetSpeed)
     {
-        agent.speed =stats.speed-targetSpeed;
+        agent.speed = stats.speed - targetSpeed;
     }
 
     public void GetHeal(int heal)
@@ -211,7 +218,20 @@ public class ZombieEnemy : MonoBehaviour, IDamagable,IInteractObject
             StartCoroutine(PoisonCoroutine(damage));
         }
     }
-    
+    public void GetStunned()
+    {
+        if (!isStunned)
+        {
+            isStunned = true;
+            StartCoroutine(StunCoroutine());
+        }
+        else
+        {
+            StopAllCoroutines();
+            isStunned = true;
+            StartCoroutine(StunCoroutine());
+        }
+    }
     IEnumerator PoisonCoroutine(int damage)
     {
         float timer = 0f;
@@ -224,5 +244,14 @@ public class ZombieEnemy : MonoBehaviour, IDamagable,IInteractObject
         }
         isPoisoned = false;
     }
+    IEnumerator StunCoroutine()
+    {
+        yield return new WaitForSeconds(3f); // Espera al siguiente frame
+        isStunned = false;
+    }
 
+    bool IDamagable.isPoisoned()
+    {
+        return isPoisoned;
+    }
 }

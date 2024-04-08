@@ -1,30 +1,31 @@
-using DG.Tweening;
+
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.ConstrainedExecution;
-using Unity.VisualScripting;
 using UnityEngine;
 
 
 public class ProjectController3 : MonoBehaviour, IProjectile
 {
 
-    bool canPenetrate;
-    int velocity,damage,probCrit,poisonDmg;
+    bool canPenetrate, canHeal, canReduceCooldown;
+    int velocity, damage, probCrit;
     float state;
     Rigidbody body;
     BoxCollider boxCollider;
     ParticleSystem part;
     private float widthProj;
-    ParticleSystem.ShapeModule shapeModule;
+    ParticleSystem.MainModule mainModule;
     private float timeAlive;
+    private int heal;
+    
+    AbilityHandler abilityHandler;
 
     private void Awake()
     {
         body = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         part = GetComponentInChildren<ParticleSystem>();
-        shapeModule= part.GetComponentInChildren<ParticleSystem>().shape;
+        mainModule= part.main;
+        abilityHandler=InstancePlayer.instance.GetComponent<AbilityHandler>();
     }
     private void OnEnable()
     {
@@ -52,19 +53,21 @@ public class ProjectController3 : MonoBehaviour, IProjectile
         {
             bool crit=Random.value<((float)probCrit/100);
             itemHit.GetDamage(damage,crit);
-
-            bool isPoisonState = Random.value < state;
-            if (isPoisonState)itemHit.GetStateDamage(poisonDmg);
+            if (crit && canHeal) InstancePlayer.instance.GetComponent<CharacterStats>().GetFlatHeal(heal);
+            if (itemHit.isPoisoned()&&canReduceCooldown) abilityHandler.Abilities[3].currentCooldown-=2f;
 
             if (!canPenetrate)
             {
                 EndProjectile();
             }
-          
+
         }
         else
         {
-            EndProjectile();
+            if (!canPenetrate)
+            {
+                EndProjectile();
+            }
 
         }
     }
@@ -111,19 +114,34 @@ public class ProjectController3 : MonoBehaviour, IProjectile
 
     public void SetStateDmg(int stateDmg)
     {
-        this.poisonDmg = stateDmg;
+        heal = stateDmg;
     }
 
     public void SetWidthProj(float width)
     {
         widthProj = width;
-        boxCollider.size = new Vector3(widthProj == 1 ? 1 : widthProj * 10, 1, 1);
-        shapeModule.radius = 0.4f * widthProj;
+        boxCollider.size = new Vector3(widthProj == 1 ? 1 : widthProj * 2, 1, 1);
+        
+        mainModule.startSpeedMultiplier = 15+(state*5);
     }
 
     public void SetTimeAlive(float time)
     {
         timeAlive = time;
         StartCoroutine(ReturnToPool());
+    }
+
+    public void SetHealOnCrits(bool canHeal)
+    {
+        this.canHeal = canHeal;
+    }
+
+    public void SetReduceCooldown(bool canReduceCooldown)
+    {
+        this.canReduceCooldown = canReduceCooldown;
+    }
+
+    public void SetStun(float stunProb)
+    {
     }
 }

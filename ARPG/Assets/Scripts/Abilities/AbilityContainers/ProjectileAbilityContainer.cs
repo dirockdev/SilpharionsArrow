@@ -12,6 +12,8 @@ public class ProjectileAbilityContainer : AbilityContainer
     public int stateDmg;
     public float widthProj;
     public float timeAlive;
+    public bool canHealOnCrits;
+    public float stunProb;
 
     public ProjectileAbilityContainer(Ability ability) : base(ability)
     {
@@ -25,6 +27,9 @@ public class ProjectileAbilityContainer : AbilityContainer
         stateDmg = projectileAbility.stateDmg;
         widthProj = projectileAbility.widthProj;
         timeAlive = projectileAbility.timeAlive;
+        canHealOnCrits=projectileAbility.canHealOnCrits;
+        canReduceCooldown = projectileAbility.canReduceCooldown;
+        stunProb = projectileAbility.stunProb;
     }
 
 }

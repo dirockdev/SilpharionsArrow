@@ -49,9 +49,9 @@ public class ProjectController1 : MonoBehaviour, IProjectile
         {
             bool crit=Random.value<((float)probCrit/100);
             itemHit.GetDamage(damage,crit);
-            if(itemHit is ZombieEnemy && slow!=0)
+            if(itemHit is EnemyBase && slow!=0)
             {
-                ZombieEnemy enemy = (ZombieEnemy)itemHit;
+                EnemyBase enemy = (EnemyBase)itemHit;
                 enemy.SlowDown(slow);
             }
             if (!canPenetrate)
@@ -122,5 +122,19 @@ public class ProjectController1 : MonoBehaviour, IProjectile
     {
         timeAlive = time;
         StartCoroutine(ReturnToPool());
+    }
+
+    public void SetHealOnCrits(bool canHeal)
+    {
+        
+    }
+
+    public void SetReduceCooldown(bool canReduceCooldown)
+    {
+       
+    }
+
+    public void SetStun(float stunProb)
+    {
     }
 }

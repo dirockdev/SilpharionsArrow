@@ -65,7 +65,58 @@ public class PowerUpManager : MonoBehaviour
         UpgradeAbility(idAbility, new WidthPowerUp(powerUpStats.widthProj));
 
     }
+    public void UpgradeStunProb(int idAbility)
+    {
+        UpgradeAbility(idAbility, new StunProbPowerUp(powerUpStats.stunProb));
+
+    }
     #endregion
+    #region ShotGunPowerUps
+    public void UpgradeProjectilesShotGun(int idAbility)
+    {
+        UpgradeAbility(idAbility, new ProjectilePowerUp(powerUpStats.projectilesShotGun));
+    } 
+    public void UpgradeDamageShotGun(int idAbility)
+    {
+        UpgradeAbility(idAbility, new DamagePowerUp(powerUpStats.damageShotGun));
+    }
+    public void UpgradeStatePart(int idAbility)
+    {
+        UpgradeAbility(idAbility, new StatePowerUp(powerUpStats.speedPartShotGun));
+
+    }
+    public void UpgradeCritProbShotGun(int idAbility)
+    {
+        UpgradeAbility(idAbility, new CritPowerUp(powerUpStats.critShotGun));
+
+    }
+    public void UpgradeAngleProjShotGun(int idAbility)
+    {
+        UpgradeAbility(idAbility, new AnglePowerUp(powerUpStats.angleShotGun));
+
+    }
+    public void UpgradeWidthShotGun(int idAbility)
+    {
+        UpgradeAbility(idAbility, new WidthPowerUp(powerUpStats.widthProjShotGun));
+
+    }
+    public void UpgradeSpeedShotGun(int idAbility)
+    {
+        UpgradeAbility(idAbility, new SpeedPowerUp(powerUpStats.speedShotGun));
+
+    }    
+    public void UpgradeCanHealShotGun(int idAbility)
+    {
+        UpgradeAbility(idAbility, new CanHealPowerUp(true));
+
+    }  public void UpgradeCanReduceCooldown(int idAbility)
+    {
+        UpgradeAbility(idAbility, new CooldownReducePowerUp(true));
+
+    }
+    #endregion
+
+
     #region DashPowerUps
 
     public void UpgradeMovSpeed(int idAbility)

@@ -13,16 +13,18 @@ MonoBehaviour:
   m_Name: ShotGun
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: a5f22cb8c40d5d447b28f1c225198f69, type: 3}
-  cooldown: 1
-  numberOfProjectiles: 5
+  cooldown: 12
+  numberOfProjectiles: 1
   canPenetrate: 1
+  canHealOnCrits: 0
   prefabProjectile: {fileID: 807472419327532609, guid: 86c05495e293ff447b255c2086824032,
     type: 3}
   damage: 100
   speed: 10
   critProb: 20
   angleProj: 10
-  state: 0
-  stateDmg: 10
+  state: 1
+  stateDmg: 11
   widthProj: 1
   timeAlive: 0.5
+  canReduceCooldown: 0

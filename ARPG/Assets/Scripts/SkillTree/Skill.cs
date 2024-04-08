@@ -28,10 +28,11 @@ public class Skill : MonoBehaviour
     public string SkillDescription { get => skillDescription; set => skillDescription = value; }
     public int RequiredPointsForConnectedSkills { get => requiredPointsForConnectedSkills; set => requiredPointsForConnectedSkills = value; }
     public List<Skill> ConnectedSkills { get => connectedSkills; set => connectedSkills = value; }
+    public Image SkillImage { get => skillImage; set => skillImage = value; }
 
     private void Awake()
     {
-        skillImage = GetComponent<Image>();
+        SkillImage = GetComponent<Image>();
         skillButton = GetComponent<Button>();
         skillTree = GetComponentInParent<SkillTree>();
         skillButton.enabled = false;
@@ -62,7 +63,7 @@ public class Skill : MonoBehaviour
         // Determina si la habilidad está desbloqueada para mejorar las habilidades conectadas
         bool areConnectedSkillsUnlocked = Level >= RequiredPointsForConnectedSkills;
 
-        skillImage.color = Level >= MaxLevel ? Color.yellow :
+        SkillImage.color = Level >= MaxLevel ? Color.yellow :
                 isUnlockedForUpgrade  ? Color.green : Color.grey;
        
 
