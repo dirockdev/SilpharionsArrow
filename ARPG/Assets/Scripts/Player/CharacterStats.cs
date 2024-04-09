@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
+using System;
+using System.Collections;
 
 
 public class CharacterStats : MonoBehaviour, IDamagable
@@ -16,6 +18,7 @@ public class CharacterStats : MonoBehaviour, IDamagable
     private ParticleSystem healPart;
     [SerializeField]
     private GameObject prefabHealUI;
+    private bool isDead;
 
     public int Health { get => health; set => health = value; }
     public PlayerStats PlayerStats { get => playerStats; set => playerStats = value; }
@@ -36,10 +39,30 @@ public class CharacterStats : MonoBehaviour, IDamagable
     
     public void GetDamage(int dmg,bool crit = false)
     {
-        health -= dmg;
-        playerUI.UpdateUI();
-        if (Dead()) SceneManager.LoadScene(0);
-        CameraEffects.Instance.CameraShake(5f);
+        if (!isDead)
+        {
+            health -= dmg;
+            AudioManager.instance.PlaySFXWorld("7", transform.position);
+            playerUI.UpdateUI();
+            if (Dead())
+            {
+                StartCoroutine(DeadAnim());
+            }
+            CameraEffects.Instance.CameraShake(5f);
+
+        }
+    }
+
+    private IEnumerator DeadAnim()
+    {
+        isDead = true;
+        agent.SetDestination(transform.position);
+        AudioManager.instance.PlaySFXWorld("6", default, 4);
+        yield return Yielders.Get(4f);
+        health = maxHealth;
+        transform.position=Vector3.zero;
+        agent.SetDestination(transform.position);
+        isDead = false;
     }
 
     private bool Dead() => health <= 0 ? true : false;

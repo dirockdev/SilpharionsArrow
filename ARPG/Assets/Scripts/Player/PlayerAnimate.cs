@@ -11,6 +11,8 @@ public class PlayerAnimate : MonoBehaviour
     private const string runMotion = "motion";
     NavMeshAgent agent;
     public ParticleSystem partParent;
+    [SerializeField]
+    private AudioSource footSteps;
     private void Awake()
     {
         anim = GetComponentInChildren<Animator>();
@@ -26,5 +28,13 @@ public class PlayerAnimate : MonoBehaviour
     {
         float motion = agent.velocity.magnitude;
         anim.SetFloat(runMotion, motion);
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        {
+            footSteps.enabled=false;
+        }
+        else
+        {
+            footSteps.enabled=true;
+        }
     }
 }

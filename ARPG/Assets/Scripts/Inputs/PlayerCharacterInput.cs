@@ -10,7 +10,7 @@ public class PlayerCharacterInput : MonoBehaviour
     CharacterMovInput characterMovInput;
     [HideInInspector]
     public bool isPressed,canMove;
-    
+
     private void Awake()
     {
         
@@ -25,9 +25,8 @@ public class PlayerCharacterInput : MonoBehaviour
 
     private void LeftMouseHoldCommand()
     {
-        if (isPressed && canMove )
+        if (isPressed && canMove)
         {
-         
             characterMovInput.MoveInput();
         }
     }

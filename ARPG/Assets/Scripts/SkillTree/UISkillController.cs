@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UISkillController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class UISkillController : MonoBehaviour
     private void Awake()
     {
         pointsText = GetComponentInChildren<TMP_Text>();
+        
     }
     public static void UpdatePoints(){
 

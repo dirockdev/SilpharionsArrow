@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
         skillTrees.SetActive(false);
         skillPanel.SetActive(!skillPanel.activeSelf);
         skillHolder.SetActive(skillPanel.activeSelf);
-        Time.timeScale = skillPanel.activeSelf ? 0 : 1;
+        
         UISkillController.UpdatePoints();
     }
 }

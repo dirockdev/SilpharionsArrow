@@ -55,7 +55,7 @@ public class AudioManager : MonoBehaviour
 
 
     // Método para reproducir efectos de sonido por nombre en una posición específica
-    public void PlaySFXWorld(string soundName, Vector3 position)
+    public void PlaySFXWorld(string soundName, Vector3 position=default, float timeAlive=0.5f, float volume=0.2f)
     {
         if (soundDictionary.ContainsKey(soundName))
         {
@@ -65,13 +65,14 @@ public class AudioManager : MonoBehaviour
             if (sfxAudioSource != null)
             {
                 sfxAudioSource.clip = soundDictionary[soundName];
+                sfxAudioSource.volume = volume;
                 sfxAudioSource.Play();
             }
             else
             {
                 Debug.LogWarning("El prefab de efectos de sonido no tiene un componente AudioSource.");
             }
-            StartCoroutine(ReturnToPool(sfxInstance));
+            StartCoroutine(ReturnToPool(sfxInstance,timeAlive));
         }
         else
         {
@@ -79,10 +80,10 @@ public class AudioManager : MonoBehaviour
         }
 
     }
-    public IEnumerator ReturnToPool(GameObject gameObject)
+    public IEnumerator ReturnToPool(GameObject gameObject, float timeAlive)
     {
         float elapsedTime = 0f;
-        while (elapsedTime < 0.5f)
+        while (elapsedTime < timeAlive)
         {
             elapsedTime += Time.deltaTime;
             yield return null;

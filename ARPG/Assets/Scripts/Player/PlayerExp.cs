@@ -36,6 +36,7 @@ public class PlayerExp : MonoBehaviour
             RewardItem ExperienceOBJ = other.GetComponentInParent<RewardItem>();
             IncreaseExp(ExperienceOBJ.experience);
             ObjectPoolManager.ReturnObjectToPool(ExperienceOBJ.gameObject);
+            AudioManager.instance.PlaySFXWorld("5", other.transform.position);
         }
     }
     private void IncreaseExp(int expAmount)
@@ -58,6 +59,7 @@ public class PlayerExp : MonoBehaviour
         playerAnimate.LevelUpPart();
         UpdateSliderUI();
         UISkillController.UpdatePoints();
+        AudioManager.instance.PlaySFXWorld("4",default,2.5f,0.07f);
     }
 
     private void UpdateSliderUI()

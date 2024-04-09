@@ -28,7 +28,7 @@ public class AnimationHandler : MonoBehaviour
     public void Teleport()
     {
         agent.Warp(teleportPos);
-       
+        AudioManager.instance.PlaySFXWorld("9",default,0.5f,0.5f);
     }
 
     public void TeleportBurst(int movSpeed,int timeSpeedBurst)
