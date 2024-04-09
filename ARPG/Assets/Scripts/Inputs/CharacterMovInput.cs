@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class CharacterMovInput : MonoBehaviour
 {
-    [SerializeField]
+
     CharacterStats characterMov;
    
     private void Awake()

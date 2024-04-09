@@ -30,7 +30,8 @@ public class ProjectController1 : MonoBehaviour, IProjectile
         part.Play();
         meshRenderer.enabled = true;
         boxCollider.enabled = true;
-        
+        AudioManager.instance.PlaySFXWorld("0", transform.position);
+
     }
     public void SetDirection(Vector3 direction)
     {

@@ -35,7 +35,7 @@ public class ProjectController2 : MonoBehaviour, IProjectile
         meshRenderer.enabled = true;
         boxCollider.enabled = true;
         // Configurar el daño, velocidad, etc., según sea necesario
-        
+        AudioManager.instance.PlaySFXWorld("1", transform.position);
     }
     
    

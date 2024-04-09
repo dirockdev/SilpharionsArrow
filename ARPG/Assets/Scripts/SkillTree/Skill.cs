@@ -34,9 +34,14 @@ public class Skill : MonoBehaviour
     {
         SkillImage = GetComponent<Image>();
         skillButton = GetComponent<Button>();
+        skillButton.onClick.AddListener(() => AudioManager.instance.PlaySFXWorld("3", transform.position));
         skillTree = GetComponentInParent<SkillTree>();
         skillButton.enabled = false;
         
+    }
+    private void SoundClick()
+    {
+     
     }
     public void Initialize()
     {

@@ -31,7 +31,7 @@ public class ProjectController3 : MonoBehaviour, IProjectile
     {
         part.Play();
         boxCollider.enabled = true;
-        
+        AudioManager.instance.PlaySFXWorld("2", transform.position);
     }
     
    

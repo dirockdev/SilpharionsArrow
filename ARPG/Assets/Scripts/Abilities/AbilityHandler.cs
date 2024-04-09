@@ -82,6 +82,7 @@ public class AbilityHandler : MonoBehaviour
     {
         if (abilityContainer.ability is ProjectileAbility)
         {
+            
             return (ProjectileAbility)abilityContainer.ability;
         }
         else if (abilityContainer.ability is DashAbility)

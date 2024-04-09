@@ -34270,7 +34270,6 @@ GameObject:
   - component: {fileID: 5551098706843532283}
   - component: {fileID: 1236776496036771025}
   - component: {fileID: 2804556751256729732}
-  - component: {fileID: 5885778636764446436}
   - component: {fileID: 2175824080782516131}
   - component: {fileID: 1632423860293914292}
   - component: {fileID: 1562608779414790198}
@@ -34380,6 +34379,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStats: {fileID: 11400000, guid: 7e94faf2d986b854697588ea66a9abfc, type: 2}
   healPart: {fileID: 8508480071234071159}
+  prefabHealUI: {fileID: 7463358700536465280, guid: 5cb796ae7f86acf47837a45604f42707,
+    type: 3}
 --- !u!114 &5551098706843532283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34423,6 +34424,7 @@ MonoBehaviour:
   ability1: {fileID: 11400000, guid: a24f69dfa30f83b439aaba151b20358b, type: 2}
   dashAbility: {fileID: 11400000, guid: 9cf144500718b134db200d5a2fd01348, type: 2}
   shotgunAbility: {fileID: 11400000, guid: 0d0779d7392427e449ff12b3c6f9feb7, type: 2}
+  arrowRainAbility: {fileID: 11400000, guid: 0673813e109eb854b83a0339cce82bed, type: 2}
   onAbilityChange:
     m_PersistentCalls:
       m_Calls:
@@ -34453,18 +34455,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5885778636764446436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7727043429791156319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cab546fec755f548a4687d2592c9da5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2175824080782516131
 MonoBehaviour:
   m_ObjectHideFlags: 0
