@@ -14,6 +14,8 @@ public class DashAbilityContainer : AbilityContainer
     public Animator anim;
     public AnimationHandler animationHandler;
     public AbilityHandler abilityHandler;
+    public bool canArrowRain;
+
     public DashAbilityContainer(Ability ability) : base(ability)
     {
         DashAbility dashAbility = (DashAbility)this.ability;
@@ -24,6 +26,7 @@ public class DashAbilityContainer : AbilityContainer
         anim=InstancePlayer.instance.GetComponentInChildren<Animator>();
         animationHandler=InstancePlayer.instance.GetComponentInChildren<AnimationHandler>();
         abilityHandler=InstancePlayer.instance.GetComponent<AbilityHandler>();
+        canArrowRain=dashAbility.canArrowRain;
     }
 
     

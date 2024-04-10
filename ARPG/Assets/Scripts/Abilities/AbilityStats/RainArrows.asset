@@ -19,3 +19,5 @@ MonoBehaviour:
   timeAlive: 4
   prefabArea: {fileID: 202636999979767771, guid: 4e040f28ec077654896e914b7dc5eaeb,
     type: 3}
+  homingSpeed: 1
+  isHoming: 0

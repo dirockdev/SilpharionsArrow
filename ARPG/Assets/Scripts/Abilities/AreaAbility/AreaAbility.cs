@@ -9,6 +9,8 @@ public class AreaAbility : Ability, IAbilityBehaviour
     public int area;
     public float timeAlive;
     public GameObject prefabArea;
+    public int homingSpeed;
+    public bool isHoming;
     public void ExecuteAbility(Transform initialPos, Vector3 mousePos, AbilityContainer abilityContainer)
     {
         AreaAbilityContainer areaAbilityContainer=(AreaAbilityContainer)abilityContainer;
@@ -20,6 +22,8 @@ public class AreaAbility : Ability, IAbilityBehaviour
         areaComponent.SetArea(areaAbilityContainer.area);    
         areaComponent.SetDamage(areaAbilityContainer.tickDamage);    
         areaComponent.SetTimeAlive(areaAbilityContainer.timeAlive);    
+        areaComponent.SetIsHoming(areaAbilityContainer.isHoming);    
+        areaComponent.SetHomingSpeed(areaAbilityContainer.homingSpeed);    
 
     }
 }

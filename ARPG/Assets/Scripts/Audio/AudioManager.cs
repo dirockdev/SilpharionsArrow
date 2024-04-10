@@ -20,9 +20,6 @@ public class AudioManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        // Ejemplo: añadir sonidos al diccionario
-        AddSound("backgroundMusic", musicSource.clip);
-        // Agrega más sonidos según sea necesario
     }
     private void Start()
     {

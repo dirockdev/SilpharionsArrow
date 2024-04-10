@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 410087040}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -490,7 +490,7 @@ PrefabInstance:
     - target: {fileID: 8682525442750978452, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8682525442750978452, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
@@ -501,7 +501,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 2125350246}
+      objectReference: {fileID: 0}
     - target: {fileID: 8682525442750978452, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
@@ -530,7 +530,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1274490916}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!114 &36028787 stripped
 MonoBehaviour:
@@ -612,18 +616,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeCanReduceCooldown
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &61601590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -650,6 +642,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &61601593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61601587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: CanReduceCooldown
+  idAbility: 2
 --- !u!1001 &71049058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -796,6 +802,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 569526564}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 569526568}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!114 &71415125 stripped
 MonoBehaviour:
@@ -878,7 +888,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3, y: 111}
+  m_AnchoredPosition: {x: 37, y: 72}
   m_SizeDelta: {x: 6.3331, y: 183.88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &74800248
@@ -1036,7 +1046,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 760392924}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 882157247}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7008ef26025fa94080b638a0e0d2f28, type: 3}
@@ -1185,18 +1195,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeSlow
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &110296225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1223,6 +1221,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &110296228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110296222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: Slow
+  idAbility: 0
 --- !u!1 &122569420 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7727043429791156319, guid: 1ca70a91a82d70244b784ce79101f4ad,
@@ -1241,7 +1253,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1372177749}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1436090019}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7008ef26025fa94080b638a0e0d2f28, type: 3}
@@ -1452,6 +1464,81 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &170745477
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 170745478}
+  - component: {fileID: 170745480}
+  - component: {fileID: 170745479}
+  m_Layer: 5
+  m_Name: ConnectLine (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &170745478
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170745477}
+  m_LocalRotation: {x: 0.00082197296, y: -0.0025089022, z: 0.071615905, w: 0.99742883}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalScale: {x: 1, y: 1.2122, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1053134134}
+  m_LocalEulerAnglesHint: {x: 0.115, y: -0.28, z: 8.213}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -113.1, y: 4.7}
+  m_SizeDelta: {x: 6.3331, y: 183.88}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &170745479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170745477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &170745480
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170745477}
+  m_CullTransparentMesh: 1
 --- !u!1 &195442426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1595,18 +1682,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeCritProb
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &199729459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1633,6 +1708,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &199729462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199729456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: Crit
+  idAbility: 0
 --- !u!1 &200535169 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
@@ -1701,18 +1790,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeCritProb
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &200535172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1739,6 +1816,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &200535175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200535169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: Crit
+  idAbility: 1
 --- !u!1001 &221966732
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2185,6 +2276,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2031128169}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2031128173}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!114 &273229553 stripped
 MonoBehaviour:
@@ -2198,6 +2293,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &304275108 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+    type: 3}
+  m_PrefabInstance: {fileID: 20851381}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &306372102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2367,7 +2468,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 2125350246}
+      objectReference: {fileID: 0}
     - target: {fileID: 8682525442750978452, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
@@ -2396,7 +2497,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2043114611}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!224 &306372103 stripped
 RectTransform:
@@ -2434,7 +2539,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 306372102}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2043114607}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7008ef26025fa94080b638a0e0d2f28, type: 3}
@@ -3423,18 +3528,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeMovSpeed
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &366335297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3461,6 +3554,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &366335300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366335294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: MovSpeed
+  idAbility: 2
 --- !u!1001 &378454994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3597,6 +3704,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1523002704}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1523002708}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!1001 &389264079
 PrefabInstance:
@@ -3776,6 +3887,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2069806206}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2069806210}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!1 &410087039
 GameObject:
@@ -4227,6 +4342,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 110296224}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 110296228}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!1 &430727923
 GameObject:
@@ -4661,6 +4780,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1261965982}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1261965986}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!1 &508314924
 GameObject:
@@ -4909,30 +5032,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeSpeedShotGun
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeStatePart
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &521521043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4959,6 +5058,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &521521046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521521040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: StatePart
+  idAbility: 3
+--- !u!114 &521521047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521521040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: SpeedShotGun
+  idAbility: 3
 --- !u!1 &522892558
 GameObject:
   m_ObjectHideFlags: 0
@@ -5582,18 +5709,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeCanReduceCooldown
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &569526565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5620,6 +5735,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &569526568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569526562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: CanReduceCooldown
+  idAbility: 3
 --- !u!1 &580052242
 GameObject:
   m_ObjectHideFlags: 0
@@ -5961,6 +6090,16 @@ PrefabInstance:
       propertyPath: m_text
       value: Slow on hit
       objectReference: {fileID: 0}
+    - target: {fileID: 1645231362467512869, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 8.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1645231362467512869, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 8.3
+      objectReference: {fileID: 0}
     - target: {fileID: 3562498938311051568, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
       propertyPath: m_Pivot.x
@@ -6039,12 +6178,12 @@ PrefabInstance:
     - target: {fileID: 3562498938311051568, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -25.1
+      value: 165
       objectReference: {fileID: 0}
     - target: {fileID: 3562498938311051568, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 3.38
+      value: -93.6
       objectReference: {fileID: 0}
     - target: {fileID: 3562498938311051568, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
@@ -6066,6 +6205,21 @@ PrefabInstance:
       propertyPath: m_text
       value: Slows
       objectReference: {fileID: 0}
+    - target: {fileID: 6109398427235564272, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 140.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109398427235564272, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 57.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109398427235564272, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 309998701406168278, guid: b6dea9a010308b348aab64633e090be0, type: 3}
     m_RemovedGameObjects: []
@@ -6079,6 +6233,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 672042426}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 672042429}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!224 &672042421 stripped
 RectTransform:
@@ -6184,30 +6342,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeProjectilesShotGun
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeAngleProjShotGun
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &672042427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6222,6 +6356,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleText: {fileID: 672042423}
   descriptionText: {fileID: 672042422}
+--- !u!114 &672042429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672042424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: HomingSpeed
+  idAbility: 4
 --- !u!114 &675938698 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5871563342500818742, guid: b6dea9a010308b348aab64633e090be0,
@@ -6370,6 +6518,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1525291309}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1525291313}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!1 &706990096
 GameObject:
@@ -6514,30 +6666,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradePoisonStateDmg
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeCanHealShotGun
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &716598411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6564,6 +6692,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &716598414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716598408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: PoisonStateDmg
+  idAbility: 3
+--- !u!114 &716598415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716598408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: CanHealShotGun
+  idAbility: 3
 --- !u!1001 &720394595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6700,6 +6856,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1822660773}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1822660777}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!114 &721455379 stripped
 MonoBehaviour:
@@ -6939,12 +7099,12 @@ PrefabInstance:
     - target: {fileID: 3562498938311051568, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -26.7
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 3562498938311051568, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 123
+      value: 85.999985
       objectReference: {fileID: 0}
     - target: {fileID: 3562498938311051568, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
@@ -6966,6 +7126,21 @@ PrefabInstance:
       propertyPath: m_text
       value: Critical Chance
       objectReference: {fileID: 0}
+    - target: {fileID: 5871563342500818742, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 13.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5871563342500818742, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 13.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5935455071482839619, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 139.45
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 309998701406168278, guid: b6dea9a010308b348aab64633e090be0, type: 3}
     m_RemovedGameObjects: []
@@ -6979,6 +7154,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 741784656}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 741784661}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!224 &741784651 stripped
 RectTransform:
@@ -7084,18 +7263,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeCooldown
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &741784657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7110,6 +7277,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleText: {fileID: 741784653}
   descriptionText: {fileID: 741784652}
+--- !u!114 &741784661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741784654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: Cooldown
+  idAbility: 4
 --- !u!114 &746074839 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5871563342500818742, guid: b6dea9a010308b348aab64633e090be0,
@@ -7280,7 +7461,7 @@ PrefabInstance:
     - target: {fileID: 8682525442750978452, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8682525442750978452, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
@@ -7291,7 +7472,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 2125350246}
+      objectReference: {fileID: 0}
     - target: {fileID: 8682525442750978452, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
@@ -7320,7 +7501,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 882157251}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!1001 &760707469
 PrefabInstance:
@@ -7458,6 +7643,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1281389778}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1281389782}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!114 &761213756 stripped
 MonoBehaviour:
@@ -7542,7 +7731,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3c55707195e883e46b25d75a3fc06353, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -7789,6 +7978,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &882157247 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+    type: 3}
+  m_PrefabInstance: {fileID: 760392924}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &882157251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882157247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: Damage
+  idAbility: 1
 --- !u!1 &887055076
 GameObject:
   m_ObjectHideFlags: 0
@@ -7823,7 +8032,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13, y: -125}
+  m_AnchoredPosition: {x: 63, y: -111}
   m_SizeDelta: {x: 6.3331, y: 153.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &887055078
@@ -8452,12 +8661,12 @@ PrefabInstance:
     - target: {fileID: 3562498938311051568, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 48.099995
+      value: -103
       objectReference: {fileID: 0}
     - target: {fileID: 3562498938311051568, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -109.91
+      value: -93.6
       objectReference: {fileID: 0}
     - target: {fileID: 3562498938311051568, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
@@ -8492,6 +8701,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1022927139}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1022927142}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!224 &1022927134 stripped
 RectTransform:
@@ -8597,18 +8810,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpdateTimeDuration
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1022927140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8623,6 +8824,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleText: {fileID: 1022927136}
   descriptionText: {fileID: 1022927135}
+--- !u!114 &1022927142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022927137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: TimeDuration
+  idAbility: 4
 --- !u!114 &1051019053 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5871563342500818742, guid: b6dea9a010308b348aab64633e090be0,
@@ -8664,6 +8879,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1963738292}
+  - {fileID: 170745478}
   - {fileID: 1637262008}
   - {fileID: 95012211}
   - {fileID: 2007786563}
@@ -8783,7 +8999,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -0.117, y: -0.279, z: -36.786}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -149, y: 35}
+  m_AnchoredPosition: {x: -158, y: 23}
   m_SizeDelta: {x: 6.3331, y: 183.88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1066480169
@@ -9002,6 +9218,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 199729458}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 199729462}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!114 &1113247111 stripped
 MonoBehaviour:
@@ -9213,18 +9433,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeSpeed
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1154735287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9251,6 +9459,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1154735290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154735284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: Speed
+  idAbility: 0
 --- !u!114 &1163849949 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5871563342500818742, guid: b6dea9a010308b348aab64633e090be0,
@@ -10442,18 +10664,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeHealthHeal
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1238817131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10480,6 +10690,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1238817134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238817128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: HealthHeal
+  idAbility: 2
 --- !u!1 &1261912337 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
@@ -10548,18 +10772,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeCooldown
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1261912340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10586,6 +10798,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1261912343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261912337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: Cooldown
+  idAbility: 0
 --- !u!1 &1261965980 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
@@ -10654,18 +10880,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeStunProb
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1261965983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10692,6 +10906,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1261965986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261965980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: StunProb
+  idAbility: 1
 --- !u!1 &1265157049
 GameObject:
   m_ObjectHideFlags: 0
@@ -10813,12 +11041,26 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 20851381}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 304275108}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7008ef26025fa94080b638a0e0d2f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1274490916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304275108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: DamageShotGun
+  idAbility: 3
 --- !u!1 &1281389776 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
@@ -10887,18 +11129,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeWidthShotGun
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1281389779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10925,6 +11155,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1281389782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281389776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: WidthShotGun
+  idAbility: 3
 --- !u!1 &1294057467
 GameObject:
   m_ObjectHideFlags: 0
@@ -11220,18 +11464,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeProjectiles
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1315350368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11258,6 +11490,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1315350371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315350365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: Projectile
+  idAbility: 0
 --- !u!1 &1355960718
 GameObject:
   m_ObjectHideFlags: 0
@@ -11506,7 +11752,7 @@ PrefabInstance:
     - target: {fileID: 8682525442750978452, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8682525442750978452, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
@@ -11517,7 +11763,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 2125350246}
+      objectReference: {fileID: 0}
     - target: {fileID: 8682525442750978452, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
@@ -11546,7 +11792,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1436090023}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!1 &1425696437
 GameObject:
@@ -11848,6 +12098,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1436090019 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1372177749}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1436090023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436090019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: Cooldown
+  idAbility: 2
 --- !u!1001 &1467091230
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11869,12 +12139,12 @@ PrefabInstance:
     - target: {fileID: 1645231362467512869, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
       propertyPath: m_fontSize
-      value: 8
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1645231362467512869, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 8
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3562498938311051568, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
@@ -11954,12 +12224,12 @@ PrefabInstance:
     - target: {fileID: 3562498938311051568, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 110
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 3562498938311051568, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 123
+      value: -93.6
       objectReference: {fileID: 0}
     - target: {fileID: 3562498938311051568, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
@@ -11994,6 +12264,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1467091236}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1467091241}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!224 &1467091231 stripped
 RectTransform:
@@ -12099,18 +12373,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeCanReduceCooldown
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1467091237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12125,6 +12387,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleText: {fileID: 1467091233}
   descriptionText: {fileID: 1467091232}
+--- !u!114 &1467091241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467091234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: isHoming
+  idAbility: 4
 --- !u!1 &1471556052
 GameObject:
   m_ObjectHideFlags: 0
@@ -12464,6 +12740,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1505034697}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1505034703}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1505034702}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!224 &1505034692 stripped
 RectTransform:
@@ -12569,30 +12853,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeProjectilesShotGun
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeAngleProjShotGun
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1505034698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12607,6 +12867,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleText: {fileID: 1505034694}
   descriptionText: {fileID: 1505034693}
+--- !u!114 &1505034702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505034695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: ProjectilesShotGun
+  idAbility: 3
+--- !u!114 &1505034703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505034695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: AngleProjShotGun
+  idAbility: 3
 --- !u!114 &1516409489 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5871563342500818742, guid: b6dea9a010308b348aab64633e090be0,
@@ -12687,18 +12975,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradePoisonState
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1523002705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12725,6 +13001,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1523002708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523002702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: PoisonState
+  idAbility: 1
 --- !u!1 &1525291307 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
@@ -12793,18 +13083,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeWidth
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1525291310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12831,6 +13109,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1525291313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525291307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: Width
+  idAbility: 1
 --- !u!114 &1532937156 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1645231362467512869, guid: b6dea9a010308b348aab64633e090be0,
@@ -12914,7 +13206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1580129276
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12966,7 +13258,7 @@ MonoBehaviour:
     pointsRequiredForConnectedSkills: 3
   - id: 1
     skillName: Cloudy Time
-    skillDescription: Increase area of arow rain
+    skillDescription: Increase area of arrow rain
     maxLevel: 4
     points: 0
     connectedSkillIds: 02000000
@@ -13132,18 +13424,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradePoisonStateDmg
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1597245640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13170,6 +13450,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1597245643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597245637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: PoisonStateDmg
+  idAbility: 1
 --- !u!1 &1603107496
 GameObject:
   m_ObjectHideFlags: 0
@@ -13674,6 +13968,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1238817130}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1238817134}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!224 &1626922163 stripped
 RectTransform:
@@ -14028,6 +14326,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1154735286}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1154735290}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!114 &1665943407 stripped
 MonoBehaviour:
@@ -14177,6 +14479,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 366335296}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 366335300}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!224 &1675241406 stripped
 RectTransform:
@@ -14332,6 +14638,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1261912339}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1261912343}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!114 &1689994053 stripped
 MonoBehaviour:
@@ -14701,6 +15011,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 521521042}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 521521047}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 521521046}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!1 &1720884245
 GameObject:
@@ -15061,18 +15379,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeAngleProj
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1736042779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15099,6 +15405,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1736042782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736042776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: Angle
+  idAbility: 0
 --- !u!1 &1775164963
 GameObject:
   m_ObjectHideFlags: 0
@@ -15553,12 +15873,12 @@ PrefabInstance:
     - target: {fileID: 3562498938311051568, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -164.67
+      value: -103
       objectReference: {fileID: 0}
     - target: {fileID: 3562498938311051568, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 123
+      value: 86
       objectReference: {fileID: 0}
     - target: {fileID: 3562498938311051568, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
@@ -15628,6 +15948,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1808497201}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1808497206}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!224 &1808497196 stripped
 RectTransform:
@@ -15733,18 +16057,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpdateArea
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1808497202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15759,6 +16071,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleText: {fileID: 1808497198}
   descriptionText: {fileID: 1808497197}
+--- !u!114 &1808497206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808497199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: Area
+  idAbility: 4
 --- !u!1001 &1814632356
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15968,18 +16294,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeMovSpeedTime
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1822660774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16006,6 +16320,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1822660777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822660771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: MovSpeedTime
+  idAbility: 2
 --- !u!114 &1827949260 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1645231362467512869, guid: b6dea9a010308b348aab64633e090be0,
@@ -16243,12 +16571,12 @@ PrefabInstance:
     - target: {fileID: 3562498938311051568, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -104
+      value: 165
       objectReference: {fileID: 0}
     - target: {fileID: 3562498938311051568, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -109.91
+      value: 85.999985
       objectReference: {fileID: 0}
     - target: {fileID: 3562498938311051568, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
@@ -16283,6 +16611,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1879702744}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1879702749}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!224 &1879702739 stripped
 RectTransform:
@@ -16388,30 +16720,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeSpeedShotGun
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeStatePart
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1879702745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16426,6 +16734,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleText: {fileID: 1879702741}
   descriptionText: {fileID: 1879702740}
+--- !u!114 &1879702749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879702742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: CanUseArea
+  idAbility: 2
 --- !u!1 &1886847563
 GameObject:
   m_ObjectHideFlags: 0
@@ -16618,6 +16940,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1926266799 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+    type: 3}
+  m_PrefabInstance: {fileID: 2750712068018913615}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1937383406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16754,6 +17082,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1315350367}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1315350371}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!1001 &1938842832
 PrefabInstance:
@@ -16893,6 +17225,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 716598410}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 716598415}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 716598414}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!114 &1946374246 stripped
 MonoBehaviour:
@@ -17267,6 +17607,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1597245639}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1597245643}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!1 &1991291989
 GameObject:
@@ -17471,18 +17815,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeCooldown
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2031128170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17509,6 +17841,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2031128173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031128167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: Cooldown
+  idAbility: 1
 --- !u!1 &2042184516
 GameObject:
   m_ObjectHideFlags: 0
@@ -17584,6 +17930,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2042184516}
   m_CullTransparentMesh: 1
+--- !u!1 &2043114607 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+    type: 3}
+  m_PrefabInstance: {fileID: 306372102}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2043114611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043114607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: TickDamage
+  idAbility: 4
 --- !u!1001 &2044707520
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17720,6 +18086,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1736042778}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1736042782}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!1 &2069806204 stripped
 GameObject:
@@ -17789,18 +18159,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2125350246}
-        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
-        m_MethodName: UpgradeCritProbShotGun
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2069806207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17827,6 +18185,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2069806210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069806204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: CritProbShotGun
+  idAbility: 3
 --- !u!1001 &2074658856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18138,6 +18510,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 200535171}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 200535175}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!1001 &2081096028
 PrefabInstance:
@@ -18470,6 +18846,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 61601589}
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 61601593}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!114 &2125105679 stripped
 MonoBehaviour:
@@ -18523,18 +18903,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48c27a71414c19c40a961b31db679e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2125350246 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4412095414515483558, guid: 1ca70a91a82d70244b784ce79101f4ad,
-    type: 3}
-  m_PrefabInstance: {fileID: 4534696554690854779}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 122569420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23b7636b3dd47cb409ec73e5a447f22e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!82 &2125350256
@@ -18633,6 +19001,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2125350266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122569420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45f2d6de13e18542813057256c185ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpStats: {fileID: 11400000, guid: ed805e5aa53dd7548a101617980aa03f, type: 2}
 --- !u!1 &2125460559
 GameObject:
   m_ObjectHideFlags: 0
@@ -19521,12 +19902,26 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 2750712068018913615}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1926266799}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7008ef26025fa94080b638a0e0d2f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2609469156740585346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926266799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eaf50e47a56d3e40aa3513c6ac55417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpType: Damage
+  idAbility: 0
 --- !u!1001 &2750712068018913615
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19685,7 +20080,7 @@ PrefabInstance:
     - target: {fileID: 8682525442750978452, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8682525442750978452, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
@@ -19696,7 +20091,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 2125350246}
+      objectReference: {fileID: 0}
     - target: {fileID: 8682525442750978452, guid: b6dea9a010308b348aab64633e090be0,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
@@ -19725,7 +20120,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1050616255308455278, guid: b6dea9a010308b348aab64633e090be0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2609469156740585346}
   m_SourcePrefab: {fileID: 100100000, guid: b6dea9a010308b348aab64633e090be0, type: 3}
 --- !u!224 &3037876329205452397
 RectTransform:
@@ -20171,6 +20570,11 @@ PrefabInstance:
       propertyPath: onCooldownUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 430727925}
+    - target: {fileID: 4412095414515483558, guid: 1ca70a91a82d70244b784ce79101f4ad,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5271258619868870455, guid: 1ca70a91a82d70244b784ce79101f4ad,
         type: 3}
       propertyPath: imageHpValue
@@ -20191,7 +20595,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4412095414515483558, guid: 1ca70a91a82d70244b784ce79101f4ad, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -20199,6 +20604,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2125350256}
+    - targetCorrespondingSourceObject: {fileID: 7727043429791156319, guid: 1ca70a91a82d70244b784ce79101f4ad,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2125350266}
   m_SourcePrefab: {fileID: 100100000, guid: 1ca70a91a82d70244b784ce79101f4ad, type: 3}
 --- !u!222 &4756201837139190874
 CanvasRenderer:

@@ -175,7 +175,7 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
     public void ShowDamagePopUp(int damage, bool crit)
     {
         GameObject dmgTxt = ObjectPoolManager.SpawnObject(prefabDmgUI, transform.position, Quaternion.identity);
-        dmgTxt.GetComponent<DmgPopUp>().InicializeDamage(DamageValue(damage, crit), crit, isPoisoned ? Color.green : Color.white);
+        dmgTxt.GetComponent<DmgPopUp>().InicializeEnemy(DamageValue(damage, crit), crit, isPoisoned ? Color.green : Color.white);
 
     }
 

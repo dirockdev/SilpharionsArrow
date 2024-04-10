@@ -6,4 +6,6 @@ public interface IArea {
     void SetDamage(int getDamage);
     void SetArea(int area);
     void SetTimeAlive(float time);
+    void SetIsHoming(bool canHoming);
+    void SetHomingSpeed(int homingSpeed);
 }

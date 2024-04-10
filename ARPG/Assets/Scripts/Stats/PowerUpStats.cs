@@ -37,4 +37,5 @@ public class PowerUpStats : ScriptableObject
     public int damageTick;
     public int areaSize;
     public float timeDuration;
+    public int homingSpeed;
 }

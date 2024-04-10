@@ -135,7 +135,10 @@ public class PowerUpManager : MonoBehaviour
     {
         UpgradeAbility(idAbility, new AreaTimeDuration(powerUpStats.timeDuration));
     }
-
+    public void UpdateCanUseArea(int idAbility)
+    { 
+        UpgradeAbility(idAbility, new dashUseArrowRain(true));
+    }
     #endregion
 
     #region DashPowerUps

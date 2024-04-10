@@ -42,6 +42,7 @@ public class CharacterStats : MonoBehaviour, IDamagable
         if (!isDead)
         {
             health -= dmg;
+            ShowDamagePopUp(dmg, Color.red);
             AudioManager.instance.PlaySFXWorld("7", transform.position);
             playerUI.UpdateUI();
             if (Dead())
@@ -60,6 +61,7 @@ public class CharacterStats : MonoBehaviour, IDamagable
         AudioManager.instance.PlaySFXWorld("6", default, 4);
         yield return Yielders.Get(4f);
         health = maxHealth;
+        playerUI.UpdateUI();
         transform.position=Vector3.zero;
         agent.SetDestination(transform.position);
         isDead = false;
@@ -69,14 +71,14 @@ public class CharacterStats : MonoBehaviour, IDamagable
     public void GetFlatHeal(int heal)
     {
         Health += heal;
-        ShowDamagePopUp(heal);
+        ShowDamagePopUp(heal, Color.green);
         healPart.Play();
         CheckHeals();   
     }
     public void GetHeal(int heal)
     {
         int healAmount= (int)(MaxHealth * ((float)heal / 100f));
-        ShowDamagePopUp(healAmount);
+        ShowDamagePopUp(healAmount, Color.green);
         Health += healAmount;
         healPart.Play();
         CheckHeals();
@@ -87,10 +89,10 @@ public class CharacterStats : MonoBehaviour, IDamagable
         if (health >= maxHealth) health = maxHealth;
         playerUI.UpdateUI();
     }
-    public void ShowDamagePopUp(int number)
+    public void ShowDamagePopUp(int number, Color color)
     {
         GameObject dmgTxt = ObjectPoolManager.SpawnObject(prefabHealUI, transform.position, Quaternion.identity);
-        dmgTxt.GetComponent<DmgPopUp>().InicializeHeal(number);
+        dmgTxt.GetComponent<DmgPopUp>().InicializePlayer(number, color);
 
     }
     public void GetStateDamage(int damage)

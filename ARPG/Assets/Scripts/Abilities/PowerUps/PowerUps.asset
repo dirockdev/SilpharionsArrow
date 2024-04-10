@@ -35,3 +35,4 @@ MonoBehaviour:
   damageTick: 5
   areaSize: 1
   timeDuration: 0.5
+  homingSpeed: 1

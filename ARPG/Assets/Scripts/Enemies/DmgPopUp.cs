@@ -12,7 +12,7 @@ public class DmgPopUp : MonoBehaviour
     {
         StartCoroutine(ReturnToPool());
     }
-    public void InicializeDamage(int dmgText, bool crit, Color color)
+    public void InicializeEnemy(int dmgText, bool crit, Color color)
     {
         text.SetText(dmgText.ToString());
         text.fontSize = 8;
@@ -23,14 +23,14 @@ public class DmgPopUp : MonoBehaviour
         else text.color = color;
 
     }
-    public void InicializeHeal(int heal)
+    public void InicializePlayer(int heal, Color color)
     {
         text.SetText(heal.ToString());
         text.fontSize = 6;
         text.alpha = 1f;
         text.DOFade(0, 1f);
         text.rectTransform.DOAnchorPos3D(new Vector3(Random.Range(-15, 15), 10, 0), 1f);
-        text.color = Color.green;
+        text.color =color;
 
     }
     IEnumerator ReturnToPool()
