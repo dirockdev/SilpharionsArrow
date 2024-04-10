@@ -1,0 +1,3 @@
+El projecte en qüestió és el desenvolupament d'un videojoc ARPG desde zero, amb una tiradora com a protagonista. El joc promet una experiència de combat dinàmic i personalitzable, inspirada en les mecàniques dels clàssics del gènere. L'objectiu és crear un món ric i vibrant, ple de desafiaments per superar.
+
+El personatge a controlar avançarà pel món, enfrontant-se a monstres i enemics que intentaran eliminar-te. Amb un conjunt d'habilitats que es poden millorar, hauràs de fer front a aquestes criatures fins arribar al teu objectiu. És crucial que acabar amb els enemics sigui gratificant, permetent-te estar hores sense avorrir-te.
