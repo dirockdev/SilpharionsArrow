@@ -5,7 +5,7 @@ using UnityEngine;
 public class SkillTree : MonoBehaviour
 {
 
-    public static int skillPoints = 20;
+    public static int skillPoints = 30;
     public List<Skill> skillList;
 
     private bool initialized = false;

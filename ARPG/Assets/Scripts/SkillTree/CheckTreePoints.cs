@@ -11,6 +11,7 @@ public class CheckTreePoints : MonoBehaviour
     int idAbility;
     public void CountMaxPoints()
     {
+        maxPointInSkillTree=0;
         skillData = GetComponent<SkillInitializer>();
         foreach (var item in skillData.skillData)
         {

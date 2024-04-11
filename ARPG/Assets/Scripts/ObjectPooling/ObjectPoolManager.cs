@@ -42,7 +42,38 @@ public class ObjectPoolManager : MonoBehaviour
             }
         }
     }
-    
+    public static void ReturnToPool(float timeAlive, GameObject gameObject)
+    {
+        Instance.StartCoroutine(ReturnToPoolRoutine(timeAlive, gameObject));
+    }
+
+    private static ObjectPoolManager _instance;
+    private static ObjectPoolManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<ObjectPoolManager>();
+                if (_instance == null)
+                {
+                    Debug.LogError("ObjectPoolManager instance not found in the scene. Make sure to add it to a GameObject in your scene.");
+                }
+            }
+            return _instance;
+        }
+    }
+
+    private static IEnumerator ReturnToPoolRoutine(float timeAlive, GameObject gameObject)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < timeAlive)
+        {
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        ReturnObjectToPool(gameObject);
+    }
 
 }
 

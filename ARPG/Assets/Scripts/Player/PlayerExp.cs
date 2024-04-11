@@ -7,6 +7,8 @@ public class PlayerExp : MonoBehaviour
     [Header("UI")]
     [SerializeField]
     private Slider expBar;
+    [SerializeField]
+    private TMP_Text levelText;
 
     [Range(1f, 300f)]
     float additionMultiplier = 300;
@@ -19,10 +21,10 @@ public class PlayerExp : MonoBehaviour
 
     int currentExp;
     int requiredExp;
-    private static int level;
+    public static int level=1;
 
     private PlayerAnimate playerAnimate;
-    private void Start()
+    private void Awake()
     {
         playerAnimate = GetComponent<PlayerAnimate>();  
         RestartStats();
@@ -57,15 +59,16 @@ public class PlayerExp : MonoBehaviour
         currentExp = Mathf.RoundToInt(currentExp - requiredExp);
         requiredExp = CalculateRequiredExp();
         playerAnimate.LevelUpPart();
-        UpdateSliderUI();
+        UpdateExpUI();
         UISkillController.UpdatePoints();
         AudioManager.instance.PlaySFXWorld("4",default,2.5f,0.07f);
     }
 
-    private void UpdateSliderUI()
+    private void UpdateExpUI()
     {
         expBar.value = currentExp;
         expBar.maxValue = requiredExp;
+        levelText.SetText(level.ToString());
     }
 
     private int CalculateRequiredExp()

@@ -47,21 +47,25 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
     {
 
         _meshRendererMat = _meshRenderer.material;
-        healthBarUI.maxValue = health;
-        healthBarUI.value = health;
         target = InstancePlayer.instance.transform;
         interactInput = FindFirstObjectByType<InteractInput>();
-        RagdollState(false);
+        
 
     }
 
     private void OnEnable()
     {
-        health = stats.health;
-        attackSpeed = stats.attackspeed;
+
+        float scaleMultiplier = stats.scaleCurve.Evaluate(PlayerExp.level);
+        
+        health = Mathf.RoundToInt(stats.health * scaleMultiplier);
+        attackSpeed = stats.attackspeed * scaleMultiplier;
+        damage = Mathf.RoundToInt(stats.damage * scaleMultiplier);
+        
         attackrange = stats.radiusDetection;
-        damage = stats.damage;
         agent.speed = stats.speed;
+        InicializeEnemy();
+
     }
     void Update()
     {
@@ -70,6 +74,15 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
 
     }
 
+
+    private void InicializeEnemy()
+    {
+        isPoisoned = false;
+        isStunned = false;
+        healthBarUI.maxValue = health;
+        healthBarUI.value = health;
+        RagdollState(false);
+    }
     private void ProcessCooldownHit()
     {
         if (attackTimer >= 0f)
@@ -141,7 +154,7 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
             //Disable();
             RagdollState(true);
             CreateExp();
-            Destroy(gameObject, 2);
+            ObjectPoolManager.ReturnToPool(2, gameObject);
         }
 
 
