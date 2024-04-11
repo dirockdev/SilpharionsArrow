@@ -10,7 +10,7 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
 
     public EnemiesStats stats;
 
-    private Transform target;
+    protected Transform target;
     int health;
     private float attackrange;
 
@@ -112,7 +112,7 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
                     return; // Sal del método si el enemigo está muerto
                 }
                 attackTimer = attackSpeed;
-                target.GetComponent<IDamagable>().GetDamage(damage, false);
+                DoDamage();
                 AnimAttack();
 
                 agent.SetDestination(transform.position);
@@ -131,6 +131,11 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
             }
         }
 
+    }
+
+    protected void DoDamage()
+    {
+        target.GetComponent<IDamagable>().GetDamage(damage, false);
     }
 
     private void AnimAttack()

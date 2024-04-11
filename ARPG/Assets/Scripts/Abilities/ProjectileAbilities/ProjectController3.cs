@@ -71,17 +71,7 @@ public class ProjectController3 : MonoBehaviour, IProjectile
 
         }
     }
-    IEnumerator ReturnToPool()
-    {
-        float elapsedTime = 0f;
-        while (elapsedTime < timeAlive)
-        {
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-        ObjectPoolManager.ReturnObjectToPool(gameObject);
-    }
-    private void EndProjectile()
+   private void EndProjectile()
     {
         boxCollider.enabled = false;
         part.Stop();
@@ -128,7 +118,7 @@ public class ProjectController3 : MonoBehaviour, IProjectile
     public void SetTimeAlive(float time)
     {
         timeAlive = time;
-        StartCoroutine(ReturnToPool());
+        ObjectPoolManager.ReturnToPool(timeAlive,gameObject);
     }
 
     public void SetHealOnCrits(bool canHeal)
