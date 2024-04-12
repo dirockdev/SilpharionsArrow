@@ -24,8 +24,10 @@ public class PlayerExp : MonoBehaviour
     public static int level=1;
 
     private PlayerAnimate playerAnimate;
+    private CharacterStats characterStats;
     private void Awake()
     {
+        characterStats=GetComponent<CharacterStats>();  
         playerAnimate = GetComponent<PlayerAnimate>();  
         RestartStats();
         expBar.maxValue = requiredExp;
@@ -62,6 +64,7 @@ public class PlayerExp : MonoBehaviour
         UpdateExpUI();
         UISkillController.UpdatePoints();
         AudioManager.instance.PlaySFXWorld("4",default,2.5f,0.07f);
+        characterStats.PlayerScale();
     }
 
     private void UpdateExpUI()

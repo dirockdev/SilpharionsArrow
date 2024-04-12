@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3240482444946599409}
-  - component: {fileID: 3240482444946599413}
   - component: {fileID: 2839955329507728610}
   - component: {fileID: -8124216624241030262}
+  - component: {fileID: 7244737253324771527}
   m_Layer: 3
   m_Name: Zombie
   m_TagString: Enemy
@@ -36,24 +36,6 @@ Transform:
   - {fileID: 7171164871254473940}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3240482444946599413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3240482444946599414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36d9b380ba44080439e167ccbc0b8d3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: 7a2c212a0ce433644ae2befe023b17b5, type: 2}
-  healthBarUI: {fileID: 5584405131092617427}
-  expPrefab: {fileID: -6823876959641741716, guid: 26f28b0c373ebf8438d1beaa452d1487,
-    type: 3}
-  prefabDmgUI: {fileID: 7463358700536465280, guid: 5cb796ae7f86acf47837a45604f42707,
-    type: 3}
 --- !u!65 &2839955329507728610
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -97,6 +79,24 @@ NavMeshAgent:
   m_BaseOffset: 0.81
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &7244737253324771527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240482444946599414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3904b9690670344b9aa463f27d0fdea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: 7a2c212a0ce433644ae2befe023b17b5, type: 2}
+  healthBarUI: {fileID: 5584405131092617427}
+  expPrefab: {fileID: -6823876959641741716, guid: 26f28b0c373ebf8438d1beaa452d1487,
+    type: 3}
+  prefabDmgUI: {fileID: 7463358700536465280, guid: 5cb796ae7f86acf47837a45604f42707,
+    type: 3}
 --- !u!1 &4396532620203357608
 GameObject:
   m_ObjectHideFlags: 0

@@ -151,7 +151,8 @@ public class AbilityHandler : MonoBehaviour
 
         Vector3 direction = (MouseInput.rayToWorldPoint - transform.position).normalized;
         Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
-        targetRotation.x = targetRotation.z = 0f;
+        targetRotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
+
         transform.DORotateQuaternion(targetRotation, 0.3f);
     }
 }

@@ -23,7 +23,7 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
 
     Outline outline;
     private float attackSpeed;
-    private int damage;
+    protected int damage;
 
     private float attackTimer;
 
@@ -34,7 +34,7 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
     Rigidbody[] ragdollBodies;
 
     private bool isPoisoned, isStunned;
-    private void Awake()
+    protected void Awake()
     {
         anim = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
@@ -43,7 +43,7 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
         ragdollBodies = GetComponentsInChildren<Rigidbody>();
     }
 
-    private void Start()
+    protected void Start()
     {
 
         _meshRendererMat = _meshRenderer.material;
@@ -53,13 +53,17 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
 
     }
 
-    private void OnEnable()
+    protected void OnEnable()
     {
 
         float scaleMultiplier = stats.scaleCurve.Evaluate(PlayerExp.level);
         
         health = Mathf.RoundToInt(stats.health * scaleMultiplier);
-        attackSpeed = stats.attackspeed * scaleMultiplier;
+        
+        float currentAttackSpeedInverse = 1 / stats.attackspeed;
+        float scaledAttackSpeedInverse = currentAttackSpeedInverse * scaleMultiplier;
+        attackSpeed = 1 / scaledAttackSpeedInverse;
+
         damage = Mathf.RoundToInt(stats.damage * scaleMultiplier);
         
         attackrange = stats.radiusDetection;
@@ -67,7 +71,7 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
         InicializeEnemy();
 
     }
-    void Update()
+    protected void Update()
     {
         ProcessCooldownHit();
         ProcessAttack();
@@ -133,7 +137,7 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
 
     }
 
-    protected void DoDamage()
+    protected virtual void DoDamage()
     {
         target.GetComponent<IDamagable>().GetDamage(damage, false);
     }
@@ -142,6 +146,10 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
     {
         anim.SetTrigger("Attack");
         anim.SetBool("Idle", false);
+        Vector3 direction = (target.position - transform.position).normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+        targetRotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
+        transform.DORotateQuaternion(targetRotation, 0.3f);
     }
 
     public void GetDamage(int damage, bool crit)

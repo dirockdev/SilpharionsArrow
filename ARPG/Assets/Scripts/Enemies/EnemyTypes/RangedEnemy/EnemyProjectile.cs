@@ -12,12 +12,12 @@ public class EnemyProjectile : MonoBehaviour
         body = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         meshRenderer = GetComponent<MeshRenderer>();
-        ObjectPoolManager.ReturnToPool(3, gameObject);
     }
     private void OnEnable()
     {
         meshRenderer.enabled = true;
         boxCollider.enabled = true;
+        ObjectPoolManager.ReturnToPool(3, gameObject);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -28,6 +28,10 @@ public class EnemyProjectile : MonoBehaviour
             itemHit.GetDamage(damage);
             EndProjectile();
         }
+        else
+        {
+            EndProjectile();
+        }
     }
     public void SetDirection(Vector3 direction,int velocity)
     {
@@ -35,6 +39,10 @@ public class EnemyProjectile : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(direction);
         // Establece la velocidad en la dirección especificada.
         body.velocity = direction * velocity;
+    }    
+    public void SetDamage(int damage)
+    {
+        this.damage = damage;
     }
     private void EndProjectile()
     {

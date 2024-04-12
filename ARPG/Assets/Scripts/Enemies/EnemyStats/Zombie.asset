@@ -65,7 +65,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   speed: 5
   health: 300
-  damage: 100
+  damage: 45
   attackspeed: 1
   radiusDetection: 3
   exp: 5

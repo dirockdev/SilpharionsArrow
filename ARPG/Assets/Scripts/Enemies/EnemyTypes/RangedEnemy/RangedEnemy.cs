@@ -10,24 +10,30 @@ public class RangedEnemy : EnemyBase
     GameObject enemyProjectile;
     RangedStats rangedStats;
     private int projectileSpeed;
-    private void Awake()
+    private new void Awake()
     {
+        base.Awake();
         rangedStats = (RangedStats)stats;
     }
-    private void OnEnable()
+    private new void OnEnable()
     {
+        base.OnEnable();
         enemyProjectile = rangedStats.projectilePrefab;
         projectileSpeed = rangedStats.projectileSpeed;
     }
-    protected new void DoDamage()
+    protected override void DoDamage()
     {
-        GameObject projectileInstance=ObjectPoolManager.SpawnObject(enemyProjectile, transform.position, Quaternion.identity);
+        GameObject projectileInstance=ObjectPoolManager.SpawnObject(enemyProjectile, new Vector3(transform.position.x, 2, transform.position.z), Quaternion.identity);
         EnemyProjectile projectileScript = projectileInstance.GetComponent<EnemyProjectile>();
+
         if (projectileScript != null)
         {
             // Configurar el proyectil (por ejemplo, dirección y velocidad)
             Vector3 direction = (target.position - transform.position).normalized;
+            direction.y = 0;
+            direction.Normalize();
             projectileScript.SetDirection(direction, projectileSpeed);
+            projectileScript.SetDamage(damage);
         }
     }
 }

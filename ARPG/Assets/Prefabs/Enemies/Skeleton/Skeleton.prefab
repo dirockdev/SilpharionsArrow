@@ -2579,7 +2579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4437454a7e4f0e43a3edf01d7c8a49c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 0}
+  stats: {fileID: 11400000, guid: a5ee255950cfde640959f7799aa2aed4, type: 2}
   healthBarUI: {fileID: 3585751976554426213}
   expPrefab: {fileID: -6823876959641741716, guid: 26f28b0c373ebf8438d1beaa452d1487,
     type: 3}

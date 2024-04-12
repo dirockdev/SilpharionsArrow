@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.AI;
 using System;
 using System.Collections;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 
 public class CharacterStats : MonoBehaviour, IDamagable
@@ -28,10 +29,27 @@ public class CharacterStats : MonoBehaviour, IDamagable
     {
         playerUI = GetComponent<PlayerUI>();
         agent = GetComponent<NavMeshAgent>();
+
+      
+
         Health = playerStats.health;
         maxHealth = playerStats.health;
         agent.speed= playerStats.speed;
     }
+
+    public void PlayerScale()
+    {
+        float scaleMultiplier = playerStats.scaleCurve.Evaluate(PlayerExp.level);
+
+        maxHealth = Mathf.RoundToInt(playerStats.health * scaleMultiplier);
+        health = maxHealth;
+        playerUI.UpdateUI();
+    }
+
+
+
+
+
     public void SetDestination(Vector3 destination)
     {
         agent.SetDestination(destination);

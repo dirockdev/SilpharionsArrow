@@ -6,12 +6,5 @@ using UnityEngine;
 public class EnemiesStats : ScriptableObject
 {
     public AnimationCurve scaleCurve;
-    public int speed, health, damage,attackspeed, radiusDetection, exp, acceleration, angularVelocity;
-}
-
-[CreateAssetMenu(menuName = "Stats/RangedEnemy")]
-public class RangedStats : EnemiesStats
-{
-    public GameObject projectilePrefab;
-    public int projectileSpeed;
+    public int speed=5, health=300, damage=100,attackspeed=1, radiusDetection=3, exp=5, acceleration=10, angularVelocity=1000;
 }

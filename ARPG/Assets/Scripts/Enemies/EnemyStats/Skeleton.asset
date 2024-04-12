@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e38ab51b97eae01489a28ebd0605eb31, type: 3}
-  m_Name: PlayerStats
+  m_Script: {fileID: 11500000, guid: ff1d2ecf9dca90d4999a85f9c96cbd57, type: 3}
+  m_Name: Skeleton
   m_EditorClassIdentifier: 
   scaleCurve:
     serializedVersion: 2
@@ -46,33 +46,15 @@ MonoBehaviour:
       time: 48.596832
       value: 9.765825
       inSlope: 0.16689035
-      outSlope: 0.15781131
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 81.76413
-      value: 15
-      inSlope: 0.15781131
-      outSlope: 0.16037695
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 147.19647
-      value: 25.49384
-      inSlope: 0.16037695
-      outSlope: 0.16037694
+      outSlope: 0.9555734
       tangentMode: 69
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 300
-      value: 50
-      inSlope: 0.16037694
+      value: 250
+      inSlope: 0.9555734
       outSlope: 0.0009314709
       tangentMode: 69
       weightedMode: 0
@@ -81,9 +63,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  experience: 0
-  rotationSpeed: 10
-  speed: 12
+  speed: 5
   health: 200
-  level: 1
-  requiredExp: 83
+  damage: 30
+  attackspeed: 1
+  radiusDetection: 12
+  exp: 5
+  acceleration: 10
+  angularVelocity: 1000
+  projectilePrefab: {fileID: 807472419327532609, guid: 631cd5dd1b691b24791c4b6576fba3c8,
+    type: 3}
+  projectileSpeed: 25
