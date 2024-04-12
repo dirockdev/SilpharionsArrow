@@ -19,8 +19,11 @@ public class AreaAbility : Ability, IAbilityBehaviour
 
         IArea areaComponent = areaGameObject.GetComponent<IArea>();
 
+        int adjustedDamage = areaAbilityContainer.tickDamage + CharacterStats.DamageAtribute/2;
+
+
         areaComponent.SetArea(areaAbilityContainer.area);    
-        areaComponent.SetDamage(areaAbilityContainer.tickDamage);    
+        areaComponent.SetDamage(adjustedDamage);    
         areaComponent.SetTimeAlive(areaAbilityContainer.timeAlive);    
         areaComponent.SetIsHoming(areaAbilityContainer.isHoming);    
         areaComponent.SetHomingSpeed(areaAbilityContainer.homingSpeed);    

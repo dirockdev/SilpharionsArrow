@@ -9,11 +9,12 @@ using UnityEngine.Events;
 
 public class AbilityHandler : MonoBehaviour
 {
-    [SerializeField] Ability startingAbility,ability1, dashAbility,shotgunAbility, arrowRainAbility;
+    [SerializeField] Ability startingAbility, ability1, dashAbility, shotgunAbility, arrowRainAbility;
 
     List<AbilityContainer> abilities;
-    public UnityEvent<AbilityContainer,int> onAbilityChange;
-    public UnityEvent<float,int>onCooldownUpdate;
+    public UnityEvent<AbilityContainer, int> onAbilityChange;
+    public UnityEvent<float, int> onCooldownUpdate;
+
 
 
     Animator anim;
@@ -24,7 +25,10 @@ public class AbilityHandler : MonoBehaviour
     private void Start()
     {
         InitializeAbilities();
+        PlayerExp.OnLevelUp += AddAbilityWhenLevelUp;
     }
+
+
 
     private void InitializeAbilities()
     {
@@ -33,12 +37,23 @@ public class AbilityHandler : MonoBehaviour
         // Añade las habilidades al iniciar
         AddAbility(startingAbility);
         AddAbility(ability1);
-        AddAbility(dashAbility);
-        AddAbility(shotgunAbility);
-        AddAbility(arrowRainAbility);
     }
-
-    private void AddAbility(Ability abilityToAdd)
+    private void AddAbilityWhenLevelUp(int newLevel)
+    {
+        switch (newLevel)
+        {
+            case 5:
+                AddAbility(dashAbility);
+                break;
+            case 8:
+                AddAbility(shotgunAbility);
+                break;
+            case 11:
+                AddAbility(arrowRainAbility);
+                break;
+        }
+    }
+    public void AddAbility(Ability abilityToAdd)
     {
         if (abilityToAdd == null)
             return;
@@ -69,10 +84,10 @@ public class AbilityHandler : MonoBehaviour
 
     public void ActivateAbility(AbilityContainer abilityContainer)
     {
-        if (abilityContainer.currentCooldown>0f) { return; }
+        if (abilityContainer.currentCooldown > 0f) { return; }
         IAbilityBehaviour abilityAction = CreateAbilityAction(abilityContainer);
         //CreateAbility
-        abilityContainer.ability.UseAbility(transform,abilityAction,MouseInput.rayToWorldPoint, abilityContainer);
+        abilityContainer.ability.UseAbility(transform, abilityAction, MouseInput.rayToWorldPoint, abilityContainer);
         AbilityAnimation(abilityAction);
 
         abilityContainer.Cooldown();
@@ -82,7 +97,7 @@ public class AbilityHandler : MonoBehaviour
     {
         if (abilityContainer.ability is ProjectileAbility)
         {
-            
+
             return (ProjectileAbility)abilityContainer.ability;
         }
         else if (abilityContainer.ability is DashAbility)
@@ -106,23 +121,23 @@ public class AbilityHandler : MonoBehaviour
 
 
         AbilityContainer abilityContainer = Abilities[abilityID];
-        abilityContainer.isPressed= pressed;
-        
+        abilityContainer.isPressed = pressed;
+
     }
 
 
     private void Awake()
     {
         anim = GetComponentInChildren<Animator>();
-               
+
     }
     private void Update()
     {
         ProccessCooldown();
         ProccessHoldAbilities();
-    
+
     }
-    
+
     private void ProccessHoldAbilities()
     {
         for (int i = 0; i < Abilities.Count; i++)
@@ -139,15 +154,15 @@ public class AbilityHandler : MonoBehaviour
         {
 
             Abilities[i].ReduceCooldown(Time.deltaTime);
-            onCooldownUpdate?.Invoke(Abilities[i].CooldownNormalized,i);
+            onCooldownUpdate?.Invoke(Abilities[i].CooldownNormalized, i);
         }
 
     }
-    
+
     private void AbilityAnimation(IAbilityBehaviour abilityAction)
     {
-        if(abilityAction is ProjectileAbility)anim.SetTrigger("Attack");
-        
+        if (abilityAction is ProjectileAbility) anim.SetTrigger("Attack");
+
 
         Vector3 direction = (MouseInput.rayToWorldPoint - transform.position).normalized;
         Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);

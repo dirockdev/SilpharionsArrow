@@ -38,6 +38,7 @@ public class ProjectileAbility :Ability, IAbilityBehaviour
         // Calcular la rotación inicial una vez fuera del bucle
         Quaternion initialRotation = Quaternion.AngleAxis(-(projectileAbilityContainer.numProjectiles - 1) * angleBetweenProjectiles / 2f, Vector3.up);
 
+        int adjustedDamage = projectileAbilityContainer.currentDamage +CharacterStats.DamageAtribute ;
         for (int i = 0; i < projectileAbilityContainer.numProjectiles; i++)
         {
             // Rotar la dirección del proyectil basada en el ángulo
@@ -52,12 +53,14 @@ public class ProjectileAbility :Ability, IAbilityBehaviour
             IProjectile projectileComponent = projectile.GetComponent<IProjectile>();
             projectileComponent.SetState(projectileAbilityContainer.state);
             projectileComponent.SetWidthProj(projectileAbilityContainer.widthProj);
-            projectileComponent.SetDamage(projectileAbilityContainer.currentDamage);
+
+            projectileComponent.SetDamage(adjustedDamage);
+
             projectileComponent.SetVelocity(projectileAbilityContainer.speed);
             projectileComponent.SetCanPenetrate(canPenetrate);
             projectileComponent.SetCrit(projectileAbilityContainer.probCrit);
             projectileComponent.SetDirection(rotation*horizontalDirection);
-            projectileComponent.SetStateDmg(projectileAbilityContainer.currentDamage / projectileAbilityContainer.stateDmg);
+            projectileComponent.SetStateDmg(adjustedDamage / projectileAbilityContainer.stateDmg);
             projectileComponent.SetTimeAlive(projectileAbilityContainer.timeAlive);
             projectileComponent.SetHealOnCrits(projectileAbilityContainer.canHealOnCrits);
             projectileComponent.SetReduceCooldown(abilityContainer.canReduceCooldown);

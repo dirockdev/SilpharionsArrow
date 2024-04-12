@@ -20,7 +20,7 @@ public class CharacterStats : MonoBehaviour, IDamagable
     [SerializeField]
     private GameObject prefabHealUI;
     private bool isDead;
-
+    public static int DamageAtribute=1;
     public int Health { get => health; set => health = value; }
     public PlayerStats PlayerStats { get => playerStats; set => playerStats = value; }
     public int MaxHealth { get => maxHealth; set => maxHealth = value; }
@@ -30,17 +30,17 @@ public class CharacterStats : MonoBehaviour, IDamagable
         playerUI = GetComponent<PlayerUI>();
         agent = GetComponent<NavMeshAgent>();
 
-      
+        PlayerExp.OnLevelUp += PlayerScale;
 
         Health = playerStats.health;
         maxHealth = playerStats.health;
         agent.speed= playerStats.speed;
     }
 
-    public void PlayerScale()
+    public void PlayerScale(int level)
     {
-        float scaleMultiplier = playerStats.scaleCurve.Evaluate(PlayerExp.level);
-
+        float scaleMultiplier = playerStats.scaleCurve.Evaluate(level);
+        DamageAtribute = Mathf.RoundToInt(2*scaleMultiplier);
         maxHealth = Mathf.RoundToInt(playerStats.health * scaleMultiplier);
         health = maxHealth;
         playerUI.UpdateUI();

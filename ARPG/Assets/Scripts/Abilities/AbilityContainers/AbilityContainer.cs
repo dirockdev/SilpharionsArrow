@@ -15,7 +15,6 @@ public abstract class AbilityContainer
     public int coolDownLevel;
 
     public bool canReduceCooldown;
-    public bool isUnlocked;
     public AbilityContainer(Ability ability)
     {
         this.ability = ability;

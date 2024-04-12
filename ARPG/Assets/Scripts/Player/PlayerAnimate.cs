@@ -17,10 +17,10 @@ public class PlayerAnimate : MonoBehaviour
     {
         anim = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        
+        PlayerExp.OnLevelUp += LevelUpPart;
     }
 
-    public void LevelUpPart()
+    public void LevelUpPart(int level)
     {
         partParent.Play();
     }

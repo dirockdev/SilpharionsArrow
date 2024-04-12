@@ -60,14 +60,11 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
         
         health = Mathf.RoundToInt(stats.health * scaleMultiplier);
         
-        float currentAttackSpeedInverse = 1 / stats.attackspeed;
-        float scaledAttackSpeedInverse = currentAttackSpeedInverse * scaleMultiplier;
-        attackSpeed = 1 / scaledAttackSpeedInverse;
-
         damage = Mathf.RoundToInt(stats.damage * scaleMultiplier);
         
         attackrange = stats.radiusDetection;
         agent.speed = stats.speed;
+        attackSpeed = stats.attackspeed;
         InicializeEnemy();
 
     }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class PlayerExp : MonoBehaviour
 {
@@ -23,12 +24,10 @@ public class PlayerExp : MonoBehaviour
     int requiredExp;
     public static int level=1;
 
-    private PlayerAnimate playerAnimate;
-    private CharacterStats characterStats;
+
+    public static event Action<int> OnLevelUp;
     private void Awake()
     {
-        characterStats=GetComponent<CharacterStats>();  
-        playerAnimate = GetComponent<PlayerAnimate>();  
         RestartStats();
         expBar.maxValue = requiredExp;
         expBar.minValue = 0;
@@ -60,11 +59,12 @@ public class PlayerExp : MonoBehaviour
         SkillTree.skillPoints++;
         currentExp = Mathf.RoundToInt(currentExp - requiredExp);
         requiredExp = CalculateRequiredExp();
-        playerAnimate.LevelUpPart();
         UpdateExpUI();
         UISkillController.UpdatePoints();
         AudioManager.instance.PlaySFXWorld("4",default,2.5f,0.07f);
-        characterStats.PlayerScale();
+
+        OnLevelUp?.Invoke(level);
+
     }
 
     private void UpdateExpUI()
