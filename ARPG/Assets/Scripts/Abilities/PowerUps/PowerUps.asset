@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectiles: 1
   crit: 5
-  angle: -10
-  damage: 5
+  angle: -8
+  damage: 7
   speed: 15
   slow: 0.5
   poisonChance: 0.15

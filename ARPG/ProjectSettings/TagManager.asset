@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Experience
+  - UI
   layers:
   - Default
   - TransparentFX

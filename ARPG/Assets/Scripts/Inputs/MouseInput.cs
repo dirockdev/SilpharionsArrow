@@ -8,21 +8,23 @@ public class MouseInput : MonoBehaviour
     Vector3 mouseInputPosition;
     [HideInInspector]
     public static Vector3 rayToWorldPoint;
+
     public void MousePositionUpdate(InputAction.CallbackContext context)
     {
-        mouseInputPosition=context.ReadValue<Vector2>();
-        
+        mouseInputPosition = context.ReadValue<Vector2>();
     }
-    void Update()
+
+
+    void LateUpdate()
     {
-        Ray ray = Camera.main.ScreenPointToRay(mouseInputPosition);
-        RaycastHit hit;
+       Ray ray = Camera.main.ScreenPointToRay(mouseInputPosition);
+            RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, float.MaxValue))
-        {
-            rayToWorldPoint = hit.point;
-        }
-
+            if (Physics.Raycast(ray, out hit, float.MaxValue))
+            {
+                rayToWorldPoint = hit.point;
+            }
+       
     }
 }
 

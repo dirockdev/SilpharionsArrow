@@ -107,6 +107,15 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""460d2586-6233-4114-9551-3f72cb103687"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -208,6 +217,17 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
                     ""action"": ""SkillTrees"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""db3e83af-a3c6-47b9-b084-52c91e8c7abd"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -225,6 +245,7 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
         m_Player_LeftMouseB = m_Player.FindAction("LeftMouseB", throwIfNotFound: true);
         m_Player_Potion = m_Player.FindAction("Potion", throwIfNotFound: true);
         m_Player_SkillTrees = m_Player.FindAction("SkillTrees", throwIfNotFound: true);
+        m_Player_OpenMenu = m_Player.FindAction("OpenMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -295,6 +316,7 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_LeftMouseB;
     private readonly InputAction m_Player_Potion;
     private readonly InputAction m_Player_SkillTrees;
+    private readonly InputAction m_Player_OpenMenu;
     public struct PlayerActions
     {
         private @PlayerMovement m_Wrapper;
@@ -308,6 +330,7 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
         public InputAction @LeftMouseB => m_Wrapper.m_Player_LeftMouseB;
         public InputAction @Potion => m_Wrapper.m_Player_Potion;
         public InputAction @SkillTrees => m_Wrapper.m_Player_SkillTrees;
+        public InputAction @OpenMenu => m_Wrapper.m_Player_OpenMenu;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -344,6 +367,9 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
             @SkillTrees.started += instance.OnSkillTrees;
             @SkillTrees.performed += instance.OnSkillTrees;
             @SkillTrees.canceled += instance.OnSkillTrees;
+            @OpenMenu.started += instance.OnOpenMenu;
+            @OpenMenu.performed += instance.OnOpenMenu;
+            @OpenMenu.canceled += instance.OnOpenMenu;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -375,6 +401,9 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
             @SkillTrees.started -= instance.OnSkillTrees;
             @SkillTrees.performed -= instance.OnSkillTrees;
             @SkillTrees.canceled -= instance.OnSkillTrees;
+            @OpenMenu.started -= instance.OnOpenMenu;
+            @OpenMenu.performed -= instance.OnOpenMenu;
+            @OpenMenu.canceled -= instance.OnOpenMenu;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -403,5 +432,6 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
         void OnLeftMouseB(InputAction.CallbackContext context);
         void OnPotion(InputAction.CallbackContext context);
         void OnSkillTrees(InputAction.CallbackContext context);
+        void OnOpenMenu(InputAction.CallbackContext context);
     }
 }

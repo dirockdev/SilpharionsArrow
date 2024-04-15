@@ -16,14 +16,16 @@ public class ProjectController1 : MonoBehaviour, IProjectile
     MeshRenderer meshRenderer;
     BoxCollider boxCollider;
     ParticleSystem part;
+    TrailRenderer trail;
     private float timeAlive;
 
     private void Awake()
     {
         body = GetComponent<Rigidbody>();
-        meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer = GetComponentInChildren<MeshRenderer>();
         boxCollider = GetComponent<BoxCollider>();
         part = GetComponentInChildren<ParticleSystem>();
+        trail = GetComponentInChildren<TrailRenderer>();
     }
     private void OnEnable()
     {
@@ -32,6 +34,10 @@ public class ProjectController1 : MonoBehaviour, IProjectile
         boxCollider.enabled = true;
         AudioManager.instance.PlaySFXWorld("0", transform.position);
 
+    }
+    private void OnDisable()
+    {
+        trail.Clear();
     }
     public void SetDirection(Vector3 direction)
     {
@@ -73,7 +79,7 @@ public class ProjectController1 : MonoBehaviour, IProjectile
         meshRenderer.enabled = false;
         boxCollider.enabled = false;
         part.Stop();
-        
+        trail.Clear();
         body.velocity = Vector3.zero;
     }
 
@@ -107,7 +113,7 @@ public class ProjectController1 : MonoBehaviour, IProjectile
 
     public void SetWidthProj(float width)
     {
-        
+     
     }
 
     public void SetTimeAlive(float time)

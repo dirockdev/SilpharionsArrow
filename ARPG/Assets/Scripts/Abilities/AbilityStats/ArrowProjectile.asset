@@ -20,7 +20,7 @@ MonoBehaviour:
   prefabProjectile: {fileID: 807472419327532609, guid: bed7a30b75b6fc741bf78e29152faaeb,
     type: 3}
   damage: 30
-  speed: 60
+  speed: 50
   critProb: 20
   angleProj: 40
   state: 0

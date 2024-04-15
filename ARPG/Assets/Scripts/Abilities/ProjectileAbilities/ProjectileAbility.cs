@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
-using UnityEngine.AI;
 
 [CreateAssetMenu]
 public class ProjectileAbility :Ability, IAbilityBehaviour

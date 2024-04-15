@@ -15,7 +15,9 @@ public class AbilityHandler : MonoBehaviour
     public UnityEvent<AbilityContainer, int> onAbilityChange;
     public UnityEvent<float, int> onCooldownUpdate;
 
-
+    public static event Action onDashAbilityUnlocked;
+    public static event Action onShotgunAbilityUnlocked;
+    public static event Action onArrowRainAbilityUnlocked;
 
     Animator anim;
 
@@ -44,12 +46,15 @@ public class AbilityHandler : MonoBehaviour
         {
             case 5:
                 AddAbility(dashAbility);
+                onDashAbilityUnlocked?.Invoke();
                 break;
             case 8:
                 AddAbility(shotgunAbility);
+                onShotgunAbilityUnlocked?.Invoke();
                 break;
             case 11:
                 AddAbility(arrowRainAbility);
+                onArrowRainAbilityUnlocked?.Invoke();
                 break;
         }
     }
@@ -88,7 +93,7 @@ public class AbilityHandler : MonoBehaviour
         IAbilityBehaviour abilityAction = CreateAbilityAction(abilityContainer);
         //CreateAbility
         abilityContainer.ability.UseAbility(transform, abilityAction, MouseInput.rayToWorldPoint, abilityContainer);
-        AbilityAnimation(abilityAction);
+        AbilityAnimation(abilityContainer);
 
         abilityContainer.Cooldown();
     }
@@ -158,10 +163,15 @@ public class AbilityHandler : MonoBehaviour
         }
 
     }
-
-    private void AbilityAnimation(IAbilityBehaviour abilityAction)
+    
+    private void AbilityAnimation(AbilityContainer abilityContainer)
     {
-        if (abilityAction is ProjectileAbility) anim.SetTrigger("Attack");
+        if (abilityContainer is ProjectileAbilityContainer)
+        {
+            ProjectileAbilityContainer projectileAbilityContainer = (ProjectileAbilityContainer)abilityContainer;
+            anim.SetFloat("attackSpeed", projectileAbilityContainer.animSpeed);
+            anim.SetTrigger("Attack");
+        }
 
 
         Vector3 direction = (MouseInput.rayToWorldPoint - transform.position).normalized;

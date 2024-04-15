@@ -10,4 +10,5 @@ public class ButtonControl : MonoBehaviour
     {
         GetComponent<Button>().onClick.AddListener(() => AudioManager.instance.PlaySFXWorld(sound, transform.position));
     }
+  
 }

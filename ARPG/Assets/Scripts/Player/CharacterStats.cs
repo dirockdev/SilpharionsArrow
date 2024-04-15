@@ -21,6 +21,8 @@ public class CharacterStats : MonoBehaviour, IDamagable
     private GameObject prefabHealUI;
     private bool isDead;
     public static int DamageAtribute=1;
+
+    public static event Action onPlayerDead;
     public int Health { get => health; set => health = value; }
     public PlayerStats PlayerStats { get => playerStats; set => playerStats = value; }
     public int MaxHealth { get => maxHealth; set => maxHealth = value; }
@@ -75,9 +77,12 @@ public class CharacterStats : MonoBehaviour, IDamagable
     private IEnumerator DeadAnim()
     {
         isDead = true;
+        onPlayerDead?.Invoke();
         agent.SetDestination(transform.position);
         AudioManager.instance.PlaySFXWorld("6", default, 4);
+        agent.speed = 0;
         yield return Yielders.Get(4f);
+        agent.speed = playerStats.speed;
         health = maxHealth;
         playerUI.UpdateUI();
         transform.position=Vector3.zero;

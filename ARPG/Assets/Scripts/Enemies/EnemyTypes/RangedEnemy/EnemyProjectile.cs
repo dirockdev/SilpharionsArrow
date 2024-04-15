@@ -11,7 +11,7 @@ public class EnemyProjectile : MonoBehaviour
     {
         body = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
-        meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer = GetComponentInChildren<MeshRenderer>();
     }
     private void OnEnable()
     {

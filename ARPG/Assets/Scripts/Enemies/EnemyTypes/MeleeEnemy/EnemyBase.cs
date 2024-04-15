@@ -1,6 +1,5 @@
 using UnityEngine;
 using DG.Tweening;
-using TMPro;
 using UnityEngine.AI;
 using UnityEngine.UI;
 using System.Collections;
@@ -33,20 +32,20 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
 
     Rigidbody[] ragdollBodies;
 
-    private bool isPoisoned, isStunned;
+    private bool isPoisoned, isStunned, isElite;
     protected void Awake()
     {
         anim = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
         outline = GetComponentInChildren<Outline>();
         _meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        _meshRendererMat = _meshRenderer.material;
         ragdollBodies = GetComponentsInChildren<Rigidbody>();
     }
 
     protected void Start()
     {
 
-        _meshRendererMat = _meshRenderer.material;
         target = InstancePlayer.instance.transform;
         interactInput = FindFirstObjectByType<InteractInput>();
         
@@ -55,14 +54,33 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
 
     protected void OnEnable()
     {
-
+        isElite = Random.value<0.1f;
+        
         float scaleMultiplier = stats.scaleCurve.Evaluate(PlayerExp.level);
         
         health = Mathf.RoundToInt(stats.health * scaleMultiplier);
-        
         damage = Mathf.RoundToInt(stats.damage * scaleMultiplier);
-        
-        attackrange = stats.radiusDetection;
+
+        if (!isElite) {
+            health = Mathf.RoundToInt(stats.health * scaleMultiplier);
+            damage = Mathf.RoundToInt(stats.damage * scaleMultiplier);
+            transform.DOScale(2, 1f); 
+            attackrange = stats.radiusDetection;
+            _meshRendererMat.DisableKeyword("_ISELITE");
+
+        }
+        else
+        {
+            attackrange = stats.radiusDetection*2f;
+            health = health * 2; 
+            damage *= 2; 
+            transform.DOScale(4, 1f);
+
+            _meshRendererMat.EnableKeyword("_ISELITE");
+        }
+
+
+
         agent.speed = stats.speed;
         attackSpeed = stats.attackspeed;
         InicializeEnemy();
