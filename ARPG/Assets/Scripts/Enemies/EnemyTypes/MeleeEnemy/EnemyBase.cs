@@ -10,7 +10,7 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
     public EnemiesStats stats;
 
     protected Transform target;
-    int health;
+    int health, maxHealth;
     private float attackrange;
 
     private Animator anim;
@@ -98,6 +98,7 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
     {
         isPoisoned = false;
         isStunned = false;
+        maxHealth = health;
         healthBarUI.maxValue = health;
         healthBarUI.value = health;
         RagdollState(false);
@@ -231,7 +232,7 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
     }
 
     public string ObjectName() => stats.name;
-    int[] IInteractObject.Health() => new[] { health, stats.health };
+    int[] IInteractObject.Health() => new[] { health, maxHealth };
 
     public Outline outLine() => outline;
 

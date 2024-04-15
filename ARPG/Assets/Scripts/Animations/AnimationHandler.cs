@@ -18,7 +18,10 @@ public class AnimationHandler : MonoBehaviour
         movInput = GetComponentInParent<CharacterMovInput>();   
         characterInput = GetComponentInParent<PlayerCharacterInput>();
         agent = GetComponentInParent<NavMeshAgent>();
+        DashAbility.Dashing += TeleportBurst;
     }
+
+   
 
     public void CanMove()
     {

@@ -33,7 +33,7 @@ public class CharacterStats : MonoBehaviour, IDamagable
         agent = GetComponent<NavMeshAgent>();
 
         PlayerExp.OnLevelUp += PlayerScale;
-
+        DashAbility.onHealDashing += GetHeal;
         Health = playerStats.health;
         maxHealth = playerStats.health;
         agent.speed= playerStats.speed;

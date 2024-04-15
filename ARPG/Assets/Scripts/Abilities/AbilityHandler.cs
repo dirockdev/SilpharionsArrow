@@ -171,6 +171,12 @@ public class AbilityHandler : MonoBehaviour
             ProjectileAbilityContainer projectileAbilityContainer = (ProjectileAbilityContainer)abilityContainer;
             anim.SetFloat("attackSpeed", projectileAbilityContainer.animSpeed);
             anim.SetTrigger("Attack");
+        }else if(abilityContainer is DashAbilityContainer)
+        {
+            DashAbilityContainer dashAbilityContainer = (DashAbilityContainer)abilityContainer;
+            anim.SetFloat("attackSpeed", dashAbilityContainer.animSpeed);
+
+            anim.SetTrigger("Teleport");
         }
 
 

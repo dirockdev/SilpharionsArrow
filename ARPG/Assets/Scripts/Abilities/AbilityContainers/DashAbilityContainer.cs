@@ -11,11 +11,11 @@ public class DashAbilityContainer : AbilityContainer
     public int healAmount;
     public int cooldownAbilities;
     public int timeSpeedBurst;
-    public Animator anim;
     public AnimationHandler animationHandler;
     public AbilityHandler abilityHandler;
     public bool canArrowRain;
 
+    public float animSpeed;
     public DashAbilityContainer(Ability ability) : base(ability)
     {
         DashAbility dashAbility = (DashAbility)this.ability;
@@ -23,10 +23,10 @@ public class DashAbilityContainer : AbilityContainer
         healAmount = dashAbility.healAmount;
         cooldownAbilities = dashAbility.cooldownAbilities;
         timeSpeedBurst = dashAbility.timeSpeedBurst;
-        anim=InstancePlayer.instance.GetComponentInChildren<Animator>();
         animationHandler=InstancePlayer.instance.GetComponentInChildren<AnimationHandler>();
         abilityHandler=InstancePlayer.instance.GetComponent<AbilityHandler>();
         canArrowRain=dashAbility.canArrowRain;
+        animSpeed = 1f;
     }
 
     

@@ -15,5 +15,11 @@ public class CooldownPowerUp : IPowerUp
             projectileContainer.animSpeed+= projectileContainer.animSpeed*0.2f;
             
         }
+        else if (abilityContainer is DashAbilityContainer)
+        {
+            DashAbilityContainer dashAbility= (DashAbilityContainer)abilityContainer;
+            dashAbility.animSpeed+= dashAbility.animSpeed*0.2f;
+            
+        }
     }
 }

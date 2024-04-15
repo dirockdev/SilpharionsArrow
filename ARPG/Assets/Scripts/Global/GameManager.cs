@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject skillPanel,skillTrees,skillHolder;
     public GameObject menuPanel;
     public static event Action<bool> OnToggleMenu;
-    public void ToggleSkillPanel(InputAction.CallbackContext context)
+    public void ToggleSkillPanel()
     {
         // Toggle the visibility of the skill panel
         skillTrees.SetActive(false);
