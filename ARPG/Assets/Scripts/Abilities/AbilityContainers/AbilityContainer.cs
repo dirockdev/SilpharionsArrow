@@ -1,20 +1,24 @@
+using Newtonsoft.Json;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 [Serializable]
 public abstract class AbilityContainer
 {
+    [JsonIgnore]
     public Ability ability;
+    
     public bool isPressed;
+    
     public float currentCooldown;
+    
     public float cooldownTime;
+    [JsonIgnore]
     public float CooldownNormalized { get { return 1f - currentCooldown / cooldownTime; } }
 
+    
     public int coolDownLevel;
-
+    
     public bool canReduceCooldown;
     public AbilityContainer(Ability ability)
     {

@@ -8,7 +8,7 @@ public class CharacterMovInput : MonoBehaviour
 {
 
     CharacterStats characterMov;
-   
+
     private void Awake()
     {
         characterMov = GetComponent<CharacterStats>();        
@@ -17,6 +17,8 @@ public class CharacterMovInput : MonoBehaviour
     // Update is called once per frame
     public void MoveInput()
     {
+       
+
         Vector3 direction = (MouseInput.rayToWorldPoint - transform.position).normalized;
 
         // Calculate the distance to the target

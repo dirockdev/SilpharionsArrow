@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,12 +11,13 @@ public class AbilityPanel : MonoBehaviour
     [SerializeField]
     private AbilityHandler abilityHandler;
     [SerializeField]private GameObject abilitySkillTrees;
-    //public UnityEvent<int> onAbilityActivate;
-    private void Start()
+    public static event Action onInicializeSkills;
+    private void Awake()
     {
         if (abilitySkillTrees.activeSelf) { abilitySkillTrees.SetActive(false); };
         if (!abilitySkillTrees.activeSelf) { 
             abilitySkillTrees.SetActive(true); 
+            onInicializeSkills?.Invoke();
             abilitySkillTrees.SetActive(false);
         }
     }

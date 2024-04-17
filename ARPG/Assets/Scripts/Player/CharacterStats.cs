@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.AI;
 using System;
 using System.Collections;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 
 public class CharacterStats : MonoBehaviour, IDamagable
@@ -19,13 +18,16 @@ public class CharacterStats : MonoBehaviour, IDamagable
     private ParticleSystem healPart;
     [SerializeField]
     private GameObject prefabHealUI;
-    private bool isDead;
+    public static bool isDead;
     public static int DamageAtribute=1;
+
 
     public static event Action onPlayerDead;
     public int Health { get => health; set => health = value; }
     public PlayerStats PlayerStats { get => playerStats; set => playerStats = value; }
     public int MaxHealth { get => maxHealth; set => maxHealth = value; }
+
+
 
     private void Awake()
     {
@@ -37,6 +39,7 @@ public class CharacterStats : MonoBehaviour, IDamagable
         Health = playerStats.health;
         maxHealth = playerStats.health;
         agent.speed= playerStats.speed;
+        PlayerScale(PlayerExp.level);
     }
 
     public void PlayerScale(int level)
@@ -47,9 +50,6 @@ public class CharacterStats : MonoBehaviour, IDamagable
         health = maxHealth;
         playerUI.UpdateUI();
     }
-
-
-
 
 
     public void SetDestination(Vector3 destination)

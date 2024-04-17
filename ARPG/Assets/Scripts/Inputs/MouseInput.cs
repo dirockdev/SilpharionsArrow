@@ -8,7 +8,7 @@ public class MouseInput : MonoBehaviour
     Vector3 mouseInputPosition;
     [HideInInspector]
     public static Vector3 rayToWorldPoint;
-
+    [SerializeField] LayerMask layerTerrain;
     public void MousePositionUpdate(InputAction.CallbackContext context)
     {
         mouseInputPosition = context.ReadValue<Vector2>();
@@ -17,14 +17,16 @@ public class MouseInput : MonoBehaviour
 
     void LateUpdate()
     {
-       Ray ray = Camera.main.ScreenPointToRay(mouseInputPosition);
-            RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(mouseInputPosition);
+        RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, float.MaxValue))
-            {
-                rayToWorldPoint = hit.point;
-            }
-       
+        if (Physics.Raycast(ray, out hit, float.MaxValue, layerTerrain))
+        {
+
+            rayToWorldPoint = hit.point;
+
+        }
+
     }
 }
 

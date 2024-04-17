@@ -114,7 +114,7 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
 
     void ProcessAttack()
     {
-        if (isStunned)
+        if (isStunned || CharacterStats.isDead)
         {
             anim.SetBool("Idle", true);
             agent.SetDestination(transform.position);

@@ -1,4 +1,5 @@
 
+using Newtonsoft.Json;
 using UnityEngine;
 
 [CreateAssetMenu]
@@ -8,6 +9,7 @@ public class ProjectileAbility :Ability, IAbilityBehaviour
     public int numberOfProjectiles;
     public bool canPenetrate;
     public bool canHealOnCrits;
+    [JsonIgnore]
     public GameObject prefabProjectile;
     public int damage;
     public int speed;

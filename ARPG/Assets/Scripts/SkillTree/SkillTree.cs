@@ -1,10 +1,12 @@
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class SkillTree : MonoBehaviour
 {
-
+    public string treeName;
     public static int skillPoints = 30;
     public List<Skill> skillList;
 
@@ -12,6 +14,7 @@ public class SkillTree : MonoBehaviour
     CheckTreePoints treePoints;
     public bool Initialized { get => initialized; set => initialized = value; }
 
+    IDataService dataService = new JsonDataService();
     private void Start()
     {
         UISkillController.UpdatePoints();
@@ -19,7 +22,7 @@ public class SkillTree : MonoBehaviour
     }
     private void OnEnable()
     {
-        if (Initialized)UpdateAllSkillsUI();
+        if (Initialized) UpdateAllSkillsUI();
     }
     public void UpdateAllSkillsUI()
     {
@@ -28,7 +31,7 @@ public class SkillTree : MonoBehaviour
             skill.UpdateUI();
         }
         UISkillController.UpdatePoints();
-        if (treePoints != null)treePoints.CheckAllPoints();
+        if (treePoints != null) treePoints.CheckAllPoints();
 
     }
 
@@ -36,7 +39,7 @@ public class SkillTree : MonoBehaviour
     public void LevelUpSkill(int skillId)
     {
         if (CantLevelUp(skillId)) return;
-      
+
 
         skillPoints--;
         skillList[skillId].Level++;
@@ -48,5 +51,41 @@ public class SkillTree : MonoBehaviour
     public bool CantLevelUp(int skillId)
     {
         return skillPoints < 1 || skillList[skillId].Level >= skillList[skillId].MaxLevel;
+    }
+    public void SerializeJson()
+    {
+        int[] levels = new int[skillList.Count];
+        for (int i = 0; i < skillList.Count; i++)
+        {
+            levels[i] = skillList[i].Level;
+        }
+
+        if (dataService.SaveData($"/player-skillTree-{treeName}.json", levels, true))
+        {
+
+            Debug.Log("Level saved successfully!");
+        }
+
+        else
+        {
+            Debug.Log("Could not save");
+        }
+    }
+    public void DeserializeJson()
+    {
+        int[] savedLevels = dataService.LoadData<int[]>($"/player-skillTree-{treeName}.json", true);
+        if (savedLevels != null && savedLevels.Length == skillList.Count)
+        {
+            for (int i = 0; i < skillList.Count; i++)
+            {
+                skillList[i].Level = savedLevels[i];
+            }
+            UpdateAllSkillsUI();
+        }
+        else
+        {
+            Debug.LogWarning("Failed to load skill tree data.");
+        }
+
     }
 }

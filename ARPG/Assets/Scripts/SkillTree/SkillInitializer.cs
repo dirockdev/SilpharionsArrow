@@ -18,9 +18,9 @@ public class SkillInitializer : MonoBehaviour
     public List<Skill> skills;
     public List<SkillData> skillData;
 
-    void Start()
+    void Awake()
     {
-        InitializeSkills();
+        AbilityPanel.onInicializeSkills += InitializeSkills;
         
     }
 

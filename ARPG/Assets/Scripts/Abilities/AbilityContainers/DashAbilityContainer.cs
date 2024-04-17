@@ -1,20 +1,26 @@
+
+using Newtonsoft.Json;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [Serializable]
 public class DashAbilityContainer : AbilityContainer
 {
+    
     public int movSpeed;
+    
     public int healAmount;
+    
     public int cooldownAbilities;
+    
     public int timeSpeedBurst;
+    [JsonIgnore]
     public AnimationHandler animationHandler;
+    [JsonIgnore]
     public AbilityHandler abilityHandler;
+    
     public bool canArrowRain;
-
+    
     public float animSpeed;
     public DashAbilityContainer(Ability ability) : base(ability)
     {
@@ -29,5 +35,17 @@ public class DashAbilityContainer : AbilityContainer
         animSpeed = 1f;
     }
 
-    
+    public void SetLoadValues(DashAbilityContainer loadedDash)
+    {
+        this.movSpeed = loadedDash.movSpeed;
+        this.healAmount = loadedDash.healAmount;
+        this.cooldownAbilities = loadedDash.cooldownAbilities;
+        this.timeSpeedBurst = loadedDash.timeSpeedBurst;
+        this.canArrowRain = loadedDash.canArrowRain;
+        this.animSpeed = loadedDash.animSpeed;
+        cooldownTime = loadedDash.cooldownTime;
+        coolDownLevel = loadedDash.coolDownLevel;
+    }
+
+
 }

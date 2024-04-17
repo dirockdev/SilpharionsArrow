@@ -11,6 +11,8 @@ public class PlayerCharacterInput : MonoBehaviour
     [HideInInspector]
     public bool isPressed,canMove;
     private bool canClick = true;
+
+    [SerializeField] GameObject clickEffect;
     private void Start()
     {
         GameManager.OnToggleMenu += isMoving;
@@ -42,6 +44,9 @@ public class PlayerCharacterInput : MonoBehaviour
 
     public void LeftMouse(InputAction.CallbackContext context)
     {
+
+        GameObject partEffect = ObjectPoolManager.SpawnObject(clickEffect, MouseInput.rayToWorldPoint+new Vector3(0,0.2f,0), Quaternion.identity);
+        ObjectPoolManager.ReturnToPool(0.4f, partEffect);
         LeftMouseHold(context);
        
         //characterMovInput.MoveInput();

@@ -1,11 +1,10 @@
 using DG.Tweening;
+using Newtonsoft.Json;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.Events;
-
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class AbilityHandler : MonoBehaviour
 {
@@ -20,14 +19,17 @@ public class AbilityHandler : MonoBehaviour
     public static event Action onArrowRainAbilityUnlocked;
 
     Animator anim;
+    IDataService dataService = new JsonDataService();
 
     [SerializeField]
     public List<AbilityContainer> Abilities { get => abilities; set => abilities = value; }
 
+
     private void Start()
     {
         InitializeAbilities();
-        PlayerExp.OnLevelUp += AddAbilityWhenLevelUp;
+
+        PlayerExp.OnUnlock += AddAbilityWhenLevelUp;
     }
 
 
@@ -45,16 +47,28 @@ public class AbilityHandler : MonoBehaviour
         switch (newLevel)
         {
             case 5:
-                AddAbility(dashAbility);
-                onDashAbilityUnlocked?.Invoke();
+                if (abilities.Count < 3)
+                {
+                    AddAbility(dashAbility);
+                    onDashAbilityUnlocked?.Invoke();
+
+                }
                 break;
             case 8:
-                AddAbility(shotgunAbility);
-                onShotgunAbilityUnlocked?.Invoke();
+                if (abilities.Count < 4)
+                {
+                    AddAbility(shotgunAbility);
+                    onShotgunAbilityUnlocked?.Invoke();
+                }
                 break;
             case 11:
-                AddAbility(arrowRainAbility);
-                onArrowRainAbilityUnlocked?.Invoke();
+                if (abilities.Count < 5)
+                {
+
+                    AddAbility(arrowRainAbility);
+                    onArrowRainAbilityUnlocked?.Invoke();
+
+                }
                 break;
         }
     }
@@ -145,6 +159,7 @@ public class AbilityHandler : MonoBehaviour
 
     private void ProccessHoldAbilities()
     {
+        if (CharacterStats.isDead) return;
         for (int i = 0; i < Abilities.Count; i++)
         {
             if (Abilities[i].isPressed)
@@ -163,7 +178,7 @@ public class AbilityHandler : MonoBehaviour
         }
 
     }
-    
+
     private void AbilityAnimation(AbilityContainer abilityContainer)
     {
         if (abilityContainer is ProjectileAbilityContainer)
@@ -171,7 +186,8 @@ public class AbilityHandler : MonoBehaviour
             ProjectileAbilityContainer projectileAbilityContainer = (ProjectileAbilityContainer)abilityContainer;
             anim.SetFloat("attackSpeed", projectileAbilityContainer.animSpeed);
             anim.SetTrigger("Attack");
-        }else if(abilityContainer is DashAbilityContainer)
+        }
+        else if (abilityContainer is DashAbilityContainer)
         {
             DashAbilityContainer dashAbilityContainer = (DashAbilityContainer)abilityContainer;
             anim.SetFloat("attackSpeed", dashAbilityContainer.animSpeed);
@@ -186,4 +202,79 @@ public class AbilityHandler : MonoBehaviour
 
         transform.DORotateQuaternion(targetRotation, 0.3f);
     }
+
+    public void SerializeJson()
+    {
+        for (int i = 0; i < abilities.Count; i++)
+        {
+            AbilityContainer abilityContainer = abilities[i];
+            if (abilityContainer != null)
+            {
+
+                if (dataService.SaveData($"/player-ability{i + 1}.json", abilityContainer, true))
+                {
+                    Debug.Log("Ability saved successfully!");
+                }
+                else
+                {
+                    Debug.Log("Could not save ability");
+                }
+            }
+        }
+    }
+    public void DesSerializeJson()
+    {
+        for (int i = 0; i < abilities.Count; i++)
+        {
+            string filePath = $"/player-ability{i + 1}.json";
+            switch (i)
+            {
+                case 0:
+                    {
+                        ProjectileAbilityContainer proj = FileHandler.ReadFromJSON<ProjectileAbilityContainer>(filePath);
+                        ProjectileAbilityContainer loadedAbility = new ProjectileAbilityContainer(startingAbility);
+                        loadedAbility.SetLoadValues(proj);
+                        abilities[i] = loadedAbility;
+                        break;
+                    }
+
+                case 1:
+                    {
+                        ProjectileAbilityContainer proj2 = FileHandler.ReadFromJSON<ProjectileAbilityContainer>(filePath);
+                        ProjectileAbilityContainer loadedAbility2 = new ProjectileAbilityContainer(ability1);
+                        loadedAbility2.SetLoadValues(proj2);
+                        abilities[i] = loadedAbility2;
+                        break;
+                    }
+
+                case 2:
+                    {
+
+                        DashAbilityContainer dash = FileHandler.ReadFromJSON<DashAbilityContainer>(filePath);
+                        DashAbilityContainer loadedAbility3 = new DashAbilityContainer(dashAbility);
+                        loadedAbility3.SetLoadValues(dash);
+                        abilities[i] = loadedAbility3;
+                        break;
+                    }
+                case 3:
+                    {
+                        ProjectileAbilityContainer proj3 = FileHandler.ReadFromJSON<ProjectileAbilityContainer>(filePath);
+                        ProjectileAbilityContainer loadedAbility = new ProjectileAbilityContainer(shotgunAbility);
+                        loadedAbility.SetLoadValues(proj3);
+                        abilities[i] = loadedAbility;
+                        break;
+                    }
+                case 4:
+                    {
+                        AreaAbilityContainer proj3 = FileHandler.ReadFromJSON<AreaAbilityContainer>(filePath);
+                        AreaAbilityContainer loadedAbility = new AreaAbilityContainer(arrowRainAbility);
+                        loadedAbility.SetValues(proj3);
+                        abilities[i] = loadedAbility;
+                        break;
+                    }
+            }
+        }
+    }
+
+
 }

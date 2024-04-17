@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
@@ -7,6 +8,7 @@ using UnityEngine.UIElements;
 
 public abstract class Ability : ScriptableObject
 {
+    [JsonIgnore]
     public Sprite icon;
     public float cooldown;
 

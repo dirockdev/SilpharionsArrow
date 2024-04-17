@@ -39,10 +39,7 @@ public class Skill : MonoBehaviour
         skillButton.enabled = false;
         
     }
-    private void SoundClick()
-    {
-     
-    }
+  
     public void Initialize()
     {
         UpdateUI();
