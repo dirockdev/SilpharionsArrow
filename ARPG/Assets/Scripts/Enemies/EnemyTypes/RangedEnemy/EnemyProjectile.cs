@@ -7,17 +7,23 @@ public class EnemyProjectile : MonoBehaviour
     private BoxCollider boxCollider;
     private MeshRenderer meshRenderer;
     private Rigidbody body;
+    TrailRenderer trail;
     private void Awake()
     {
         body = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         meshRenderer = GetComponentInChildren<MeshRenderer>();
+        trail = GetComponentInChildren<TrailRenderer>();
     }
     private void OnEnable()
     {
         meshRenderer.enabled = true;
         boxCollider.enabled = true;
         ObjectPoolManager.ReturnToPool(3, gameObject);
+    }
+    private void OnDisable()
+    {
+        trail.Clear();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -49,5 +55,6 @@ public class EnemyProjectile : MonoBehaviour
         boxCollider.enabled = false;
         meshRenderer.enabled = false;
         body.velocity = Vector3.zero;
+        trail.Clear();
     }
 }

@@ -9,6 +9,7 @@ public class PlayerUI : MonoBehaviour
     CharacterStats playerStats;
     [SerializeField] TextMeshProUGUI currentHealth;
     [SerializeField] Image imageHpValue;
+    [SerializeField] Image deadPanel;
     [SerializeField] Image deadImage;
 
     public Button dashButton; 
@@ -47,8 +48,10 @@ public class PlayerUI : MonoBehaviour
     private IEnumerator DeadUI()
     {
         deadImage.enabled = true;
+        deadPanel.enabled= true;
         yield return Yielders.Get(4f);
         deadImage.enabled = false;
+        deadPanel.enabled = false;
 
 
     }
