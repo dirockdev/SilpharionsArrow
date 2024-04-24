@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 using TMPro;
 
 public class PlayerUI : MonoBehaviour
@@ -14,7 +15,9 @@ public class PlayerUI : MonoBehaviour
 
     public Button dashButton; 
     public Button shotGunButton; 
-    public Button arrowRainButton; 
+    public Button arrowRainButton;
+
+    private Material liquidMat;
     private void Awake()
     {
         playerStats = GetComponent<CharacterStats>();
@@ -25,6 +28,14 @@ public class PlayerUI : MonoBehaviour
         AbilityHandler.onShotgunAbilityUnlocked += ActivateShotgunButton;
         AbilityHandler.onArrowRainAbilityUnlocked += ActivateArrowRainButton;
         CharacterStats.onPlayerDead += ActivateDeadAnim;
+        liquidMat=imageHpValue.material;
+    }
+    private void OnDisable()
+    {
+        AbilityHandler.onDashAbilityUnlocked -= ActivateDashButton;
+        AbilityHandler.onShotgunAbilityUnlocked -= ActivateShotgunButton;
+        AbilityHandler.onArrowRainAbilityUnlocked -= ActivateArrowRainButton;
+        CharacterStats.onPlayerDead -= ActivateDeadAnim;
     }
     private void ActivateDashButton()
     {
@@ -58,12 +69,12 @@ public class PlayerUI : MonoBehaviour
 
     void Start()
     {
-        imageHpValue.fillAmount = playerStats.Health/ (float)playerStats.MaxHealth;
+        
         UpdateUI();
     }
     public void UpdateUI()
     {
-        imageHpValue.fillAmount = playerStats.Health/ (float)playerStats.MaxHealth;
+        liquidMat.DOFloat(playerStats.Health / (float)playerStats.MaxHealth, "_Progress", 0.6f);
         currentHealth.SetText(playerStats.Health.ToString()+ "/" + playerStats.MaxHealth.ToString());
     }
 }

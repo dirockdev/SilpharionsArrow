@@ -13,21 +13,29 @@ public class PlayerCharacterInput : MonoBehaviour
     private bool canClick = true;
 
     [SerializeField] GameObject clickEffect;
-    private void Start()
+    [SerializeField] InputReader inputReader;
+    public void Awake()
     {
+        canMove = true;
+        characterMovInput = GetComponent<CharacterMovInput>();
+    }
+    void Start()
+    {
+        inputReader.OnInputLeftMouse += LeftMouse;
         GameManager.OnToggleMenu += isMoving;
+
+    }
+    private void OnDisable()
+    {
+        inputReader.OnInputLeftMouse -= LeftMouse;
+        
     }
 
     public void isMoving(bool menu)
     {
         canClick = menu;
     }
-    private void Awake()
-    {
-        
-        canMove = true;
-        characterMovInput = GetComponent<CharacterMovInput>();
-    }
+  
     private void Update()
     {
         LeftMouseHoldCommand();
@@ -47,15 +55,6 @@ public class PlayerCharacterInput : MonoBehaviour
 
         GameObject partEffect = ObjectPoolManager.SpawnObject(clickEffect, MouseInput.rayToWorldPoint+new Vector3(0,0.2f,0), Quaternion.identity);
         ObjectPoolManager.ReturnToPool(0.4f, partEffect);
-        LeftMouseHold(context);
-       
-        //characterMovInput.MoveInput();
-       
-
-    }
-
-    private void LeftMouseHold(InputAction.CallbackContext context)
-    {
         if (context.started)
         {
             isPressed = true;
@@ -64,9 +63,13 @@ public class PlayerCharacterInput : MonoBehaviour
         {
             isPressed = false;
         }
+
+       
+
+
     }
 
-    
+        
 }
 
 

@@ -11,7 +11,8 @@ public class AreaController : MonoBehaviour, IArea
     SphereCollider sphereCollider;
     ParticleSystem[] parts;
 
-    List<ParticleSystem.ShapeModule> shapeModule = new List<ParticleSystem.ShapeModule>();
+    ParticleSystem.ShapeModule shapeModule = new ParticleSystem.ShapeModule();
+    ParticleSystem.MainModule mainModule= new ParticleSystem.MainModule();
     private float timeAlive;
 
     private float timer;
@@ -24,10 +25,9 @@ public class AreaController : MonoBehaviour, IArea
     {
         sphereCollider = GetComponent<SphereCollider>();
         parts = GetComponentsInChildren<ParticleSystem>();
-        for (int i = 0; i < parts.Length; i++)
-        {
-            shapeModule.Add(parts[i].shape);
-        }
+        shapeModule=parts[1].shape;
+        mainModule=parts[0].main;
+              
     }
 
     private Transform target; // El objetivo al que se dirigirá la lluvia de flechas
@@ -123,15 +123,11 @@ public class AreaController : MonoBehaviour, IArea
     {
         this.area = area;
         sphereCollider.radius = area;
-        for (int i = 0; i < shapeModule.Count; i++)
-        {
-            // Crear un nuevo ShapeModule con el radio actualizado
-            ParticleSystem.ShapeModule newShapeModule = shapeModule[i];
-            newShapeModule.radius = area;
-            shapeModule[i] = newShapeModule;
-        }
-
-
+        shapeModule.radius = area;
+        //print(area);
+        float newSize = (float)area/4;
+        //print(newSize);
+        mainModule.startSize = newSize;
     }
 
     public void SetDamage(int getDamage)

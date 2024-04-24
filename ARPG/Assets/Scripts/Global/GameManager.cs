@@ -9,6 +9,21 @@ public class GameManager : MonoBehaviour
     public GameObject skillPanel,skillTrees,skillHolder;
     public GameObject menuPanel;
     public static event Action<bool> OnToggleMenu;
+
+    [SerializeField] InputReader inputReader;
+    private void Awake()
+    {
+        inputReader.OnInputOpenMenu += ToggleMenuPanel;
+
+        inputReader.OnInputOpenSkills += ToggleSkillPanel;
+    }
+    private void OnDisable()
+    {
+        inputReader.OnInputOpenMenu -= ToggleMenuPanel;
+
+        inputReader.OnInputOpenSkills -= ToggleSkillPanel;
+        
+    }
     public void ToggleSkillPanel()
     {
         // Toggle the visibility of the skill panel
@@ -21,16 +36,30 @@ public class GameManager : MonoBehaviour
         UISkillController.UpdatePoints();
     }
 
-    public void ToggleMenuPanel(InputAction.CallbackContext context)
+    public void ToggleMenuPanel()
     {
-        // Toggle the visibility of the skill panel
-        menuPanel.SetActive(!menuPanel.activeSelf);
-        OnToggleMenu?.Invoke(!skillPanel.activeSelf && !menuPanel.activeSelf);
+        if (skillPanel.activeSelf) {
+            skillPanel.SetActive(false);
+            skillTrees.SetActive(false); 
+            OnToggleMenu?.Invoke(!skillPanel.activeSelf && !menuPanel.activeSelf);
+        }
+        else
+        {
+            menuPanel.SetActive(!menuPanel.activeSelf);
+            OnToggleMenu?.Invoke(!skillPanel.activeSelf);
+
+        }
 
     }
     public void CloseSkillPanel()
     {
         if(!skillTrees.activeSelf) {skillPanel.SetActive(false);}
+        OnToggleMenu?.Invoke(!skillPanel.activeSelf);
+    }  
+
+    public void CloseSkillPanelInMenu()
+    {
+        if(skillTrees.activeSelf) {skillPanel.SetActive(false);}
         OnToggleMenu?.Invoke(!skillPanel.activeSelf);
     }
 }

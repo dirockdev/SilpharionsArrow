@@ -49,20 +49,21 @@ public class ProjectileAbilityContainer : AbilityContainer
 
     public void SetLoadValues(ProjectileAbilityContainer loaded)
     {
-        this.probCrit = loaded.probCrit;
-        this.currentDamage = loaded.currentDamage;
-        this.numProjectiles = loaded.numProjectiles;
-        this.angleProj = loaded.angleProj;
-        this.speed = loaded.speed;
-        this.state = loaded.state;
-        this.stateDmg = loaded.stateDmg;
-        this.widthProj = loaded.widthProj;
-        this.timeAlive = loaded.timeAlive;
-        this.canHealOnCrits = loaded.canHealOnCrits;
-        this.stunProb = loaded.stunProb;
-        this.animSpeed = loaded.animSpeed;
+        probCrit = loaded.probCrit;
+        currentDamage = loaded.currentDamage;
+        numProjectiles = loaded.numProjectiles;
+        angleProj = loaded.angleProj;
+        speed = loaded.speed;
+        state = loaded.state;
+        stateDmg = loaded.stateDmg;
+        widthProj = loaded.widthProj;
+        timeAlive = loaded.timeAlive;
+        canHealOnCrits = loaded.canHealOnCrits;
+        stunProb = loaded.stunProb;
+        animSpeed = loaded.animSpeed;
         coolDownLevel = loaded.coolDownLevel;
         cooldownTime = loaded.cooldownTime;
+        isUnlocked = loaded.isUnlocked;
     }
     
 

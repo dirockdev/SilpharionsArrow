@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using System;
 
 [System.Serializable]
 public class SkillData
@@ -11,13 +13,14 @@ public class SkillData
     public int points;
     public List<int> connectedSkillIds;
     public int pointsRequiredForConnectedSkills;
+
+    
 }
 
 public class SkillInitializer : MonoBehaviour
 {
     public List<Skill> skills;
     public List<SkillData> skillData;
-
     void Awake()
     {
         AbilityPanel.onInicializeSkills += InitializeSkills;

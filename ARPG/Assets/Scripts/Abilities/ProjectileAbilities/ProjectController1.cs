@@ -17,6 +17,7 @@ public class ProjectController1 : MonoBehaviour, IProjectile
     BoxCollider boxCollider;
     ParticleSystem part;
     TrailRenderer trail;
+    Light lightProj;
     private float timeAlive;
 
     private void Awake()
@@ -26,9 +27,11 @@ public class ProjectController1 : MonoBehaviour, IProjectile
         boxCollider = GetComponent<BoxCollider>();
         part = GetComponentInChildren<ParticleSystem>();
         trail = GetComponentInChildren<TrailRenderer>();
+        lightProj = GetComponentInChildren<Light>();
     }
     private void OnEnable()
     {
+        lightProj.enabled = true;
         part.Play();
         meshRenderer.enabled = true;
         boxCollider.enabled = true;
@@ -41,9 +44,9 @@ public class ProjectController1 : MonoBehaviour, IProjectile
     }
     public void SetDirection(Vector3 direction)
     {
-        // Establece la rotación del proyectil hacia la dirección especificada.
+        // Establece la rotaciï¿½n del proyectil hacia la direcciï¿½n especificada.
         transform.rotation = Quaternion.LookRotation(direction);
-        // Establece la velocidad en la dirección especificada.
+        // Establece la velocidad en la direcciï¿½n especificada.
         body.velocity=direction* velocity;
     }
 
@@ -78,6 +81,7 @@ public class ProjectController1 : MonoBehaviour, IProjectile
     {
         meshRenderer.enabled = false;
         boxCollider.enabled = false;
+        lightProj.enabled = false;
         part.Stop();
         trail.Clear();
         body.velocity = Vector3.zero;

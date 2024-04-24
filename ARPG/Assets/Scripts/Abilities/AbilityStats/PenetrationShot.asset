@@ -24,7 +24,7 @@ MonoBehaviour:
   critProb: 20
   angleProj: 10
   state: 0
-  stateDmg: 10
+  stateDmg: 11
   widthProj: 1
   timeAlive: 3
   canReduceCooldown: 0

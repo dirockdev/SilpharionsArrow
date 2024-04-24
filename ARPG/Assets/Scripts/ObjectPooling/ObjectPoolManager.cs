@@ -15,7 +15,8 @@ public class ObjectPoolManager : MonoBehaviour
             ObjectPools[obj] = new List<GameObject>();
         }
 
-        GameObject spawnGameObject = ObjectPools[obj].FirstOrDefault(go => !go.activeSelf);
+        GameObject spawnGameObject = ObjectPools[obj].FirstOrDefault(go => go != null && !go.activeSelf);
+
 
         if (spawnGameObject == null)
         {
@@ -37,33 +38,46 @@ public class ObjectPoolManager : MonoBehaviour
         {
             if (pool.Contains(obj))
             {
-                obj.SetActive(false);
-                return;
+                if (obj != null)
+                {
+                    obj.SetActive(false);
+                    return;
+                }
+                else
+                {
+                    Debug.LogWarning("Trying to return a null object to the pool.");
+                    return;
+                }
             }
         }
     }
     public static void ReturnToPool(float timeAlive, GameObject gameObject)
     {
-        Instance.StartCoroutine(ReturnToPoolRoutine(timeAlive, gameObject));
+        if(_instance!=null)_instance.StartCoroutine(ReturnToPoolRoutine(timeAlive, gameObject));
     }
 
     private static ObjectPoolManager _instance;
-    private static ObjectPoolManager Instance
+    
+    private void Awake()
     {
-        get
+        // Verifica si ya existe una instancia
+        if (_instance == null)
         {
-            if (_instance == null)
-            {
-                _instance = FindObjectOfType<ObjectPoolManager>();
-                if (_instance == null)
-                {
-                    Debug.LogError("ObjectPoolManager instance not found in the scene. Make sure to add it to a GameObject in your scene.");
-                }
-            }
-            return _instance;
+            // Si no existe, establece esta instancia como la instancia única y no la destruyas al cargar una nueva escena
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
         }
+        else
+        {
+            // Si ya existe una instancia, destruye este objeto para asegurarse de que solo haya una instancia en todo momento
+            Destroy(gameObject);
+        }
+        ClearObjectPools();
     }
-
+    private void OnDisable()
+    {
+        ClearObjectPools();
+    }
     private static IEnumerator ReturnToPoolRoutine(float timeAlive, GameObject gameObject)
     {
         float elapsedTime = 0f;
@@ -74,7 +88,10 @@ public class ObjectPoolManager : MonoBehaviour
         }
         ReturnObjectToPool(gameObject);
     }
-
+    public static void ClearObjectPools()
+    {
+        Destroy(_instance);
+    }
 }
 
 public class PooledObjectInfo

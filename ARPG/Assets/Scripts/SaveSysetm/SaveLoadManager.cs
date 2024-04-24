@@ -9,6 +9,12 @@ public class SaveLoadManager : MonoBehaviour
     public AbilityHandler abilityHandler;
 
     public SkillTree[] skillTrees;
+
+    public static bool loadGame;
+    private void Start()
+    {
+        if( loadGame ) { Load(); }
+    }
     public void Save()
     {
         playerExp.SerializeJson();
@@ -17,7 +23,8 @@ public class SaveLoadManager : MonoBehaviour
         {
             skillTree.SerializeJson();
         }
-    }public void Load()
+    }
+    public void Load()
     {
         playerExp.DeserializeJson();
         abilityHandler.DesSerializeJson();

@@ -60,6 +60,7 @@ public class PlayerExp : MonoBehaviour
     {
         level++;
         SkillTree.skillPoints++;
+        currentExp = Mathf.RoundToInt(currentExp - requiredExp);
         UpdateLevel();
         AudioManager.instance.PlaySFXWorld("4", default, 2.5f, 0.07f);
 
@@ -75,7 +76,6 @@ public class PlayerExp : MonoBehaviour
     private void LoadLevel()
     {
         OnLevelUp?.Invoke(level);
-        currentExp = Mathf.RoundToInt(currentExp - requiredExp);
         requiredExp = CalculateRequiredExp();
         UpdateExpUI();
         UISkillController.UpdatePoints();
@@ -104,7 +104,7 @@ public class PlayerExp : MonoBehaviour
     public void SerializeJson()
     {
 
-        if (dataService.SaveData("/player-level.json", level, true))
+        if (dataService.SaveData("/player-level.json", level, true) && dataService.SaveData("/player-totalSkillPoints.json", SkillTree.skillPoints, true) && dataService.SaveData("/player-currentExp.json", currentExp, true))
         {
 
             Debug.Log("Level saved successfully!");
@@ -120,9 +120,13 @@ public class PlayerExp : MonoBehaviour
         // Cargar el nivel desde el archivo JSON
         try
         {
-            int savedLevel = dataService.LoadData<int>("/player-level.json", true);
-            level = savedLevel; // Asignar el nivel guardado a la variable de nivel actual
-            for (int i = 0; i <= savedLevel; i++)
+            
+            SkillTree.skillPoints = dataService.LoadData<int>("/player-totalSkillPoints.json", true);
+            
+            level = dataService.LoadData<int>("/player-level.json", true); ; // Asignar el nivel guardado a la variable de nivel actual
+            currentExp= dataService.LoadData<int>("/player-currentExp.json", true); ; // Asignar el nivel guardado a la variable de nivel actual
+
+            for (int i = 0; i <= level; i++)
             {
                 // Desbloquear habilidades según los niveles mínimos
                 switch (i)
@@ -140,9 +144,11 @@ public class PlayerExp : MonoBehaviour
             }
             LoadLevel();
         }
-        catch (Exception e)
+        catch (Exception)
         {
-            Debug.Log("Error loading level: " + e.Message);
+            RestartStats();
+            expBar.maxValue = requiredExp;
+            expBar.minValue = 0;
         }
     }
 }

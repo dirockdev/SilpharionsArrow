@@ -3,8 +3,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Skill : MonoBehaviour
-{
+
+public class Skill : MonoBehaviour { 
 
     public TMP_Text titleText;
     public TMP_Text descriptionText;
@@ -42,6 +42,7 @@ public class Skill : MonoBehaviour
   
     public void Initialize()
     {
+        if (skillButton == null) return;
         UpdateUI();
         skillTree.Initialized = true;
     }
@@ -84,4 +85,6 @@ public class Skill : MonoBehaviour
     {
         skillTree.LevelUpSkill(Id);
     }
+
+   
 }

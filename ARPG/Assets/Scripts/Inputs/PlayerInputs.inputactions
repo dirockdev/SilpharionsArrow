@@ -76,24 +76,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "SkillTrees",
-                    "type": "Button",
-                    "id": "b8044901-0cb6-4b1c-a33d-871e112358b8",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "OpenMenu",
-                    "type": "Button",
-                    "id": "460d2586-6233-4114-9551-3f72cb103687",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -184,10 +166,36 @@
                     "action": "Potion",
                     "isComposite": false,
                     "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "7fb38c8f-91f2-4665-bc8d-9e09bc6a1ce7",
+            "actions": [
+                {
+                    "name": "SkillTrees",
+                    "type": "Button",
+                    "id": "756e6725-20d2-447f-ac19-2d94e686a313",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
+                    "name": "OpenMenu",
+                    "type": "Button",
+                    "id": "dc1ac923-37b5-4d85-a5f6-75d34afb5af7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
                     "name": "",
-                    "id": "eeec105f-1f0e-4c35-af75-c5e386269a22",
+                    "id": "57ddf812-2429-43a2-95b4-f14095324d88",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
@@ -198,7 +206,7 @@
                 },
                 {
                     "name": "",
-                    "id": "db3e83af-a3c6-47b9-b084-52c91e8c7abd",
+                    "id": "e046b300-bcde-448c-a47f-e728ecbced80",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",

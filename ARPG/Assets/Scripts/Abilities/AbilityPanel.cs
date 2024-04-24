@@ -12,17 +12,43 @@ public class AbilityPanel : MonoBehaviour
     private AbilityHandler abilityHandler;
     [SerializeField]private GameObject abilitySkillTrees;
     public static event Action onInicializeSkills;
+
+    [SerializeField]InputReader inputReader;
     private void Awake()
     {
         if (abilitySkillTrees.activeSelf) { abilitySkillTrees.SetActive(false); };
         if (!abilitySkillTrees.activeSelf) { 
             abilitySkillTrees.SetActive(true); 
-            onInicializeSkills?.Invoke();
             abilitySkillTrees.SetActive(false);
         }
+            onInicializeSkills?.Invoke();
+
+        inputReader.OnInputAbility0 += ActivateAbilitySecondary;
+        inputReader.OnInputAbility1 += ActivateAbility1;
+        inputReader.OnInputAbility2 += ActivateAbility2;
+        inputReader.OnInputAbility3 += ActivateAbility3;
+        inputReader.OnInputAbility4 += ActivateAbility4;
+        inputReader.OnUsePotion += UsePotion; 
+        AbilityHandler.onCooldownUpdate += UpdateCooldown;
+        AbilityHandler.onAbilityChange += UpdateAbility;
     }
+
+    private void OnDisable()
+    {
+        inputReader.OnInputAbility0 -= ActivateAbilitySecondary;
+        inputReader.OnInputAbility1 -= ActivateAbility1;
+        inputReader.OnInputAbility2 -= ActivateAbility2;
+        inputReader.OnInputAbility3 -= ActivateAbility3;
+        inputReader.OnInputAbility4 -= ActivateAbility4;
+        inputReader.OnUsePotion -= UsePotion;
+        AbilityHandler.onCooldownUpdate -= UpdateCooldown;
+        AbilityHandler.onAbilityChange -= UpdateAbility;
+
+    }
+
     public void ActivateAbility1(InputAction.CallbackContext context)
     {
+        
         HoldAbilities(context,1);
     }
 
@@ -38,6 +64,7 @@ public class AbilityPanel : MonoBehaviour
     }
     public void ActivateAbility4(InputAction.CallbackContext context)
     {
+
         HoldAbilities(context,4);
         
     }
@@ -46,18 +73,13 @@ public class AbilityPanel : MonoBehaviour
         HoldAbilities(context,0);
         
     }
-
-    //public void ActivateAbility(int abilitySlot)
-    //{
-        
-    //    onAbilityActivate?.Invoke(abilitySlot);
-    //}
-    public void UsePotion()
+    public void UsePotion(InputAction.CallbackContext context)
     {
-
+        HoldAbilities(context, 5);
     }
     private void HoldAbilities(InputAction.CallbackContext context,int abilityID)
     {
+        
         if (context.started)
         {
             abilityHandler.ActivateAbility(abilityID, true);

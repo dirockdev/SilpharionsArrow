@@ -36,12 +36,22 @@ public class CharacterStats : MonoBehaviour, IDamagable
 
         PlayerExp.OnLevelUp += PlayerScale;
         DashAbility.onHealDashing += GetHeal;
+        PotionAbility.onPotionUse += GetHeal;
         Health = playerStats.health;
         maxHealth = playerStats.health;
         agent.speed= playerStats.speed;
+    }
+    private void OnDisable()
+    {
+        PlayerExp.OnLevelUp -= PlayerScale;
+        DashAbility.onHealDashing -= GetHeal;
+        PotionAbility.onPotionUse -= GetHeal;
+    }
+    private void Start()
+    {
+        
         PlayerScale(PlayerExp.level);
     }
-
     public void PlayerScale(int level)
     {
         float scaleMultiplier = playerStats.scaleCurve.Evaluate(level);

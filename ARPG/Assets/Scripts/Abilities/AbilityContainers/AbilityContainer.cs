@@ -9,6 +9,7 @@ public abstract class AbilityContainer
     public Ability ability;
     
     public bool isPressed;
+    public bool isUnlocked;
     
     public float currentCooldown;
     

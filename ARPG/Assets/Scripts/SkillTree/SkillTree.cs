@@ -73,19 +73,28 @@ public class SkillTree : MonoBehaviour
     }
     public void DeserializeJson()
     {
-        int[] savedLevels = dataService.LoadData<int[]>($"/player-skillTree-{treeName}.json", true);
-        if (savedLevels != null && savedLevels.Length == skillList.Count)
+        try
         {
-            for (int i = 0; i < skillList.Count; i++)
-            {
-                skillList[i].Level = savedLevels[i];
-            }
-            UpdateAllSkillsUI();
-        }
-        else
-        {
-            Debug.LogWarning("Failed to load skill tree data.");
-        }
 
+            int[] savedLevels = dataService.LoadData<int[]>($"/player-skillTree-{treeName}.json", true);
+            if (savedLevels != null && savedLevels.Length == skillList.Count)
+            {
+                for (int i = 0; i < skillList.Count; i++)
+                {
+                    skillList[i].Level = savedLevels[i];
+                }
+                UpdateAllSkillsUI();
+            }
+            else
+            {
+                Debug.LogWarning("Failed to load skill tree data.");
+            }
+
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
     }
 }

@@ -1,18 +1,18 @@
 using DG.Tweening;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using static Cinemachine.DocumentationSortingAttribute;
 
 public class AbilityHandler : MonoBehaviour
 {
-    [SerializeField] Ability startingAbility, ability1, dashAbility, shotgunAbility, arrowRainAbility;
+    [SerializeField] Ability startingAbility, ability1, dashAbility, shotgunAbility, arrowRainAbility, potion;
+
 
     List<AbilityContainer> abilities;
-    public UnityEvent<AbilityContainer, int> onAbilityChange;
-    public UnityEvent<float, int> onCooldownUpdate;
+    public static event Action<AbilityContainer, int> onAbilityChange;
+
+    public static event Action<float, int> onCooldownUpdate;
 
     public static event Action onDashAbilityUnlocked;
     public static event Action onShotgunAbilityUnlocked;
@@ -24,50 +24,78 @@ public class AbilityHandler : MonoBehaviour
     [SerializeField]
     public List<AbilityContainer> Abilities { get => abilities; set => abilities = value; }
 
+    private void Awake()
+    {
+        abilities = new List<AbilityContainer>(6);
+        anim = GetComponentInChildren<Animator>();
 
+        PlayerExp.OnUnlock += AddAbilityWhenLevelUp;
+    }
+    private void OnDisable()
+    {
+        PlayerExp.OnUnlock -= AddAbilityWhenLevelUp;
+        
+    }
     private void Start()
     {
         InitializeAbilities();
-
-        PlayerExp.OnUnlock += AddAbilityWhenLevelUp;
+        
     }
 
 
 
     private void InitializeAbilities()
     {
-        Abilities = new List<AbilityContainer>();
 
-        // Añade las habilidades al iniciar
         AddAbility(startingAbility);
+        abilities[0].isUnlocked = true;
         AddAbility(ability1);
+        abilities[1].isUnlocked = true;
+
+        AddAbility(dashAbility);
+        abilities[2].isUnlocked = false;
+
+        AddAbility(shotgunAbility);
+        abilities[3].isUnlocked = false;
+        
+        AddAbility(arrowRainAbility);
+        abilities[4].isUnlocked = false;
+        
+        AddAbility(potion);
+        abilities[5].isUnlocked = true;
+
+
+
     }
     private void AddAbilityWhenLevelUp(int newLevel)
     {
         switch (newLevel)
         {
             case 5:
-                if (abilities.Count < 3)
+                if (!abilities[2].isUnlocked)
                 {
-                    AddAbility(dashAbility);
+                    abilities[2].isUnlocked = true;
                     onDashAbilityUnlocked?.Invoke();
-
+                    onAbilityChange?.Invoke(abilities[2], 2);
                 }
                 break;
             case 8:
-                if (abilities.Count < 4)
+                if (!abilities[3].isUnlocked)
                 {
-                    AddAbility(shotgunAbility);
+
+                    abilities[3].isUnlocked = true;
                     onShotgunAbilityUnlocked?.Invoke();
+                    onAbilityChange?.Invoke(abilities[3], 3);
                 }
                 break;
             case 11:
-                if (abilities.Count < 5)
+                if (!abilities[4].isUnlocked)
                 {
+                    abilities[4].isUnlocked = true;
 
-                    AddAbility(arrowRainAbility);
+
                     onArrowRainAbilityUnlocked?.Invoke();
-
+                    onAbilityChange?.Invoke(abilities[4], 4);
                 }
                 break;
         }
@@ -78,8 +106,8 @@ public class AbilityHandler : MonoBehaviour
             return;
 
         AbilityContainer abilityContainer = CreateAbilityContainer(abilityToAdd);
-        Abilities.Add(abilityContainer);
-        onAbilityChange?.Invoke(abilityContainer, Abilities.Count - 1);
+        abilities.Add(abilityContainer);
+        onAbilityChange?.Invoke(abilityContainer, abilities.Count - 1);
     }
     private AbilityContainer CreateAbilityContainer(Ability ability)
     {
@@ -95,6 +123,10 @@ public class AbilityHandler : MonoBehaviour
         {
             return new AreaAbilityContainer(ability);
         }
+        else if (ability is PotionAbility)
+        {
+            return new PotionAbilityContainer(ability);
+        }
         else
         {
             return null;
@@ -105,11 +137,33 @@ public class AbilityHandler : MonoBehaviour
     {
         if (abilityContainer.currentCooldown > 0f) { return; }
         IAbilityBehaviour abilityAction = CreateAbilityAction(abilityContainer);
-        //CreateAbility
-        abilityContainer.ability.UseAbility(transform, abilityAction, MouseInput.rayToWorldPoint, abilityContainer);
-        AbilityAnimation(abilityContainer);
+        
+        Vector3 targetAbility=InteractInput.interactTarget==null? MouseInput.rayToWorldPoint: InteractInput.interactTarget.GetPosition();
+
+
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            AbilityAnimation(abilityContainer);
+        }
+        else
+        {
+            RotateToMouse();
+        }
+        
+        abilityContainer.ability.UseAbility(transform, abilityAction, targetAbility, abilityContainer);
 
         abilityContainer.Cooldown();
+    }
+
+    public void ActivateAbility(int abilityID, bool pressed)
+    {
+        if (abilityID >= Abilities.Count || Abilities[abilityID] == null)
+            return;
+
+
+        AbilityContainer abilityContainer = Abilities[abilityID];
+        abilityContainer.isPressed = pressed;
+
     }
 
     private IAbilityBehaviour CreateAbilityAction(AbilityContainer abilityContainer)
@@ -127,29 +181,17 @@ public class AbilityHandler : MonoBehaviour
         {
             return (AreaAbility)abilityContainer.ability;
         }
+        else if (abilityContainer.ability is PotionAbility)
+        {
+            return (PotionAbility)abilityContainer.ability;
+        }
         else
         {
             return null;
         }
     }
 
-    public void ActivateAbility(int abilityID, bool pressed)
-    {
-        if (abilityID >= Abilities.Count || Abilities[abilityID] == null)
-            return;
 
-
-        AbilityContainer abilityContainer = Abilities[abilityID];
-        abilityContainer.isPressed = pressed;
-
-    }
-
-
-    private void Awake()
-    {
-        anim = GetComponentInChildren<Animator>();
-
-    }
     private void Update()
     {
         ProccessCooldown();
@@ -160,21 +202,30 @@ public class AbilityHandler : MonoBehaviour
     private void ProccessHoldAbilities()
     {
         if (CharacterStats.isDead) return;
-        for (int i = 0; i < Abilities.Count; i++)
+        for (int i = 0; i < abilities.Count; i++)
         {
-            if (Abilities[i].isPressed)
+            if (abilities[i].isUnlocked)
             {
-                ActivateAbility(Abilities[i]);
+                if (abilities[i].isPressed)
+                {
+                    ActivateAbility(Abilities[i]);
+                }
+
             }
+
         }
     }
     private void ProccessCooldown()
     {
-        for (int i = 0; i < Abilities.Count; i++)
+        for (int i = 0; i < abilities.Count; i++)
         {
+            if (abilities[i].isUnlocked)
+            {
+                abilities[i].ReduceCooldown(Time.deltaTime);
+                onCooldownUpdate?.Invoke(abilities[i].CooldownNormalized, i);
 
-            Abilities[i].ReduceCooldown(Time.deltaTime);
-            onCooldownUpdate?.Invoke(Abilities[i].CooldownNormalized, i);
+            }
+
         }
 
     }
@@ -195,7 +246,11 @@ public class AbilityHandler : MonoBehaviour
             anim.SetTrigger("Teleport");
         }
 
+        RotateToMouse();
+    }
 
+    private void RotateToMouse()
+    {
         Vector3 direction = (MouseInput.rayToWorldPoint - transform.position).normalized;
         Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
         targetRotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
@@ -205,7 +260,7 @@ public class AbilityHandler : MonoBehaviour
 
     public void SerializeJson()
     {
-        for (int i = 0; i < abilities.Count; i++)
+        for (int i = 0; i < abilities.Count - 1; i++)
         {
             AbilityContainer abilityContainer = abilities[i];
             if (abilityContainer != null)
@@ -224,57 +279,115 @@ public class AbilityHandler : MonoBehaviour
     }
     public void DesSerializeJson()
     {
-        for (int i = 0; i < abilities.Count; i++)
+        try
         {
-            string filePath = $"/player-ability{i + 1}.json";
-            switch (i)
+            for (int i = 0; i < abilities.Count - 1; i++)
             {
-                case 0:
-                    {
-                        ProjectileAbilityContainer proj = FileHandler.ReadFromJSON<ProjectileAbilityContainer>(filePath);
-                        ProjectileAbilityContainer loadedAbility = new ProjectileAbilityContainer(startingAbility);
-                        loadedAbility.SetLoadValues(proj);
-                        abilities[i] = loadedAbility;
-                        break;
-                    }
+                string filePath = $"/player-ability{i + 1}.json";
+                switch (i)
+                {
+                    case 0:
+                        {
+                            LoadProjSkill(i, filePath,startingAbility);
+                            break;
+                        }
 
-                case 1:
-                    {
-                        ProjectileAbilityContainer proj2 = FileHandler.ReadFromJSON<ProjectileAbilityContainer>(filePath);
-                        ProjectileAbilityContainer loadedAbility2 = new ProjectileAbilityContainer(ability1);
-                        loadedAbility2.SetLoadValues(proj2);
-                        abilities[i] = loadedAbility2;
-                        break;
-                    }
+                    case 1:
+                        {
+                            LoadProjSkill(i, filePath, ability1);
 
-                case 2:
-                    {
+                            break;
+                        }
 
-                        DashAbilityContainer dash = FileHandler.ReadFromJSON<DashAbilityContainer>(filePath);
-                        DashAbilityContainer loadedAbility3 = new DashAbilityContainer(dashAbility);
-                        loadedAbility3.SetLoadValues(dash);
-                        abilities[i] = loadedAbility3;
-                        break;
-                    }
-                case 3:
-                    {
-                        ProjectileAbilityContainer proj3 = FileHandler.ReadFromJSON<ProjectileAbilityContainer>(filePath);
-                        ProjectileAbilityContainer loadedAbility = new ProjectileAbilityContainer(shotgunAbility);
-                        loadedAbility.SetLoadValues(proj3);
-                        abilities[i] = loadedAbility;
-                        break;
-                    }
-                case 4:
-                    {
-                        AreaAbilityContainer proj3 = FileHandler.ReadFromJSON<AreaAbilityContainer>(filePath);
-                        AreaAbilityContainer loadedAbility = new AreaAbilityContainer(arrowRainAbility);
-                        loadedAbility.SetValues(proj3);
-                        abilities[i] = loadedAbility;
-                        break;
-                    }
+                    case 2:
+                        {
+                            LoadDashSkill(i, filePath);
+                            break;
+                        }
+                    case 3:
+                        {
+                            LoadShotGunSkill(i, filePath);
+                            break ;
+                        }
+                    case 4:
+                        {
+                            LoadAreaSkill(i, filePath);
+                            break;
+                        }
+                }
+            }
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+    }
+
+    private void LoadShotGunSkill(int i, string filePath)
+    {
+        ProjectileAbilityContainer proj3 = FileHandler.ReadFromJSON<ProjectileAbilityContainer>(filePath);
+        if (proj3 != null)
+        {
+
+            ProjectileAbilityContainer loadedAbility = new ProjectileAbilityContainer(shotgunAbility);
+            loadedAbility.SetLoadValues(proj3);
+            abilities[i] = loadedAbility;
+            if (abilities[i].isUnlocked)
+            {
+                onDashAbilityUnlocked?.Invoke();
+                onAbilityChange?.Invoke(abilities[i], i);
+
+            }
+        }
+      
+    }
+
+    private void LoadAreaSkill(int i, string filePath)
+    {
+        AreaAbilityContainer proj3 = FileHandler.ReadFromJSON<AreaAbilityContainer>(filePath);
+        if (proj3 != null)
+        {
+
+            AreaAbilityContainer loadedAbility = new AreaAbilityContainer(arrowRainAbility);
+            loadedAbility.SetValues(proj3);
+            abilities[i] = loadedAbility;
+            if (abilities[i].isUnlocked)
+            {
+                onDashAbilityUnlocked?.Invoke();
+                onAbilityChange?.Invoke(abilities[i], i);
+
             }
         }
     }
 
+    private void LoadDashSkill(int i, string filePath)
+    {
+        DashAbilityContainer dash = FileHandler.ReadFromJSON<DashAbilityContainer>(filePath);
+        if (dash != null)
+        {
 
+            DashAbilityContainer loadedAbility3 = new DashAbilityContainer(dashAbility);
+            loadedAbility3.SetLoadValues(dash);
+            abilities[i] = loadedAbility3;
+            if (abilities[i].isUnlocked)
+            {
+                onDashAbilityUnlocked?.Invoke();
+                onAbilityChange?.Invoke(abilities[2], 2);
+
+            }
+        }
+    }
+
+    private void LoadProjSkill(int i, string filePath, Ability ability)
+    {
+        ProjectileAbilityContainer proj = FileHandler.ReadFromJSON<ProjectileAbilityContainer>(filePath);
+        if (proj != null)
+        {
+
+            ProjectileAbilityContainer loadedAbility = new ProjectileAbilityContainer(ability);
+            loadedAbility.SetLoadValues(proj);
+            abilities[i] = loadedAbility;
+        }
+    }
 }

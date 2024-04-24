@@ -19,7 +19,7 @@ MonoBehaviour:
   speed: 15
   slow: 0.5
   poisonChance: 0.15
-  stateDmgDiv: 2
+  stateDmgDiv: 1
   widthProj: 1
   stunProb: 0.1
   movSpeed: 3

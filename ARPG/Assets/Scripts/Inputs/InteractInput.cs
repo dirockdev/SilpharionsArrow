@@ -11,14 +11,28 @@ public class InteractInput : MonoBehaviour
     Vector2 mousePosition;
     [HideInInspector] public IInteractObject hoveringOverObject;
     private IInteractObject previousHoveredObject;
+
+    public static IInteractObject interactTarget;
+
+    [SerializeField]
+    private InputReader inputReader;
+    private void Awake()
+    {
+        inputReader.OnInputMousePosition += MousePositionInput;
+    }
+    private void OnDisable()
+    {
+        inputReader.OnInputMousePosition -= MousePositionInput;
+        
+    }
     void Update()
     {
         CheckInteractablObject();
 
     }
-    public void MousePositionInput(InputAction.CallbackContext callbackContext)
+    public void MousePositionInput(Vector2 mousePos)
     {
-        mousePosition = callbackContext.ReadValue<Vector2>();
+        mousePosition = mousePos;
     }
     private void CheckInteractablObject()
     {
@@ -47,7 +61,7 @@ public class InteractInput : MonoBehaviour
                 {
                     // Mostrar el nombre y la barra de vida del objeto
                     ShowInteractUI(interactableObject);
-
+                    interactTarget= interactableObject;
                     // Activar el contorno del objeto actual
                     Outline currentOutline = interactableObject.outLine();
                     if (currentOutline != null)
@@ -58,6 +72,7 @@ public class InteractInput : MonoBehaviour
                 else
                 {
                     // Si no hay objeto interactuable, ocultar la barra de vida
+                    interactTarget = null;
                     HideInteractUI();
                 }
             }

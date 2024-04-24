@@ -12,7 +12,7 @@ public class AbilitySlotButton : MonoBehaviour
         abilityIcon.sprite = ability.ability.icon;
     }
 
-    internal void UpdateCooldown(float coolDownNormalized)
+    public void UpdateCooldown(float coolDownNormalized)
     {
         abilityIcon.fillAmount = coolDownNormalized;
     }

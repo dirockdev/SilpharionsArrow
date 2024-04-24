@@ -7,22 +7,25 @@ using System.Collections;
 public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
 {
 
+    protected Transform target;
+
     public EnemiesStats stats;
 
-    protected Transform target;
     int health, maxHealth;
+    private float attackSpeed;
+    protected int damage;
     private float attackrange;
 
     private Animator anim;
     private SkinnedMeshRenderer _meshRenderer;
     private Material _meshRendererMat;
+
     [SerializeField] Slider healthBarUI;
+    [SerializeField] Slider easeHealthBarUI;
     [SerializeField] RewardItem expPrefab;
     [SerializeField] GameObject prefabDmgUI;
 
     Outline outline;
-    private float attackSpeed;
-    protected int damage;
 
     private float attackTimer;
 
@@ -32,6 +35,7 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
 
     Rigidbody[] ragdollBodies;
 
+    private bool isAttacking;
     private bool isPoisoned, isStunned, isElite;
     protected void Awake()
     {
@@ -39,6 +43,7 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
         agent = GetComponent<NavMeshAgent>();
         outline = GetComponentInChildren<Outline>();
         _meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+
         _meshRendererMat = _meshRenderer.material;
         ragdollBodies = GetComponentsInChildren<Rigidbody>();
     }
@@ -46,7 +51,7 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
     protected void Start()
     {
 
-        target = InstancePlayer.instance.transform;
+        
         interactInput = FindFirstObjectByType<InteractInput>();
         
 
@@ -62,9 +67,8 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
         damage = Mathf.RoundToInt(stats.damage * scaleMultiplier);
 
         if (!isElite) {
-            health = Mathf.RoundToInt(stats.health * scaleMultiplier);
-            damage = Mathf.RoundToInt(stats.damage * scaleMultiplier);
-            transform.DOScale(2, 1f); 
+
+            transform.transform.localScale = Vector3.one * 2;
             attackrange = stats.radiusDetection;
             _meshRendererMat.DisableKeyword("_ISELITE");
 
@@ -74,7 +78,7 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
             attackrange = stats.radiusDetection*2f;
             health = health * 2; 
             damage *= 2; 
-            transform.DOScale(4, 1f);
+            transform.localScale=Vector3.one*4;
 
             _meshRendererMat.EnableKeyword("_ISELITE");
         }
@@ -100,7 +104,9 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
         isStunned = false;
         maxHealth = health;
         healthBarUI.maxValue = health;
-        healthBarUI.value = health;
+        healthBarUI.value = health; 
+        easeHealthBarUI.maxValue = health;
+        easeHealthBarUI.value = health;
         RagdollState(false);
     }
     private void ProcessCooldownHit()
@@ -114,43 +120,50 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
 
     void ProcessAttack()
     {
-        if (isStunned || CharacterStats.isDead)
+        if (target == null)
+        {
+            if (Vector3.Distance(transform.position, InstancePlayer.instance.transform.position) < 30)
+            {
+                target = InstancePlayer.instance.transform;
+            }
+        }
+
+        if (isStunned || CharacterStats.isDead || target == null)
         {
             anim.SetBool("Idle", true);
             agent.SetDestination(transform.position);
+            return;
         }
-        else
+
+        float distance = Vector3.Distance(transform.position, target.position);
+        if (distance < attackrange)
         {
-
-            float distance = Vector3.Distance(transform.position, target.position);
-            if (distance < attackrange)
+            if (attackTimer > 0f) { return; }
+            if (Dead())
             {
-                if (attackTimer > 0f) { return; }
-                if (Dead())
-                {
-                    agent.isStopped = true;
-                    return; // Sal del método si el enemigo está muerto
-                }
-                attackTimer = attackSpeed;
-                DoDamage();
-                AnimAttack();
-
-                agent.SetDestination(transform.position);
-
+                agent.isStopped = true;
+                return; // Sal del método si el enemigo está muerto
             }
-            else
+            attackTimer = attackSpeed; // Establecer la duración de la animación
+            AnimAttack();
+            agent.SetDestination(transform.position); // No moverse mientras ataca
+            return;
+        }
+
+        if (isAttacking)
+        {
+            attackTimer -= Time.deltaTime;
+            if (attackTimer <= 0f)
             {
-                if (Dead())
-                {
-                    agent.isStopped = true;
-                    return; // Sal del método si el enemigo está muerto
-                }
+                isAttacking = false;
                 anim.SetBool("Idle", true);
                 agent.SetDestination(target.position);
-
             }
+            return; 
         }
 
+        if (Dead()) agent.isStopped=true;
+        else agent.SetDestination(target.position);
     }
 
     protected virtual void DoDamage()
@@ -160,8 +173,10 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
 
     private void AnimAttack()
     {
-        anim.SetTrigger("Attack");
-        anim.SetBool("Idle", false);
+        isAttacking = true; // Indicar que estamos atacando
+        anim.SetTrigger("Attack"); // Iniciar la animación de ataque
+        DoDamage(); // Realizar daño cuando la animación ha terminado
+        anim.SetBool("Idle", false); // Puede que no necesites esto dependiendo de tu animación
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
         targetRotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
@@ -208,6 +223,7 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
     private void UpdateHealthBar()
     {
         healthBarUI.value = health;
+        easeHealthBarUI.DOValue(health, 0.6f);
     }
 
     public void CreateExp()
@@ -295,5 +311,10 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
     bool IDamagable.isPoisoned()
     {
         return isPoisoned;
+    }
+
+    public Vector3 GetPosition()
+    {
+        return transform.position;
     }
 }

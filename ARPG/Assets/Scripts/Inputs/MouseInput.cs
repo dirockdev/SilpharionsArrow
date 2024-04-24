@@ -9,9 +9,20 @@ public class MouseInput : MonoBehaviour
     [HideInInspector]
     public static Vector3 rayToWorldPoint;
     [SerializeField] LayerMask layerTerrain;
-    public void MousePositionUpdate(InputAction.CallbackContext context)
+
+    [SerializeField]InputReader inputReader;
+    private void Awake()
     {
-        mouseInputPosition = context.ReadValue<Vector2>();
+        inputReader.OnInputMousePosition += MousePositionUpdate;
+    }
+
+    private void OnDisable()
+    {
+        inputReader.OnInputMousePosition -= MousePositionUpdate;
+    }
+    public void MousePositionUpdate(Vector2 mousePos)
+    {
+        mouseInputPosition = mousePos;
     }
 
 

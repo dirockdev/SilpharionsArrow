@@ -27,12 +27,13 @@ public class AreaAbilityContainer : AbilityContainer
 
     public void SetValues(AreaAbilityContainer areaAbilityContainer)
     {
-        this.tickDamage = areaAbilityContainer.tickDamage;
-        this.area = areaAbilityContainer.area;
-        this.timeAlive = areaAbilityContainer.timeAlive;
-        this.homingSpeed = areaAbilityContainer.homingSpeed;
-        this.isHoming = areaAbilityContainer.isHoming;
+        tickDamage = areaAbilityContainer.tickDamage;
+        area = areaAbilityContainer.area;
+        timeAlive = areaAbilityContainer.timeAlive;
+        homingSpeed = areaAbilityContainer.homingSpeed;
+        isHoming = areaAbilityContainer.isHoming;
         cooldownTime = areaAbilityContainer.cooldownTime;
         coolDownLevel = areaAbilityContainer.coolDownLevel;
+        isUnlocked = areaAbilityContainer.isUnlocked;
     }
 }
