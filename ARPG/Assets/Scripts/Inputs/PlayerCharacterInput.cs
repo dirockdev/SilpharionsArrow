@@ -18,14 +18,10 @@ public class PlayerCharacterInput : MonoBehaviour
     {
         canMove = true;
         characterMovInput = GetComponent<CharacterMovInput>();
-    }
-    void Start()
-    {
         inputReader.OnInputLeftMouse += LeftMouse;
         GameManager.OnToggleMenu += isMoving;
-
     }
-    private void OnDisable()
+      private void OnDisable()
     {
         inputReader.OnInputLeftMouse -= LeftMouse;
         

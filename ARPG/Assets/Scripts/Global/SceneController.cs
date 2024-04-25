@@ -49,7 +49,7 @@ public class SceneController : MonoBehaviour
     }
     public void ToMenu()
     {
-        ObjectPoolManager.ClearObjectPools();
+       
         SceneManager.LoadScene(0);
 
     }

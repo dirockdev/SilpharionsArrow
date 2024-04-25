@@ -65,19 +65,15 @@ public class ObjectPoolManager : MonoBehaviour
         {
             // Si no existe, establece esta instancia como la instancia única y no la destruyas al cargar una nueva escena
             _instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
             // Si ya existe una instancia, destruye este objeto para asegurarse de que solo haya una instancia en todo momento
             Destroy(gameObject);
         }
-        ClearObjectPools();
+        
     }
-    private void OnDisable()
-    {
-        ClearObjectPools();
-    }
+
     private static IEnumerator ReturnToPoolRoutine(float timeAlive, GameObject gameObject)
     {
         float elapsedTime = 0f;
@@ -88,10 +84,7 @@ public class ObjectPoolManager : MonoBehaviour
         }
         ReturnObjectToPool(gameObject);
     }
-    public static void ClearObjectPools()
-    {
-        Destroy(_instance);
-    }
+
 }
 
 public class PooledObjectInfo

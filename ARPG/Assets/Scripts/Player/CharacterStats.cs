@@ -13,11 +13,14 @@ public class CharacterStats : MonoBehaviour, IDamagable
     private PlayerStats playerStats;
     private PlayerUI playerUI;
     NavMeshAgent agent;
-    int health,maxHealth;
+
+    int health,maxHealth,mana, maxMana;
+
     [SerializeField]
     private ParticleSystem healPart;
     [SerializeField]
     private GameObject prefabHealUI;
+
     public static bool isDead;
     public static int DamageAtribute=1;
 
@@ -26,8 +29,8 @@ public class CharacterStats : MonoBehaviour, IDamagable
     public int Health { get => health; set => health = value; }
     public PlayerStats PlayerStats { get => playerStats; set => playerStats = value; }
     public int MaxHealth { get => maxHealth; set => maxHealth = value; }
-
-
+    public int Mana { get => mana; set => mana = value; }
+    public int MaxMana { get => maxMana; set => maxMana = value; }
 
     private void Awake()
     {
@@ -37,8 +40,11 @@ public class CharacterStats : MonoBehaviour, IDamagable
         PlayerExp.OnLevelUp += PlayerScale;
         DashAbility.onHealDashing += GetHeal;
         PotionAbility.onPotionUse += GetHeal;
+        ProjectController1.onHitMana += GetMana;
         Health = playerStats.health;
         maxHealth = playerStats.health;
+        mana = playerStats.mana;
+        maxMana = playerStats.mana;
         agent.speed= playerStats.speed;
     }
     private void OnDisable()
@@ -46,6 +52,7 @@ public class CharacterStats : MonoBehaviour, IDamagable
         PlayerExp.OnLevelUp -= PlayerScale;
         DashAbility.onHealDashing -= GetHeal;
         PotionAbility.onPotionUse -= GetHeal;
+        ProjectController1.onHitMana -= GetMana;
     }
     private void Start()
     {
@@ -58,6 +65,10 @@ public class CharacterStats : MonoBehaviour, IDamagable
         DamageAtribute = Mathf.RoundToInt(2*scaleMultiplier);
         maxHealth = Mathf.RoundToInt(playerStats.health * scaleMultiplier);
         health = maxHealth;
+        maxMana = Mathf.RoundToInt(playerStats.mana * scaleMultiplier);
+        mana = maxMana;
+
+
         playerUI.UpdateUI();
     }
 
@@ -74,7 +85,7 @@ public class CharacterStats : MonoBehaviour, IDamagable
             health -= dmg;
             ShowDamagePopUp(dmg, Color.red);
             AudioManager.instance.PlaySFXWorld("7", transform.position);
-            playerUI.UpdateUI();
+            playerUI.UpdateHealthUI();
             if (Dead())
             {
                 StartCoroutine(DeadAnim());
@@ -116,11 +127,24 @@ public class CharacterStats : MonoBehaviour, IDamagable
         healPart.Play();
         CheckHeals();
     }
+    public void GetMana(int mana)
+    {
+        
+        ShowDamagePopUp(mana, Color.blue);
+        this.mana += mana;
+        
+        CheckMana();
+    }
 
     private void CheckHeals()
     {
         if (health >= maxHealth) health = maxHealth;
-        playerUI.UpdateUI();
+        playerUI.UpdateHealthUI();
+    }   
+    private void CheckMana()
+    {
+        if (mana >=maxMana) mana = maxMana;
+        playerUI.UpdateManaUI();
     }
     public void ShowDamagePopUp(int number, Color color)
     {

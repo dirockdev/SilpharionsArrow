@@ -86,4 +86,5 @@ MonoBehaviour:
   speed: 12
   health: 200
   level: 1
+  mana: 50
   requiredExp: 83

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: a5f22cb8c40d5d447b28f1c225198f69, type: 3}
   cooldown: 12
+  mana: 25
   numberOfProjectiles: 1
   canPenetrate: 1
   canHealOnCrits: 0
@@ -28,3 +29,4 @@ MonoBehaviour:
   widthProj: 1
   timeAlive: 0.5
   canReduceCooldown: 0
+  stunProb: 0

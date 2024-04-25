@@ -8,15 +8,17 @@ public class AbilityHandler : MonoBehaviour
 {
     [SerializeField] Ability startingAbility, ability1, dashAbility, shotgunAbility, arrowRainAbility, potion;
 
+    CharacterStats character;
 
     List<AbilityContainer> abilities;
     public static event Action<AbilityContainer, int> onAbilityChange;
 
     public static event Action<float, int> onCooldownUpdate;
 
-    public static event Action onDashAbilityUnlocked;
-    public static event Action onShotgunAbilityUnlocked;
-    public static event Action onArrowRainAbilityUnlocked;
+    public static Action onDashAbilityUnlocked;
+    public static Action onShotgunAbilityUnlocked;
+    public static Action onArrowRainAbilityUnlocked;
+    public static Action onManaUpdate;
 
     Animator anim;
     IDataService dataService = new JsonDataService();
@@ -28,7 +30,7 @@ public class AbilityHandler : MonoBehaviour
     {
         abilities = new List<AbilityContainer>(6);
         anim = GetComponentInChildren<Animator>();
-
+        character = GetComponent<CharacterStats>();
         PlayerExp.OnUnlock += AddAbilityWhenLevelUp;
     }
     private void OnDisable()
@@ -135,7 +137,7 @@ public class AbilityHandler : MonoBehaviour
 
     public void ActivateAbility(AbilityContainer abilityContainer)
     {
-        if (abilityContainer.currentCooldown > 0f) { return; }
+        if (abilityContainer.currentCooldown > 0f || character.Mana<abilityContainer.manaCost) { return; }
         IAbilityBehaviour abilityAction = CreateAbilityAction(abilityContainer);
         
         Vector3 targetAbility=InteractInput.interactTarget==null? MouseInput.rayToWorldPoint: InteractInput.interactTarget.GetPosition();
@@ -151,7 +153,8 @@ public class AbilityHandler : MonoBehaviour
         }
         
         abilityContainer.ability.UseAbility(transform, abilityAction, targetAbility, abilityContainer);
-
+        character.Mana-=abilityContainer.manaCost;
+        onManaUpdate?.Invoke();
         abilityContainer.Cooldown();
     }
 

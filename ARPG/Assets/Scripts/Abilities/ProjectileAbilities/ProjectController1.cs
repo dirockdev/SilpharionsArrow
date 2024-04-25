@@ -20,6 +20,8 @@ public class ProjectController1 : MonoBehaviour, IProjectile
     Light lightProj;
     private float timeAlive;
 
+    internal static System.Action<int> onHitMana;
+
     private void Awake()
     {
         body = GetComponent<Rigidbody>();
@@ -59,8 +61,10 @@ public class ProjectController1 : MonoBehaviour, IProjectile
         {
             bool crit=Random.value<((float)probCrit/100);
             itemHit.GetDamage(damage,crit);
-            if(itemHit is EnemyBase && slow!=0)
+            onHitMana?.Invoke(5);
+            if (itemHit is EnemyBase && slow!=0)
             {
+                
                 EnemyBase enemy = (EnemyBase)itemHit;
                 enemy.SlowDown(slow);
             }

@@ -21,9 +21,12 @@ public abstract class AbilityContainer
     public int coolDownLevel;
     
     public bool canReduceCooldown;
+    public int manaCost;
+
     public AbilityContainer(Ability ability)
     {
         this.ability = ability;
+        this.manaCost = ability.mana;
         ChangeCooldownTime();
     }
 

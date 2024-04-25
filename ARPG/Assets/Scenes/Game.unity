@@ -21526,7 +21526,7 @@ GameObject:
   - component: {fileID: 2025017406}
   - component: {fileID: 2025017405}
   m_Layer: 5
-  m_Name: HPTxt
+  m_Name: ManaTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24739,6 +24739,11 @@ PrefabInstance:
       objectReference: {fileID: 8682525443075195178}
     - target: {fileID: 5271258619868870455, guid: 1ca70a91a82d70244b784ce79101f4ad,
         type: 3}
+      propertyPath: currentMana
+      value: 
+      objectReference: {fileID: 2025017405}
+    - target: {fileID: 5271258619868870455, guid: 1ca70a91a82d70244b784ce79101f4ad,
+        type: 3}
       propertyPath: easeHpValue
       value: 
       objectReference: {fileID: 0}
@@ -24757,6 +24762,11 @@ PrefabInstance:
       propertyPath: shotGunButton
       value: 
       objectReference: {fileID: 8682525441303367399}
+    - target: {fileID: 5271258619868870455, guid: 1ca70a91a82d70244b784ce79101f4ad,
+        type: 3}
+      propertyPath: imageManaValue
+      value: 
+      objectReference: {fileID: 665825863}
     - target: {fileID: 5271258619868870455, guid: 1ca70a91a82d70244b784ce79101f4ad,
         type: 3}
       propertyPath: arrowRainButton

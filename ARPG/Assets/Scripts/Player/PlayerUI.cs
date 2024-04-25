@@ -9,7 +9,9 @@ public class PlayerUI : MonoBehaviour
 {
     CharacterStats playerStats;
     [SerializeField] TextMeshProUGUI currentHealth;
-    [SerializeField] Image imageHpValue;
+    [SerializeField] Image imageHpValue; 
+    [SerializeField] TextMeshProUGUI currentMana;
+    [SerializeField] Image imageManaValue;
     [SerializeField] Image deadPanel;
     [SerializeField] Image deadImage;
 
@@ -17,7 +19,8 @@ public class PlayerUI : MonoBehaviour
     public Button shotGunButton; 
     public Button arrowRainButton;
 
-    private Material liquidMat;
+    private Material hpLiquidMat;
+    private Material manaLiquidMat;
     private void Awake()
     {
         playerStats = GetComponent<CharacterStats>();
@@ -28,13 +31,16 @@ public class PlayerUI : MonoBehaviour
         AbilityHandler.onShotgunAbilityUnlocked += ActivateShotgunButton;
         AbilityHandler.onArrowRainAbilityUnlocked += ActivateArrowRainButton;
         CharacterStats.onPlayerDead += ActivateDeadAnim;
-        liquidMat=imageHpValue.material;
+        AbilityHandler.onManaUpdate += UpdateManaUI;
+        hpLiquidMat = imageHpValue.material;
+        manaLiquidMat = imageManaValue.material;
     }
     private void OnDisable()
     {
         AbilityHandler.onDashAbilityUnlocked -= ActivateDashButton;
         AbilityHandler.onShotgunAbilityUnlocked -= ActivateShotgunButton;
         AbilityHandler.onArrowRainAbilityUnlocked -= ActivateArrowRainButton;
+        AbilityHandler.onManaUpdate -= UpdateManaUI;
         CharacterStats.onPlayerDead -= ActivateDeadAnim;
     }
     private void ActivateDashButton()
@@ -74,7 +80,20 @@ public class PlayerUI : MonoBehaviour
     }
     public void UpdateUI()
     {
-        liquidMat.DOFloat(playerStats.Health / (float)playerStats.MaxHealth, "_Progress", 0.6f);
+        hpLiquidMat.DOFloat(playerStats.Health / (float)playerStats.MaxHealth, "_Progress", 0.6f);
         currentHealth.SetText(playerStats.Health.ToString()+ "/" + playerStats.MaxHealth.ToString());
+        manaLiquidMat.DOFloat(playerStats.Mana / (float)playerStats.MaxMana, "_Progress", 0.6f);
+        currentMana.SetText(playerStats.Mana.ToString()+ "/" + playerStats.MaxMana.ToString());
+    }
+
+    public void UpdateManaUI()
+    {
+        manaLiquidMat.DOFloat(playerStats.Mana / (float)playerStats.MaxMana, "_Progress", 0.6f);
+        currentMana.SetText(playerStats.Mana.ToString() + "/" + playerStats.MaxMana.ToString());
+    }
+    public void UpdateHealthUI()
+    {
+        hpLiquidMat.DOFloat(playerStats.Health / (float)playerStats.MaxHealth, "_Progress", 0.6f);
+        currentHealth.SetText(playerStats.Health.ToString() + "/" + playerStats.MaxHealth.ToString());
     }
 }
