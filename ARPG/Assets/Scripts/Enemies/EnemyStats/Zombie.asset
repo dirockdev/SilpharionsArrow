@@ -69,5 +69,5 @@ MonoBehaviour:
   attackspeed: 1
   radiusDetection: 3
   exp: 5
-  acceleration: 10
+  acceleration: 500
   angularVelocity: 1000

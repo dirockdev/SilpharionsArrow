@@ -4,7 +4,9 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 using System.Collections;
 
-public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
+[RequireComponent(typeof(BoxCollider))] 
+[RequireComponent(typeof(NavMeshAgent))] 
+    public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
 {
 
     protected Transform target;
@@ -16,9 +18,13 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
     protected int damage;
     private float attackrange;
 
+
     private Animator anim;
     private SkinnedMeshRenderer _meshRenderer;
     private Material _meshRendererMat;
+
+    [SerializeField] int scaleFactor=2;
+
 
     [SerializeField] Slider healthBarUI;
     [SerializeField] Slider easeHealthBarUI;
@@ -53,8 +59,9 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
 
         
         interactInput = FindFirstObjectByType<InteractInput>();
-        
 
+        agent.acceleration = stats.acceleration;
+        agent.angularSpeed = stats.angularVelocity;
     }
 
     protected void OnEnable()
@@ -68,7 +75,7 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
 
         if (!isElite) {
 
-            transform.transform.localScale = Vector3.one * 2;
+            transform.transform.localScale = Vector3.one * scaleFactor;
             attackrange = stats.radiusDetection;
             _meshRendererMat.DisableKeyword("_ISELITE");
 
@@ -78,13 +85,13 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
             attackrange = stats.radiusDetection*2f;
             health = health * 2; 
             damage *= 2; 
-            transform.localScale=Vector3.one*4;
+            transform.localScale=Vector3.one* scaleFactor*2;
 
             _meshRendererMat.EnableKeyword("_ISELITE");
         }
 
 
-
+        
         agent.speed = stats.speed;
         attackSpeed = stats.attackspeed;
         InicializeEnemy();
@@ -125,12 +132,13 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
             if (Vector3.Distance(transform.position, InstancePlayer.instance.transform.position) < 30)
             {
                 target = InstancePlayer.instance.transform;
+                
             }
         }
 
         if (isStunned || CharacterStats.isDead || target == null)
         {
-            anim.SetBool("Idle", true);
+            anim.SetBool("Idle", false);
             agent.SetDestination(transform.position);
             return;
         }
@@ -162,8 +170,12 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
             return; 
         }
 
-        if (Dead()) agent.isStopped=true;
-        else agent.SetDestination(target.position);
+        if (Dead()) agent.isStopped = true;
+        else
+        {
+            anim.SetBool("Idle", true);
+            agent.SetDestination(target.position);
+        }
     }
 
     protected virtual void DoDamage()
@@ -177,6 +189,7 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
         anim.SetTrigger("Attack"); // Iniciar la animación de ataque
         DoDamage(); // Realizar daño cuando la animación ha terminado
         anim.SetBool("Idle", false); // Puede que no necesites esto dependiendo de tu animación
+
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
         targetRotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
@@ -185,7 +198,7 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
 
     public void GetDamage(int damage, bool crit)
     {
-        ShaderDmgAnim(isPoisoned ? Color.green : Color.grey);
+        ShaderDmgAnim(isPoisoned ? Color.green : Color.white);
 
         ShowDamagePopUp(damage, crit);
 
@@ -213,6 +226,12 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
     private void RagdollState(bool active)
     {
         GetComponent<BoxCollider>().enabled = !active;
+        if (ragdollBodies.Length == 0 && active)
+        {
+            anim.SetTrigger("Dead");
+            return;
+        }
+        
         anim.enabled = !active;
         foreach (Rigidbody rb in ragdollBodies)
         {
@@ -241,7 +260,7 @@ public class EnemyBase : MonoBehaviour, IDamagable, IInteractObject
 
     private void ShaderDmgAnim(Color color)
     {
-        _meshRendererMat.SetColor("_TextureColor", color);
+        _meshRendererMat.SetColor("_HitColor", color);
         _meshRendererMat.DOComplete();
         _meshRendererMat.SetFloat("_ValorColor", 1);
         _meshRendererMat.DOFloat(0, "_ValorColor", 0.5f);
