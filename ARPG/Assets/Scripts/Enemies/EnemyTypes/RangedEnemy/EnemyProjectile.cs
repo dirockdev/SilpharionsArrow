@@ -31,7 +31,9 @@ public class EnemyProjectile : MonoBehaviour
 
         if (itemHit != null)
         {
-            itemHit.GetDamage(damage);
+           
+                itemHit.GetDamage(damage);
+           
             EndProjectile();
         }
         else

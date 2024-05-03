@@ -43,6 +43,9 @@ using System.Collections;
 
     private bool isAttacking;
     private bool isPoisoned, isStunned, isElite;
+    private bool canPoison, canStun;
+
+
     protected void Awake()
     {
         anim = GetComponentInChildren<Animator>();
@@ -62,6 +65,8 @@ using System.Collections;
 
         agent.acceleration = stats.acceleration;
         agent.angularSpeed = stats.angularVelocity;
+        canStun=stats.canStun;
+        canPoison=stats.canPoison;
     }
 
     protected void OnEnable()
@@ -180,7 +185,31 @@ using System.Collections;
 
     protected virtual void DoDamage()
     {
+        
+        if (canStun)
+        {
+            bool stunned = Random.value <= 0.2f;
+            if (stunned)
+            {
+                target.GetComponent<IDamagable>().GetStunned();
+            }
+            
+        }
+        if (canPoison)
+        {
+            bool poisoned = Random.value <= 0.2f;
+            if (poisoned)
+            {
+                target.GetComponent<IDamagable>().GetStateDamage(damage/2);
+            }
+            else
+            {
+                target.GetComponent<IDamagable>().GetDamage(damage, false);
+            }
+            return;
+        }
         target.GetComponent<IDamagable>().GetDamage(damage, false);
+
     }
 
     private void AnimAttack()

@@ -23,9 +23,15 @@ public class CharacterStats : MonoBehaviour, IDamagable
 
     public static bool isDead;
     public static int DamageAtribute=1;
+    public bool isPoisoned,isStunned;
 
 
     public static event Action onPlayerDead;
+    public static event Action<bool> onPlayerStunned;
+    public static event Action<bool> onPlayerPoisoned;
+
+
+
     public int Health { get => health; set => health = value; }
     public PlayerStats PlayerStats { get => playerStats; set => playerStats = value; }
     public int MaxHealth { get => maxHealth; set => maxHealth = value; }
@@ -154,16 +160,57 @@ public class CharacterStats : MonoBehaviour, IDamagable
     }
     public void GetStateDamage(int damage)
     {
-        throw new System.NotImplementedException();
+        if (!isPoisoned)
+        {
+            isPoisoned = true;
+            StartCoroutine(PoisonCoroutine(damage));
+        }
+        else
+        {
+            StopAllCoroutines();
+            StartCoroutine(PoisonCoroutine(damage));
+        }
     }
-
-    public bool isPoisoned()
-    {
-        throw new System.NotImplementedException();
-    }
-
     public void GetStunned()
     {
-        throw new System.NotImplementedException();
+        if (!isStunned)
+        {
+            isStunned = true;
+            StartCoroutine(StunCoroutine());
+        }
+        else
+        {
+            StopAllCoroutines();
+            StartCoroutine(StunCoroutine());
+        }
     }
+    IEnumerator PoisonCoroutine(int damage)
+    {
+        onPlayerPoisoned?.Invoke(isPoisoned);
+        float timer = 0f;
+        while (timer < 2f && !Dead())
+        {
+            // Aplicar daño de veneno por segundo
+            GetDamage(damage, false);
+            timer += 0.5f;
+            yield return new WaitForSeconds(0.5f); // Espera al siguiente frame
+        }
+        isPoisoned = false;
+        onPlayerPoisoned?.Invoke(isPoisoned);
+    }
+    IEnumerator StunCoroutine()
+    {
+        onPlayerStunned?.Invoke(isStunned);
+        agent.speed = 0;
+        yield return new WaitForSeconds(1f); // Espera al siguiente frame
+        if(!Dead())agent.speed = PlayerStats.speed;
+        isStunned = false;
+        onPlayerStunned?.Invoke(isStunned);
+    }
+
+    bool IDamagable.isPoisoned()
+    {
+        return isPoisoned;
+    }
+
 }

@@ -10,15 +10,15 @@ GameObject:
   m_Component:
   - component: {fileID: 3075866835878549841}
   - component: {fileID: 9005361694638054940}
-  - component: {fileID: 7301275929983836844}
   - component: {fileID: 8232674858240116992}
+  - component: {fileID: 5518670915693444138}
   m_Layer: 12
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3075866835878549841
 Transform:
   m_ObjectHideFlags: 0
@@ -55,23 +55,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 100, y: 10, z: 100}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7301275929983836844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4702216302326020397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 709bb9382a6c5fe448c6ddc90a055750, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemiesToSpawn:
-  - {fileID: 5956923797327667054, guid: ccb7a358cd89ee9479e77e128d681c11, type: 3}
-  - {fileID: 3240482444946599414, guid: 837b9bb8701a11343a11bf090747b29d, type: 3}
-  minEnemies: 3
-  maxEnemies: 7
 --- !u!54 &8232674858240116992
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -99,3 +82,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &5518670915693444138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4702216302326020397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 709bb9382a6c5fe448c6ddc90a055750, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemiesToSpawn:
+  - {fileID: 5956923797327667054, guid: ccb7a358cd89ee9479e77e128d681c11, type: 3}
+  - {fileID: 3240482444946599414, guid: 837b9bb8701a11343a11bf090747b29d, type: 3}
+  - {fileID: 916436939433242421, guid: 3d2c73ef097b7af4eb841770b7d0db4b, type: 3}
+  minEnemies: 3
+  maxEnemies: 7

@@ -15,6 +15,10 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] Image deadPanel;
     [SerializeField] Image deadImage;
 
+
+    [SerializeField] Image PoisonStateImage;
+    [SerializeField] Image StunStateImage;
+
     public Button dashButton; 
     public Button shotGunButton; 
     public Button arrowRainButton;
@@ -31,7 +35,10 @@ public class PlayerUI : MonoBehaviour
         AbilityHandler.onShotgunAbilityUnlocked += ActivateShotgunButton;
         AbilityHandler.onArrowRainAbilityUnlocked += ActivateArrowRainButton;
         CharacterStats.onPlayerDead += ActivateDeadAnim;
+        CharacterStats.onPlayerStunned += UpdateStunState;
+        CharacterStats.onPlayerPoisoned += UpdatePoisonState;
         AbilityHandler.onManaUpdate += UpdateManaUI;
+
         hpLiquidMat = imageHpValue.material;
         manaLiquidMat = imageManaValue.material;
     }
@@ -40,6 +47,8 @@ public class PlayerUI : MonoBehaviour
         AbilityHandler.onDashAbilityUnlocked -= ActivateDashButton;
         AbilityHandler.onShotgunAbilityUnlocked -= ActivateShotgunButton;
         AbilityHandler.onArrowRainAbilityUnlocked -= ActivateArrowRainButton;
+        CharacterStats.onPlayerStunned -= UpdateStunState;
+        CharacterStats.onPlayerPoisoned -= UpdatePoisonState;
         AbilityHandler.onManaUpdate -= UpdateManaUI;
         CharacterStats.onPlayerDead -= ActivateDeadAnim;
     }
@@ -77,6 +86,15 @@ public class PlayerUI : MonoBehaviour
     {
         
         UpdateUI();
+    }
+    private void UpdateStunState(bool active)
+    {
+        StunStateImage.gameObject.SetActive(active);
+    }
+    private void UpdatePoisonState(bool active)
+    {
+        PoisonStateImage.gameObject.SetActive(active);
+
     }
     public void UpdateUI()
     {

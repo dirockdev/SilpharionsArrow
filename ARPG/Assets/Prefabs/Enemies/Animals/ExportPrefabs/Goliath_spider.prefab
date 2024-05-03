@@ -996,7 +996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3904b9690670344b9aa463f27d0fdea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: 7a2c212a0ce433644ae2befe023b17b5, type: 2}
+  stats: {fileID: 11400000, guid: 9e3559ba31416c943a752add4ac150f7, type: 2}
   scaleFactor: 2
   healthBarUI: {fileID: 4973254610645958809}
   easeHealthBarUI: {fileID: 7102969832709242238}

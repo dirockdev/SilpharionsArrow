@@ -71,3 +71,5 @@ MonoBehaviour:
   exp: 5
   acceleration: 500
   angularVelocity: 1000
+  canPoison: 1
+  canStun: 0
