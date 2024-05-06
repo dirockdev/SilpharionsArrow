@@ -149,5 +149,5 @@ Material:
     - _GlowColor: {r: 0, g: 0, b: 0, a: 1}
     - _HitColor: {r: 4.759382, g: 3.621653, b: 2.5368402, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _TextureColor: {r: 1.1224958, g: 0.93905044, b: 0, a: 1}
+    - _TextureColor: {r: 0.28062394, g: 0.23476261, b: 0, a: 1}
   m_BuildTextureStacks: []
