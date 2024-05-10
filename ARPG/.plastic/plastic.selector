@@ -1,4 +1,3 @@
-repository "ARPG@DivadAcor@cloud"
+rep "ARPG@DivadAcor@cloud"
   path "/"
-    smartbranch "/main" changeset "71"                                                                                                 
-     
+    smartbranch "/main"

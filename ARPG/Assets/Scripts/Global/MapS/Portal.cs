@@ -15,6 +15,7 @@ public class Portal : MonoBehaviour, IInteractObject
     private void Awake()
     {
         outline = GetComponentInChildren<Outline>();
+        
     }
     public Vector3 GetPosition()
     {
@@ -40,10 +41,14 @@ public class Portal : MonoBehaviour, IInteractObject
         if (other.CompareTag("Player"))
         {
             other.GetComponent<NavMeshAgent>().Warp(terrainPos.position);
-            directionalLight.color = statsMap.colorLight;
-            directionalLight.intensity = statsMap.intensityLight;
-            directionalLight.colorTemperature = statsMap.kelvin;
+            ChangeLight();
         }
     }
 
+    private void ChangeLight()
+    {
+        directionalLight.color = statsMap.colorLight;
+        directionalLight.intensity = statsMap.intensityLight;
+        directionalLight.colorTemperature = statsMap.kelvin;
+    }
 }

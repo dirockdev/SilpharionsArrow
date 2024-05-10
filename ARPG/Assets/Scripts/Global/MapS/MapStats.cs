@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-[CreateAssetMenu(fileName ="MapStats")]
+[CreateAssetMenu(menuName ="Stats/MapStats")]
 public class MapStats:ScriptableObject
 {
     public float intensityLight;

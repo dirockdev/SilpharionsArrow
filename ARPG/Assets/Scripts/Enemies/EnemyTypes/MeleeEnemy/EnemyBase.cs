@@ -21,7 +21,7 @@ using System.Collections;
 
     private Animator anim;
     private SkinnedMeshRenderer _meshRenderer;
-    private Material _meshRendererMat;
+    private Material[] _meshRendererMat;
 
     [SerializeField] int scaleFactor=2;
 
@@ -45,6 +45,7 @@ using System.Collections;
     private bool isPoisoned, isStunned, isElite;
     private bool canPoison, canStun;
 
+    public delegate void MaterialAction(Material material);
 
     protected void Awake()
     {
@@ -53,7 +54,7 @@ using System.Collections;
         outline = GetComponentInChildren<Outline>();
         _meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
 
-        _meshRendererMat = _meshRenderer.material;
+        _meshRendererMat = _meshRenderer.materials;
         ragdollBodies = GetComponentsInChildren<Rigidbody>();
     }
 
@@ -78,11 +79,12 @@ using System.Collections;
         health = Mathf.RoundToInt(stats.health * scaleMultiplier);
         damage = Mathf.RoundToInt(stats.damage * scaleMultiplier);
 
-        if (!isElite) {
+        if (!isElite)
+        {
 
             transform.transform.localScale = Vector3.one * scaleFactor;
             attackrange = stats.radiusDetection;
-            _meshRendererMat.DisableKeyword("_ISELITE");
+            ApplyActionToMaterials(DisableKeyword);
 
         }
         else
@@ -92,7 +94,7 @@ using System.Collections;
             damage *= 2; 
             transform.localScale=Vector3.one* scaleFactor*2;
 
-            _meshRendererMat.EnableKeyword("_ISELITE");
+            ApplyActionToMaterials(EnableKeyword);
         }
 
 
@@ -101,6 +103,21 @@ using System.Collections;
         attackSpeed = stats.attackspeed;
         InicializeEnemy();
 
+    }
+    private void ApplyActionToMaterials(MaterialAction action)
+    {
+        foreach (var material in _meshRendererMat)
+        {
+            action(material);
+        }
+    }
+    private void DisableKeyword(Material material)
+    {
+        material.DisableKeyword("_ISELITE");
+    }
+    private void EnableKeyword(Material material)
+    {
+        material.EnableKeyword("_ISELITE");
     }
     protected void Update()
     {
@@ -137,7 +154,7 @@ using System.Collections;
             if (Vector3.Distance(transform.position, InstancePlayer.instance.transform.position) < 30)
             {
                 target = InstancePlayer.instance.transform;
-                
+                anim.SetBool("Idle", true);
             }
         }
 
@@ -289,10 +306,17 @@ using System.Collections;
 
     private void ShaderDmgAnim(Color color)
     {
-        _meshRendererMat.SetColor("_HitColor", color);
-        _meshRendererMat.DOComplete();
-        _meshRendererMat.SetFloat("_ValorColor", 1);
-        _meshRendererMat.DOFloat(0, "_ValorColor", 0.5f);
+        foreach (var item in _meshRendererMat)
+        {
+            HitMaterial(item, color);
+        }
+    }
+    public void HitMaterial(Material material, Color color)
+    {
+        material.SetColor("_HitColor", color);
+        material.DOComplete();
+        material.SetFloat("_ValorColor", 1);
+        material.DOFloat(0, "_ValorColor", 0.5f);
     }
 
     public string ObjectName() => stats.name;
