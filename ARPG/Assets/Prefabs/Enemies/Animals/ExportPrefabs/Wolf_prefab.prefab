@@ -1399,6 +1399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 4b5c128dc655c94488028271990377b7, type: 2}
+  scaleFactor: 2
   healthBarUI: {fileID: 4128245037757783139}
   easeHealthBarUI: {fileID: 8879171176645010132}
   expPrefab: {fileID: -6823876959641741716, guid: 26f28b0c373ebf8438d1beaa452d1487,
