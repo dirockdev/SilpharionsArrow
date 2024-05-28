@@ -15,6 +15,8 @@ public class CharacterStats : MonoBehaviour, IDamagable
     NavMeshAgent agent;
 
     int health,maxHealth,mana, maxMana;
+    
+    public static Vector3 spawnPoint;
 
     [SerializeField]
     private ParticleSystem healPart;
@@ -23,7 +25,8 @@ public class CharacterStats : MonoBehaviour, IDamagable
 
     public static bool isDead;
     public static int DamageAtribute=1;
-    public bool isPoisoned,isStunned;
+
+    private bool isPoisoned,isStunned;
 
 
     public static event Action onPlayerDead;
@@ -74,8 +77,9 @@ public class CharacterStats : MonoBehaviour, IDamagable
         maxMana = Mathf.RoundToInt(playerStats.mana * scaleMultiplier);
         mana = maxMana;
 
-
+        spawnPoint = Vector3.zero;
         playerUI.UpdateUI();
+        
     }
 
 
@@ -112,7 +116,7 @@ public class CharacterStats : MonoBehaviour, IDamagable
         agent.speed = playerStats.speed;
         health = maxHealth;
         playerUI.UpdateUI();
-        transform.position=Vector3.zero;
+        transform.position= spawnPoint;
         agent.SetDestination(transform.position);
         isDead = false;
     }

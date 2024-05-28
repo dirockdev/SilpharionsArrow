@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemies()
     {
-        for (int i = minEnemies; i < maxEnemies; i++)
+        for (int i = 0; i < Random.Range(minEnemies,maxEnemies); i++)
         {
             GameObject enemyToSpawn= enemiesToSpawn[Random.Range(0, enemiesToSpawn.Count)];
             ObjectPoolManager.SpawnObject(enemyToSpawn, transform.position, Quaternion.identity);

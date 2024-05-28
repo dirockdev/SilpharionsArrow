@@ -10,12 +10,15 @@ public class Portal : MonoBehaviour, IInteractObject
 
     [SerializeField] Transform terrainPos;
 
-    [SerializeField]MapStats statsMap;
-    [SerializeField]Light directionalLight;
+    [SerializeField] MapStats statsMap;
+    [SerializeField] Light directionalLight;
+
+    [SerializeField] private int minLevel;
+
     private void Awake()
     {
         outline = GetComponentInChildren<Outline>();
-        
+
     }
     public Vector3 GetPosition()
     {
@@ -38,11 +41,24 @@ public class Portal : MonoBehaviour, IInteractObject
     }
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<NavMeshAgent>().Warp(terrainPos.position);
-            ChangeLight();
+            if (PlayerExp.level >= minLevel)
+            {
+                other.GetComponent<NavMeshAgent>().Warp(terrainPos.localPosition);
+                ChangeLight();
+                AudioManager.instance.PlaySFXWorld("9", transform.position);
+                CharacterStats.spawnPoint=terrainPos.localPosition; 
+            }
+            else
+            {
+                AudioManager.instance.PlaySFXWorld("10", transform.position, 0.5f, 0.6f);
+            }
+
         }
+
+
     }
 
     private void ChangeLight()

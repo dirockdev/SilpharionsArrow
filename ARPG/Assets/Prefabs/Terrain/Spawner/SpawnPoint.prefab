@@ -17,8 +17,8 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
 --- !u!4 &3075866835878549841
 Transform:
   m_ObjectHideFlags: 0
@@ -95,8 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesToSpawn:
-  - {fileID: 5956923797327667054, guid: ccb7a358cd89ee9479e77e128d681c11, type: 3}
-  - {fileID: 3240482444946599414, guid: 837b9bb8701a11343a11bf090747b29d, type: 3}
+  - {fileID: 2978885951039248391, guid: 5226a2a03f584cc4b864ee9314eb822b, type: 3}
   - {fileID: 916436939433242421, guid: 3d2c73ef097b7af4eb841770b7d0db4b, type: 3}
-  minEnemies: 3
+  minEnemies: 5
   maxEnemies: 7

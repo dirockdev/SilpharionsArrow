@@ -8,6 +8,12 @@ public class Skill : MonoBehaviour {
 
     public TMP_Text titleText;
     public TMP_Text descriptionText;
+   
+    private Transform requiredPointsPanel;
+    [SerializeField]    
+    private GameObject requiredPointsImage;
+    [SerializeField]
+    private Sprite noRequiredPointsImage;
     private Image skillImage;
     private Button skillButton;
     private SkillTree skillTree;
@@ -29,6 +35,9 @@ public class Skill : MonoBehaviour {
     public int RequiredPointsForConnectedSkills { get => requiredPointsForConnectedSkills; set => requiredPointsForConnectedSkills = value; }
     public List<Skill> ConnectedSkills { get => connectedSkills; set => connectedSkills = value; }
     public Image SkillImage { get => skillImage; set => skillImage = value; }
+    public Transform RequiredPointsPanel { get => requiredPointsPanel; set => requiredPointsPanel = value; }
+    public GameObject RequiredPointsImage { get => requiredPointsImage; set => requiredPointsImage = value; }
+    public Sprite NoRequiredPointsImage { get => noRequiredPointsImage; set => noRequiredPointsImage = value; }
 
     private void Awake()
     {
@@ -37,7 +46,7 @@ public class Skill : MonoBehaviour {
         skillButton.onClick.AddListener(() => AudioManager.instance.PlaySFXWorld("3", transform.position));
         skillTree = GetComponentInParent<SkillTree>();
         skillButton.enabled = false;
-        
+        RequiredPointsPanel = transform.GetChild(3);
     }
   
     public void Initialize()
@@ -59,7 +68,25 @@ public class Skill : MonoBehaviour {
             skillButton.enabled =false ;
         }
         titleText.SetText($"{Level}/{MaxLevel}\n{SkillName}");
-        descriptionText.SetText(SkillDescription);
+        if (!skillTree.Initialized)
+        {
+            descriptionText.SetText(SkillDescription);
+            for (int i = 0; i < requiredPointsForConnectedSkills; i++)
+            {
+                Instantiate(RequiredPointsImage,RequiredPointsPanel);
+            }
+        }
+        if (level >= 1 && level <= RequiredPointsPanel.childCount)
+        {
+            Transform child = RequiredPointsPanel.GetChild(level - 1);
+            Image imageComponent = child.GetComponent<Image>();
+            if (imageComponent != null)
+            {
+                imageComponent.sprite = NoRequiredPointsImage;
+
+                imageComponent.color = new Color(1.0f, 0.5f, 0.0f);
+            }
+        }
         // Determina si la habilidad está desbloqueada para mejorar
         bool isUnlockedForUpgrade = SkillTree.skillPoints >= 1 && skillButton.enabled==true;
 
