@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,7 @@ public class Portal : MonoBehaviour, IInteractObject
     [SerializeField] Light directionalLight;
 
     [SerializeField] private int minLevel;
-
+    public static event Action onTakePortal;
     private void Awake()
     {
         outline = GetComponentInChildren<Outline>();
@@ -44,12 +45,14 @@ public class Portal : MonoBehaviour, IInteractObject
 
         if (other.CompareTag("Player"))
         {
+
             if (PlayerExp.level >= minLevel)
             {
                 other.GetComponent<NavMeshAgent>().Warp(terrainPos.localPosition);
                 ChangeLight();
                 AudioManager.instance.PlaySFXWorld("9", transform.position);
                 CharacterStats.spawnPoint=terrainPos.localPosition; 
+                onTakePortal?.Invoke();
             }
             else
             {

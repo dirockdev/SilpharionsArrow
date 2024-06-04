@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
@@ -12,8 +13,18 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private int minEnemies; 
     [SerializeField]
-    private int maxEnemies; 
+    private int maxEnemies;
 
+    private BoxCollider boxCollider;
+    private void Start()
+    {
+        boxCollider=GetComponent<BoxCollider>();
+        Portal.onTakePortal += EnablePortal;
+    }
+    private void OnDisable()
+    {
+        Portal.onTakePortal -= EnablePortal;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -22,8 +33,15 @@ public class EnemySpawner : MonoBehaviour
         {
             // Activa el spawner para instanciar enemigos
             SpawnEnemies();
-            gameObject.SetActive(false); // Marca el spawner como activado para que no se active nuevamente
+            boxCollider.enabled = false;
+
         }
+    }
+
+    private void EnablePortal()
+    {
+        if(boxCollider.enabled == false)
+        boxCollider.enabled = true;
     }
 
     void SpawnEnemies()

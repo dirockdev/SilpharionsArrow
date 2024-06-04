@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GoatAnimator
+  m_Controller: {fileID: 9100000, guid: a2f1fec9538c33449aa42f390ad43dc4, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 55bc1968162cbad4fa7c3e4d6357830e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9b8d510327ece5849a99f47767e47288, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 288e7821045c51d47a30248c5d65efb6, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: a82c9f77ef4370340a9fae2125ee9b1f, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 57f397574dd47ec4686017f1d065fa57, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: a4a370f5f8a8c6f4d8e5705d512cb747, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 6286d0c0631d2e847a5fa1e63713b8d3, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 286ff21c7308f9d4fa4734644e554cb5, type: 3}

@@ -8,7 +8,8 @@ public class InteractInput : MonoBehaviour
 {
     [SerializeField] TMPro.TextMeshProUGUI textOnScreen;
     [SerializeField] Slider sliderValue;
-    Vector2 mousePosition;
+    [SerializeField] Texture2D redCursor;  // Add this line to reference the red cursor texture
+    private Vector2 mousePosition;
     [HideInInspector] public IInteractObject hoveringOverObject;
     private IInteractObject previousHoveredObject;
 
@@ -16,24 +17,27 @@ public class InteractInput : MonoBehaviour
 
     [SerializeField]
     private InputReader inputReader;
+
     private void Awake()
     {
         inputReader.OnInputMousePosition += MousePositionInput;
     }
+
     private void OnDisable()
     {
         inputReader.OnInputMousePosition -= MousePositionInput;
-        
     }
+
     void Update()
     {
         CheckInteractablObject();
-
     }
+
     public void MousePositionInput(Vector2 mousePos)
     {
         mousePosition = mousePos;
     }
+
     private void CheckInteractablObject()
     {
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
@@ -61,19 +65,26 @@ public class InteractInput : MonoBehaviour
                 {
                     // Mostrar el nombre y la barra de vida del objeto
                     ShowInteractUI(interactableObject);
-                    interactTarget= interactableObject;
+                    interactTarget = interactableObject;
+
                     // Activar el contorno del objeto actual
                     Outline currentOutline = interactableObject.outLine();
                     if (currentOutline != null)
                     {
                         currentOutline.OutlineWidth = 1.5f;
                     }
+
+                    // Cambiar el cursor a rojo
+                    Cursor.SetCursor(redCursor, Vector2.zero, CursorMode.Auto);
                 }
                 else
                 {
                     // Si no hay objeto interactuable, ocultar la barra de vida
                     interactTarget = null;
                     HideInteractUI();
+
+                    // Restaurar el cursor predeterminado
+                    Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
                 }
             }
         }
@@ -83,10 +94,12 @@ public class InteractInput : MonoBehaviour
             if (previousHoveredObject != null)
             {
                 HideInteractUI();
-                previousHoveredObject.outLine().OutlineWidth=0;
+                previousHoveredObject.outLine().OutlineWidth = 0;
                 previousHoveredObject = null;
-                
             }
+
+            // Restaurar el cursor predeterminado
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         }
     }
 

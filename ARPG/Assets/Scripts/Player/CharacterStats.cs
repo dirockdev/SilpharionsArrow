@@ -55,6 +55,7 @@ public class CharacterStats : MonoBehaviour, IDamagable
         mana = playerStats.mana;
         maxMana = playerStats.mana;
         agent.speed= playerStats.speed;
+        spawnPoint = Vector3.zero;
     }
     private void OnDisable()
     {
@@ -77,7 +78,7 @@ public class CharacterStats : MonoBehaviour, IDamagable
         maxMana = Mathf.RoundToInt(playerStats.mana * scaleMultiplier);
         mana = maxMana;
 
-        spawnPoint = Vector3.zero;
+        
         playerUI.UpdateUI();
         
     }

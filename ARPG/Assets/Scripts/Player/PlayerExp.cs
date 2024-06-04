@@ -146,6 +146,7 @@ public class PlayerExp : MonoBehaviour
         }
         catch (Exception)
         {
+            AudioManager.instance.PlaySFXWorld("10", transform.position, 0.5f, 0.6f);
             RestartStats();
             expBar.maxValue = requiredExp;
             expBar.minValue = 0;

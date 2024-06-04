@@ -18,8 +18,13 @@ public class PlayerAnimate : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
         PlayerExp.OnLevelUp += LevelUpPart;
+        anim.SetBool("inMenu", false);
     }
-
+    private void OnDisable()
+    {
+        
+        anim.SetBool("inMenu", true);
+    }
     public void LevelUpPart(int level)
     {
         partParent.Play();

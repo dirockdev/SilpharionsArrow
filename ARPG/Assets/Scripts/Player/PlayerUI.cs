@@ -13,7 +13,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI currentMana;
     [SerializeField] Image imageManaValue;
     [SerializeField] Image deadPanel;
-    [SerializeField] Image deadImage;
+    [SerializeField] GameObject deadResources;
 
 
     [SerializeField] Image PoisonStateImage;
@@ -38,6 +38,8 @@ public class PlayerUI : MonoBehaviour
         CharacterStats.onPlayerStunned += UpdateStunState;
         CharacterStats.onPlayerPoisoned += UpdatePoisonState;
         AbilityHandler.onManaUpdate += UpdateManaUI;
+        
+
 
         hpLiquidMat = imageHpValue.material;
         manaLiquidMat = imageManaValue.material;
@@ -73,10 +75,10 @@ public class PlayerUI : MonoBehaviour
 
     private IEnumerator DeadUI()
     {
-        deadImage.enabled = true;
+        deadResources.SetActive(true);
         deadPanel.enabled= true;
         yield return Yielders.Get(4f);
-        deadImage.enabled = false;
+        deadResources.SetActive(false);
         deadPanel.enabled = false;
 
 

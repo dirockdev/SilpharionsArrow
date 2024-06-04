@@ -8,7 +8,7 @@ using static Cinemachine.DocumentationSortingAttribute;
 public class SkillTree : MonoBehaviour
 {
     public string treeName;
-    public static int skillPoints = 30;
+    public static int skillPoints = 0;
     public List<Skill> skillList;
 
     private bool initialized = false;

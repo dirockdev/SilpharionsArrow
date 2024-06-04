@@ -38,7 +38,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AlbedoOriginal:
-        m_Texture: {fileID: 2800000, guid: 019670e365e19ab4d90a55dc3c7a5af8, type: 3}
+        m_Texture: {fileID: 2800000, guid: 78df059d786deed4990f44bb3ba47fba, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -74,7 +74,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: 2ec16188c5438734bb91740e7439968f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 745a7194948bd3b4faea8a880c873d13, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -82,7 +82,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OclussionMap:
-        m_Texture: {fileID: 2800000, guid: 4cf481cf624f88e4a86d5ef2c196ead6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 78e409e8eedf9a74ea2ca4853b4c9c99, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
