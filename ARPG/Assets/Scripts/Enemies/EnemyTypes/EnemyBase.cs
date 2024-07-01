@@ -17,6 +17,7 @@ using System.Collections;
     private float attackSpeed;
     protected int damage;
     private float attackrange;
+    private int experience;
 
 
     private Animator anim;
@@ -78,6 +79,10 @@ using System.Collections;
         
         health = Mathf.RoundToInt(stats.health * scaleMultiplier);
         damage = Mathf.RoundToInt(stats.damage * scaleMultiplier);
+
+       
+
+
         target = null;
         if (!isElite)
         {
@@ -294,7 +299,9 @@ using System.Collections;
 
     public void CreateExp()
     {
-        ObjectPoolManager.SpawnObject(expPrefab.gameObject, transform.position, Quaternion.identity);
+        GameObject newExp=ObjectPoolManager.SpawnObject(expPrefab.gameObject, transform.position, Quaternion.identity);
+        float scaleMultiplier = stats.scaleCurve.Evaluate(PlayerExp.level);
+        newExp.GetComponent<RewardItem>().experience = Mathf.RoundToInt(stats.exp * scaleMultiplier / 3f);
     }
     public void ShowDamagePopUp(int damage, bool crit)
     {

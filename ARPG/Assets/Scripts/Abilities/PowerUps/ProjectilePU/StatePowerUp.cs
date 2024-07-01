@@ -19,4 +19,14 @@ public class StatePowerUp : IPowerUp
             projectileAbilityContainer.state += slowFactor;
         }
     }
+
+    public void Decrease(AbilityContainer abilityContainer)
+    {
+        if (abilityContainer is ProjectileAbilityContainer)
+        {
+
+            ProjectileAbilityContainer projectileAbilityContainer = (ProjectileAbilityContainer)abilityContainer;
+            projectileAbilityContainer.state -= slowFactor;
+        }
+    }
 }

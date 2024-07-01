@@ -15,7 +15,7 @@ MonoBehaviour:
   projectiles: 1
   crit: 5
   angle: -8
-  damage: 7
+  damage: 12
   speed: 15
   slow: 0.5
   poisonChance: 0.15
@@ -26,13 +26,13 @@ MonoBehaviour:
   timeSpeed: 1
   healthAmount: 7
   projectilesShotGun: 4
-  critShotGun: 7
+  critShotGun: 8
   angleShotGun: 62
   widthProjShotGun: 1
   speedShotGun: 2
   speedPartShotGun: 1
-  damageShotGun: 12
-  damageTick: 5
+  damageShotGun: 30
+  damageTick: 9
   areaSize: 1
   timeDuration: 0.5
   homingSpeed: 1

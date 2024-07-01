@@ -19,9 +19,9 @@ public class AbilityPanel : MonoBehaviour
         if (abilitySkillTrees.activeSelf) { abilitySkillTrees.SetActive(false); };
         if (!abilitySkillTrees.activeSelf) { 
             abilitySkillTrees.SetActive(true); 
+            onInicializeSkills?.Invoke();
             abilitySkillTrees.SetActive(false);
         }
-            onInicializeSkills?.Invoke();
 
         inputReader.OnInputAbility0 += ActivateAbilitySecondary;
         inputReader.OnInputAbility1 += ActivateAbility1;

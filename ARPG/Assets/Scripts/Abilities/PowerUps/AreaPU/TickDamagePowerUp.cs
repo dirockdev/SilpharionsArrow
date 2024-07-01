@@ -19,4 +19,14 @@ public class TickDamagePowerUp : IPowerUp
             areaAbilityContainer.tickDamage += additionalDamage;
         }
     }
+
+    public void Decrease(AbilityContainer abilityContainer)
+    {
+        if (abilityContainer is AreaAbilityContainer)
+        {
+
+            AreaAbilityContainer areaAbilityContainer = (AreaAbilityContainer)abilityContainer;
+            areaAbilityContainer.tickDamage -= additionalDamage;
+        }
+    }
 }

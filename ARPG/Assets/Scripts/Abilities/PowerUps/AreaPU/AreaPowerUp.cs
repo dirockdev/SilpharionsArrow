@@ -16,4 +16,14 @@
             areaAbilityContainer.area += areaSize;
         }
     }
+
+    public void Decrease(AbilityContainer abilityContainer)
+    {
+        if (abilityContainer is AreaAbilityContainer)
+        {
+
+            AreaAbilityContainer areaAbilityContainer = (AreaAbilityContainer)abilityContainer;
+            areaAbilityContainer.area -= areaSize;
+        }
+    }
 }

@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class MouseInput : MonoBehaviour
 {
-    Vector3 mouseInputPosition;
+    public static Vector3 mouseInputPosition;
     [HideInInspector]
     public static Vector3 rayToWorldPoint;
     [SerializeField] LayerMask layerTerrain;

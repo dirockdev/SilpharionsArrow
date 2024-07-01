@@ -68,6 +68,8 @@ MonoBehaviour:
   damage: 28
   attackspeed: 1
   radiusDetection: 3
-  exp: 5
+  exp: 300
   acceleration: 500
   angularVelocity: 1000
+  canPoison: 0
+  canStun: 0

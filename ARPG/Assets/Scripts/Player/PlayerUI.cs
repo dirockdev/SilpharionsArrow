@@ -109,7 +109,8 @@ public class PlayerUI : MonoBehaviour
     public void UpdateManaUI()
     {
         manaLiquidMat.DOFloat(playerStats.Mana / (float)playerStats.MaxMana, "_Progress", 0.6f);
-        currentMana.SetText(playerStats.Mana.ToString() + "/" + playerStats.MaxMana.ToString());
+        int manaShown = (int)playerStats.Mana;
+        currentMana.SetText(manaShown.ToString() + "/" + playerStats.MaxMana.ToString());
     }
     public void UpdateHealthUI()
     {

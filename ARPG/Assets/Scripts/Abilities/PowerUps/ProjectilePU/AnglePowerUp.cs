@@ -19,4 +19,14 @@ public class AnglePowerUp : IPowerUp
             projectileAbilityContainer.angleProj += angleReduce;
         }
     }
+
+    public void Decrease(AbilityContainer abilityContainer)
+    {
+        if (abilityContainer is ProjectileAbilityContainer)
+        {
+
+            ProjectileAbilityContainer projectileAbilityContainer = (ProjectileAbilityContainer)abilityContainer;
+            projectileAbilityContainer.angleProj -= angleReduce;
+        }
+    }
 }

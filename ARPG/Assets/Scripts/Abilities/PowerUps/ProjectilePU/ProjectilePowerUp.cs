@@ -6,7 +6,7 @@ public class ProjectilePowerUp : IPowerUp
     public ProjectilePowerUp(int additionalProjectiles)
     {
         this.additionalProjectiles = additionalProjectiles;
-      
+
     }
 
     public void Apply(AbilityContainer abilityContainer)
@@ -17,5 +17,17 @@ public class ProjectilePowerUp : IPowerUp
             ProjectileAbilityContainer projectileAbilityContainer = (ProjectileAbilityContainer)abilityContainer;
             projectileAbilityContainer.numProjectiles += additionalProjectiles;
         }
+    }
+
+    public void Decrease(AbilityContainer abilityContainer)
+    {
+
+        if (abilityContainer is ProjectileAbilityContainer)
+        {
+
+            ProjectileAbilityContainer projectileAbilityContainer = (ProjectileAbilityContainer)abilityContainer;
+            projectileAbilityContainer.numProjectiles -= additionalProjectiles;
+        }
+
     }
 }

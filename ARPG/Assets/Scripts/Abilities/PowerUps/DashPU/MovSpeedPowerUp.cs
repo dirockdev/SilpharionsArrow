@@ -19,4 +19,14 @@ public class MovSpeedPowerUp : IPowerUp
             dashAbility.movSpeed += movSpeed;
         }
     }
+
+    public void Decrease(AbilityContainer abilityContainer)
+    {
+        if (abilityContainer is DashAbilityContainer)
+        {
+
+            DashAbilityContainer dashAbility = (DashAbilityContainer)abilityContainer;
+            dashAbility.movSpeed -= movSpeed;
+        }
+    }
 }

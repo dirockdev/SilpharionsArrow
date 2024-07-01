@@ -15,4 +15,9 @@ public class CooldownReducePowerUp : IPowerUp
         abilityContainer.canReduceCooldown = canReduceCooldown;
         
     }
+
+    public void Decrease(AbilityContainer abilityContainer)
+    {
+        abilityContainer.canReduceCooldown = !canReduceCooldown;
+    }
 }

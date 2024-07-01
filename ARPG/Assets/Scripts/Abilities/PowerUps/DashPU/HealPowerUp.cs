@@ -19,4 +19,14 @@ public class HealPowerUp : IPowerUp
             dashAbility.healAmount += healthAmount;
         }
     }
+
+    public void Decrease(AbilityContainer abilityContainer)
+    {
+        if (abilityContainer is DashAbilityContainer)
+        {
+
+            DashAbilityContainer dashAbility = (DashAbilityContainer)abilityContainer;
+            dashAbility.healAmount -= healthAmount;
+        }
+    }
 }

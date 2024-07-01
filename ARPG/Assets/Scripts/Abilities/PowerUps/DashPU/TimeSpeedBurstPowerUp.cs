@@ -19,4 +19,14 @@ public class TimeSpeedBurstPowerUp : IPowerUp
             dashAbility.timeSpeedBurst += movSpeedTime;
         }
     }
+
+    public void Decrease(AbilityContainer abilityContainer)
+    {
+        if (abilityContainer is DashAbilityContainer)
+        {
+
+            DashAbilityContainer dashAbility = (DashAbilityContainer)abilityContainer;
+            dashAbility.timeSpeedBurst += movSpeedTime;
+        }
+    }
 }

@@ -68,9 +68,11 @@ MonoBehaviour:
   damage: 15
   attackspeed: 1
   radiusDetection: 12
-  exp: 5
+  exp: 200
   acceleration: 10
   angularVelocity: 1000
+  canPoison: 0
+  canStun: 0
   projectilePrefab: {fileID: 807472419327532609, guid: 631cd5dd1b691b24791c4b6576fba3c8,
     type: 3}
   projectileSpeed: 25

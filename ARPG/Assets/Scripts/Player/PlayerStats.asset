@@ -82,6 +82,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   experience: 0
+  manaRegen: 1
   rotationSpeed: 10
   speed: 12
   health: 200

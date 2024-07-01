@@ -19,4 +19,14 @@ public class StunProbPowerUp : IPowerUp
             projectileAbilityContainer.stunProb += probStun;
         }
     }
+
+    public void Decrease(AbilityContainer abilityContainer)
+    {
+        if (abilityContainer is ProjectileAbilityContainer)
+        {
+
+            ProjectileAbilityContainer projectileAbilityContainer = (ProjectileAbilityContainer)abilityContainer;
+            projectileAbilityContainer.stunProb -= probStun;
+        }
+    }
 }

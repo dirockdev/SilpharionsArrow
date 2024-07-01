@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class InteractInput : MonoBehaviour
@@ -21,6 +19,7 @@ public class InteractInput : MonoBehaviour
     private void Awake()
     {
         inputReader.OnInputMousePosition += MousePositionInput;
+
     }
 
     private void OnDisable()
@@ -37,7 +36,7 @@ public class InteractInput : MonoBehaviour
     {
         mousePosition = mousePos;
     }
-
+  
     private void CheckInteractablObject()
     {
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);

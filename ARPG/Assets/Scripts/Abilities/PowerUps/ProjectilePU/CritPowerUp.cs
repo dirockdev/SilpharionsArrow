@@ -20,4 +20,13 @@ public class CritPowerUp : IPowerUp
         }
     }
 
+    public void Decrease(AbilityContainer abilityContainer)
+    {
+        if (abilityContainer is ProjectileAbilityContainer)
+        {
+
+            ProjectileAbilityContainer projectileAbilityContainer = (ProjectileAbilityContainer)abilityContainer;
+            projectileAbilityContainer.probCrit -= additionalCrit;
+        }
+    }
 }

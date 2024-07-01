@@ -19,4 +19,14 @@ public class WidthPowerUp : IPowerUp
             projectileAbilityContainer.widthProj += widthProj;
         }
     }
+
+    public void Decrease(AbilityContainer abilityContainer)
+    {
+        if (abilityContainer is ProjectileAbilityContainer)
+        {
+
+            ProjectileAbilityContainer projectileAbilityContainer = (ProjectileAbilityContainer)abilityContainer;
+            projectileAbilityContainer.widthProj -= widthProj;
+        }
+    }
 }

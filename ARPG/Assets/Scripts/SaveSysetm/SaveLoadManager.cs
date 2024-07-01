@@ -13,6 +13,7 @@ public class SaveLoadManager : MonoBehaviour
     public static bool loadGame;
     private void Start()
     {
+        SkillTree.skillPoints = 0;
         if( loadGame ) { Load(); }
     }
     public void Save()
@@ -26,12 +27,14 @@ public class SaveLoadManager : MonoBehaviour
     }
     public void Load()
     {
+
         playerExp.DeserializeJson();
         abilityHandler.DesSerializeJson();
         foreach(SkillTree skillTree in skillTrees)
         {
             skillTree.DeserializeJson();
         }
+
     }
 
 }

@@ -19,4 +19,14 @@ public class SpeedPowerUp : IPowerUp
             projectileAbilityContainer.speed += additionalSpeed;
         }
     }
+
+    public void Decrease(AbilityContainer abilityContainer)
+    {
+        if (abilityContainer is ProjectileAbilityContainer)
+        {
+
+            ProjectileAbilityContainer projectileAbilityContainer = (ProjectileAbilityContainer)abilityContainer;
+            projectileAbilityContainer.speed-= additionalSpeed;
+        }
+    }
 }

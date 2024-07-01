@@ -39,6 +39,8 @@ public class ProjectileAbility :Ability, IAbilityBehaviour
         Quaternion initialRotation = Quaternion.AngleAxis(-(projectileAbilityContainer.numProjectiles - 1) * angleBetweenProjectiles / 2f, Vector3.up);
 
         int adjustedDamage = projectileAbilityContainer.currentDamage +CharacterStats.DamageAtribute ;
+
+
         for (int i = 0; i < projectileAbilityContainer.numProjectiles; i++)
         {
             // Rotar la dirección del proyectil basada en el ángulo

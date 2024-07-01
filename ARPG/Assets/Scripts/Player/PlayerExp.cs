@@ -31,6 +31,7 @@ public class PlayerExp : MonoBehaviour
     IDataService dataService = new JsonDataService();
     private void Awake()
     {
+        level = 1;
         RestartStats();
         expBar.maxValue = requiredExp;
         expBar.minValue = 0;
@@ -124,6 +125,7 @@ public class PlayerExp : MonoBehaviour
             SkillTree.skillPoints = dataService.LoadData<int>("/player-totalSkillPoints.json", true);
             
             level = dataService.LoadData<int>("/player-level.json", true); ; // Asignar el nivel guardado a la variable de nivel actual
+            print(level);
             currentExp= dataService.LoadData<int>("/player-currentExp.json", true); ; // Asignar el nivel guardado a la variable de nivel actual
 
             for (int i = 0; i <= level; i++)
@@ -143,9 +145,11 @@ public class PlayerExp : MonoBehaviour
                 }
             }
             LoadLevel();
+            
         }
-        catch (Exception)
+        catch (Exception e)
         {
+            print(e);
             AudioManager.instance.PlaySFXWorld("10", transform.position, 0.5f, 0.6f);
             RestartStats();
             expBar.maxValue = requiredExp;

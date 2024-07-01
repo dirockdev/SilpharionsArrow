@@ -4876,7 +4876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6835c421543dbc45aed945f9f42f2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experience: 100
+  experience: 220
   playermask:
     serializedVersion: 2
     m_Bits: 64

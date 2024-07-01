@@ -19,4 +19,14 @@ public class StateDmgPowerUp : IPowerUp
             projectileAbilityContainer.stateDmg -= stateDmgDiv;
         }
     }
+
+    public void Decrease(AbilityContainer abilityContainer)
+    {
+        if (abilityContainer is ProjectileAbilityContainer)
+        {
+
+            ProjectileAbilityContainer projectileAbilityContainer = (ProjectileAbilityContainer)abilityContainer;
+            projectileAbilityContainer.stateDmg += stateDmgDiv;
+        }
+    }
 }

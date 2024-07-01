@@ -19,4 +19,14 @@ public class HomingSpeedPowerUp: IPowerUp
             areaAbilityContainer.homingSpeed += additionalSpeed;
         }
     }
+
+    public void Decrease(AbilityContainer abilityContainer)
+    {
+        if (abilityContainer is AreaAbilityContainer)
+        {
+
+            AreaAbilityContainer areaAbilityContainer = (AreaAbilityContainer)abilityContainer;
+            areaAbilityContainer.homingSpeed -= additionalSpeed;
+        }
+    }
 }

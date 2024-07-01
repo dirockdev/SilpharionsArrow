@@ -20,7 +20,7 @@ MonoBehaviour:
   canHealOnCrits: 0
   prefabProjectile: {fileID: 807472419327532609, guid: 86c05495e293ff447b255c2086824032,
     type: 3}
-  damage: 100
+  damage: 200
   speed: 10
   critProb: 20
   angleProj: 10

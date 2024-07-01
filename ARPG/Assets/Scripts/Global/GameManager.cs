@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject skillPanel,skillTrees,skillHolder;
+    public GameObject skillPanel,skillTrees,skillHolder, instructions;
     public GameObject menuPanel;
     public static event Action<bool> OnToggleMenu;
 
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         skillTrees.SetActive(false);
         skillPanel.SetActive(!skillPanel.activeSelf);
         skillHolder.SetActive(skillPanel.activeSelf);
-
+        menuPanel.SetActive(false);
         OnToggleMenu?.Invoke(!skillPanel.activeSelf && !menuPanel.activeSelf);
 
         UISkillController.UpdatePoints();
@@ -42,6 +42,10 @@ public class GameManager : MonoBehaviour
             skillPanel.SetActive(false);
             skillTrees.SetActive(false); 
             OnToggleMenu?.Invoke(!skillPanel.activeSelf && !menuPanel.activeSelf);
+        }
+        else if (instructions.activeSelf)
+        {
+            instructions.SetActive(false);
         }
         else
         {

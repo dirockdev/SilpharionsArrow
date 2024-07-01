@@ -19,4 +19,14 @@ public class isHomingPowerUp : IPowerUp
             areaAbilityContainer.isHoming = isHoming;
         }
     }
+
+    public void Decrease(AbilityContainer abilityContainer)
+    {
+        if (abilityContainer is AreaAbilityContainer)
+        {
+
+            AreaAbilityContainer areaAbilityContainer = (AreaAbilityContainer)abilityContainer;
+            areaAbilityContainer.isHoming = !isHoming;
+        }
+    }
 }

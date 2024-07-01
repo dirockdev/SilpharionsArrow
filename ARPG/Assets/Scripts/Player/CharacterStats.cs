@@ -14,7 +14,8 @@ public class CharacterStats : MonoBehaviour, IDamagable
     private PlayerUI playerUI;
     NavMeshAgent agent;
 
-    int health,maxHealth,mana, maxMana;
+    int health,maxHealth, maxMana;
+    float mana,manaRegen;
     
     public static Vector3 spawnPoint;
 
@@ -38,7 +39,7 @@ public class CharacterStats : MonoBehaviour, IDamagable
     public int Health { get => health; set => health = value; }
     public PlayerStats PlayerStats { get => playerStats; set => playerStats = value; }
     public int MaxHealth { get => maxHealth; set => maxHealth = value; }
-    public int Mana { get => mana; set => mana = value; }
+    public float Mana { get => mana; set => mana = value; }
     public int MaxMana { get => maxMana; set => maxMana = value; }
 
     private void Awake()
@@ -53,6 +54,7 @@ public class CharacterStats : MonoBehaviour, IDamagable
         Health = playerStats.health;
         maxHealth = playerStats.health;
         mana = playerStats.mana;
+        manaRegen = playerStats.manaRegen;
         maxMana = playerStats.mana;
         agent.speed= playerStats.speed;
         spawnPoint = Vector3.zero;
@@ -66,16 +68,18 @@ public class CharacterStats : MonoBehaviour, IDamagable
     }
     private void Start()
     {
-        
+        StartCoroutine(RegenerateMana());
         PlayerScale(PlayerExp.level);
     }
     public void PlayerScale(int level)
     {
         float scaleMultiplier = playerStats.scaleCurve.Evaluate(level);
+
         DamageAtribute = Mathf.RoundToInt(2*scaleMultiplier);
         maxHealth = Mathf.RoundToInt(playerStats.health * scaleMultiplier);
         health = maxHealth;
         maxMana = Mathf.RoundToInt(playerStats.mana * scaleMultiplier);
+        manaRegen = playerStats.manaRegen * scaleMultiplier;
         mana = maxMana;
 
         
@@ -116,6 +120,7 @@ public class CharacterStats : MonoBehaviour, IDamagable
         yield return Yielders.Get(4f);
         agent.speed = playerStats.speed;
         health = maxHealth;
+        mana= maxMana;
         playerUI.UpdateUI();
         transform.position= spawnPoint;
         agent.SetDestination(transform.position);
@@ -187,6 +192,19 @@ public class CharacterStats : MonoBehaviour, IDamagable
         {
             StopAllCoroutines();
             StartCoroutine(StunCoroutine());
+        }
+    }
+    IEnumerator RegenerateMana()
+    {
+        while (true)
+        {
+            if (mana < maxMana)
+            {
+                mana +=manaRegen; // Adjust the regeneration rate as needed
+                mana = Mathf.Clamp(mana, 0, maxMana);
+                playerUI.UpdateManaUI(); // Update the UI only when mana changes
+            }
+            yield return new WaitForSeconds(1f); // Adjust the interval as needed
         }
     }
     IEnumerator PoisonCoroutine(int damage)

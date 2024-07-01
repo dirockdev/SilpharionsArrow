@@ -19,4 +19,14 @@ public class dashUseArrowRain : IPowerUp
             projectileAbilityContainer.canArrowRain = canUseArea;
         }
     }
+
+    public void Decrease(AbilityContainer abilityContainer)
+    {
+        if (abilityContainer is DashAbilityContainer)
+        {
+
+            DashAbilityContainer projectileAbilityContainer = (DashAbilityContainer)abilityContainer;
+            projectileAbilityContainer.canArrowRain = !canUseArea;
+        }
+    }
 }

@@ -27,7 +27,7 @@ public class PlayerAnimate : MonoBehaviour
     }
     public void LevelUpPart(int level)
     {
-        partParent.Play();
+        if(partParent!=null)partParent.Play();
     }
     void Update()
     {

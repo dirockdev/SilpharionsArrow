@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PowerUpButton : MonoBehaviour
@@ -11,8 +12,9 @@ public class PowerUpButton : MonoBehaviour
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(UpgradePowerUp);
+        
     }
-
+    
     private void UpgradePowerUp()
     {
         PowerUpManagerFactory.instance.UpgradePowerUp(powerUpType, idAbility);

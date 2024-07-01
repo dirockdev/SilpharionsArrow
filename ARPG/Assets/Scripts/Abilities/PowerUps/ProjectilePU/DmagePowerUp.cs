@@ -19,4 +19,14 @@ public class DamagePowerUp : IPowerUp
             projectileAbilityContainer.currentDamage += additionalDamage;
         }
     }
+
+    public void Decrease(AbilityContainer abilityContainer)
+    {
+        if (abilityContainer is ProjectileAbilityContainer)
+        {
+
+            ProjectileAbilityContainer projectileAbilityContainer = (ProjectileAbilityContainer)abilityContainer;
+            projectileAbilityContainer.currentDamage -= additionalDamage;
+        }
+    }
 }
